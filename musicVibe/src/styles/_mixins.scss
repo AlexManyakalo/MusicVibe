@@ -1,0 +1,22 @@
+@use "./variables" as v;
+
+@mixin style-text($size: 20, $weight: 500) {
+  font-family: v.$font-family;
+  font-size: #{$size}px;
+  font-weight: $weight;
+  color: v.$color-blue-55;
+}
+
+@mixin font-text($src, $weight) {
+  font-family: "Acrom";
+  src: url("../assets/fonts/Acrom-#{$src}.woff2") format("woff2");
+  font-weight: $weight;
+  font-style: normal;
+  font-display: swap;
+}
+
+@mixin flex-col-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

@@ -1,0 +1,52 @@
+@use "./globals" as g;
+
+@font-face {
+  @include g.font-text("Medium", 500);
+}
+
+@font-face {
+  @include g.font-text("Bold", 700);
+}
+
+body {
+  @include g.style-text();
+
+  line-height: 1;
+  background-color: g.$color-dark;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-weight: 700;
+  color: g.$color-blue;
+}
+
+a {
+  text-decoration: none;
+  color: g.$color-gray;
+}
+
+button {
+  padding: 0;
+  border: none;
+  background: none;
+}
+
+.container {
+  max-width: g.$container-width + g.$container-padding-x * 2;
+  margin-inline: auto;
+  padding-inline: g.$container-padding-x;
+}
+
+.link {
+  color: g.$color-blue-70;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.btn {
+}
