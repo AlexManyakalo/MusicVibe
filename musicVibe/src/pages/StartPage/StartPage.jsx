@@ -1,3 +1,4 @@
+import Button from "../../components/Button/Button.jsx";
 import styles from "./StartPage.module.scss";
 
 function StartPage() {
@@ -13,9 +14,7 @@ function StartPage() {
           </p>
         </div>
         <div className={styles["start__inner-bottom"]}>
-          <a className={styles["start__inner-btn"]} href="#">
-            Войти
-          </a>
+          <Button />
           <p className={styles["start__inner-paragraph"]}>
             Нет аккаунта?{" "}
             <a className={`${styles["start__inner-paragraph"]} link`} href="#">
