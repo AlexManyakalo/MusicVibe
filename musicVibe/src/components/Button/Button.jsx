@@ -1,11 +1,11 @@
 import styles from "./Button.module.scss";
 
-function App() {
+function Button({ text }) {
   return (
     <a className={styles.btn} href="#">
-      Войти
+      {text}
     </a>
   );
 }
 
-export default App;
+export default Button;
