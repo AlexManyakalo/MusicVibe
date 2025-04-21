@@ -1,0 +1,24 @@
+@use "../../styles/globals" as g;
+
+.input {
+  border: g.$border;
+  border-radius: g.$border-radius;
+  padding: 0px 20px;
+  width: 100%;
+  height: g.$input-height;
+  color: g.$color-blue-55;
+  background-color: transparent;
+  transition-duration: g.$transition-duration;
+
+  &::placeholder {
+    transition-duration: g.$transition-duration;
+  }
+
+  &:focus {
+    border-color: g.$color-blue-55;
+
+    &::placeholder {
+      color: g.$color-blue-55;
+    }
+  }
+}
