@@ -32,12 +32,27 @@ button {
   padding: 0;
   border: none;
   background: none;
+  user-select: none;
+}
+
+input {
+  outline: none;
 }
 
 .container {
   max-width: g.$container-width + g.$container-padding-x * 2;
   margin-inline: auto;
   padding-inline: g.$container-padding-x;
+
+  &--flex {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  @media (max-width: g.$breakpoint-sm) {
+    padding-inline: calc(g.$container-padding-x - 20px);
+  }
 }
 
 .link {
@@ -46,7 +61,4 @@ button {
   &:hover {
     text-decoration: underline;
   }
-}
-
-.btn {
 }
