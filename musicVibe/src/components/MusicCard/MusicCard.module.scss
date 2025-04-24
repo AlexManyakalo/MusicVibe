@@ -1,0 +1,100 @@
+@use "../../styles/globals" as g;
+
+.item {
+  display: flex;
+  flex-direction: column;
+  row-gap: 13px;
+  width: 100%;
+  max-width: 200px;
+  height: 100%;
+  max-height: 251px;
+}
+
+.item__block-link {
+  position: relative;
+  border-radius: g.$border-radius;
+  width: 100%;
+  aspect-ratio: 1;
+  overflow: hidden;
+  transition-duration: g.$transition-duration;
+
+  &:hover {
+    box-shadow: 0px -100px 20px -30px rgba(11, 12, 16, 0.7) inset;
+  }
+  &:hover .link__controls {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: all;
+  }
+}
+
+.block__image {
+  position: relative;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.link__controls {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  position: absolute;
+  padding-inline: 11px;
+  bottom: 5px;
+  left: 0;
+  width: 100%;
+  opacity: 0;
+  transform: translateY(20px);
+  transition:
+    opacity g.$transition-duration ease,
+    transform g.$transition-duration ease;
+  pointer-events: none;
+}
+
+.controls__play,
+.controls__like {
+  cursor: pointer;
+
+  svg {
+    color: g.$color-gray;
+    transition:
+      transform g.$transition-duration,
+      color g.$transition-duration;
+
+    &:hover {
+      color: g.$color-light;
+    }
+  }
+}
+
+.item__text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  row-gap: 6px;
+  padding-left: 10px;
+}
+
+.item__title {
+  font-weight: 700;
+  font-size: 1rem;
+
+  a {
+    color: g.$color-light;
+  }
+  a:hover {
+    text-decoration: underline;
+  }
+}
+
+.item__link {
+  font-weight: 700;
+  font-size: 0.875rem;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
