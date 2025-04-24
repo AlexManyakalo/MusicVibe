@@ -1,0 +1,51 @@
+@use "../../styles/globals" as g;
+
+.section {
+  display: flex;
+  flex-direction: column;
+  row-gap: 22px;
+  width: 100%;
+}
+
+.section__top {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+
+.section__title {
+  font-size: 1.5rem;
+
+  a {
+    color: g.$color-light;
+  }
+  a:hover {
+    text-decoration: underline;
+  }
+}
+
+.section__link {
+  font-size: 0.875rem;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.section__list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 20px;
+}
+
+.chart__list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+
+  @media (max-width: g.$breakpoint-lg) {
+    grid-template-columns: 1fr;
+  }
+}
