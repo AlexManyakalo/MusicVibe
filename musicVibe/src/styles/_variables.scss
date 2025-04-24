@@ -9,6 +9,10 @@ $color-dark-gray: #101117;
 $color-gray-20: rgba(126, 126, 126, 0.2);
 $color-red: #ee204d;
 
+$breakpoint-lg: 1050px;
+$breakpoint-md: 768px;
+$breakpoint-sm: 440px;
+
 $font-family: "Acrom", sans-serif;
 
 $border: 2px solid $color-gray;
@@ -16,7 +20,7 @@ $border-radius: 15px;
 
 $input-height: 60px;
 
-$transition-duration: 0.2s;
+$transition-duration: 0.1s;
 
 $container-width: 1340px;
 $container-padding-x: 30px;
