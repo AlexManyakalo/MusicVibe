@@ -1,0 +1,124 @@
+@use "../../styles/globals" as g;
+
+.selection {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  width: 100%;
+  height: 100vh;
+  padding-block: 23px;
+  overflow: hidden;
+}
+
+.selection__left {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  row-gap: 60px;
+  width: 100%;
+  height: 100%;
+  max-width: 497px;
+}
+
+.selection__left-top {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  row-gap: 20px;
+}
+
+.selection__left-title {
+  font-weight: 500;
+  font-size: clamp(1.5rem, 6vw, 2.25rem);
+}
+
+.selection__left-paragraph {
+  font-size: clamp(1rem, 4vw, 1.5rem);
+}
+
+.selection__left-bottom {
+  width: 100%;
+  max-width: 370px;
+}
+
+.selection__right {
+  @include g.custom-scrollbar;
+
+  width: 100%;
+  max-width: 769px;
+  height: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.selection__right-list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 6px 12px;
+  width: 100%;
+  padding-inline: 30px;
+
+  @media (max-width: g.$breakpoint-lg) {
+    padding-inline: 10px 0;
+  }
+}
+
+.selection__right-item {
+  width: 100%;
+  max-width: 164px;
+  height: 209px;
+
+  @media (max-width: g.$breakpoint-sm) {
+    height: 179px;
+  }
+}
+
+.item__btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  row-gap: 10px;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+
+  &.active .item__block-image {
+    box-shadow: 0 0 8px 6px rgba(102, 252, 241, 0.7);
+  }
+  &:hover .block__image,
+  &.active .block__image {
+    transform: scale(1.05);
+  }
+}
+
+.item__block-image {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+  max-width: 121px;
+  aspect-ratio: 1;
+  border: 2px solid g.$color-blue-55;
+  border-radius: 50%;
+  overflow: hidden;
+  transition-duration: g.$transition-duration;
+}
+
+.block__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition-duration: g.$transition-duration;
+}
+
+.item__paragraph {
+  @include g.cut-text(154);
+
+  font-size: clamp(1rem, 4vw, 1.38rem);
+  color: g.$color-light;
+}
