@@ -1,10 +1,10 @@
-import Button from "../../components/Button/Button.jsx";
+import Link from "../../components/Link/Link.jsx";
 import styles from "./StartPage.module.scss";
 
 function StartPage() {
   return (
     <div className={`container ${styles.start}`}>
-      <div className={styles["start__inner"]}>
+      <section className={styles["start__inner"]}>
         <div className={styles["start__inner-top"]}>
           <h1 className={styles["start__inner-title"]}>MusicVibe</h1>
           <p
@@ -14,7 +14,7 @@ function StartPage() {
           </p>
         </div>
         <div className={styles["start__inner-bottom"]}>
-          <Button />
+          <Link text="Войти" />
           <p className={styles["start__inner-paragraph"]}>
             Нет аккаунта?{" "}
             <a className={`${styles["start__inner-paragraph"]} link`} href="#">
@@ -22,7 +22,7 @@ function StartPage() {
             </a>
           </p>
         </div>
-      </div>
+      </section>
     </div>
   );
 }
