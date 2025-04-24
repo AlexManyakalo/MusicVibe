@@ -1,5 +1,5 @@
 import loginImage from "../../assets/images/login.jpg";
-import Button from "../Button/Button";
+import Link from "../Link/Link";
 import Input from "../Input/Input";
 import styles from "./AuthForm.module.scss";
 
@@ -8,7 +8,7 @@ function AuthForm({ type }) {
 
   return (
     <div className="container container--flex">
-      <div className={styles.auth}>
+      <section className={styles.auth}>
         <div className={styles.auth__left}>
           <img
             className={styles["auth__left-image"]}
@@ -36,10 +36,10 @@ function AuthForm({ type }) {
             {!isLogin && (
               <Input type="password" placeholder="Повторите пароль" />
             )}
-            <Button text={isLogin ? "Войти" : "Зарегистрироваться"} />
+            <Link text={isLogin ? "Войти" : "Зарегистрироваться"} />
           </form>
         </div>
-      </div>
+      </section>
     </div>
   );
 }
