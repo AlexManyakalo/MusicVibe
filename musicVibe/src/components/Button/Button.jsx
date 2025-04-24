@@ -1,10 +1,14 @@
 import styles from "./Button.module.scss";
 
-function Button({ text }) {
+function Button({ text, selected = false, onClick }) {
   return (
-    <a className={styles.btn} href="#">
+    <button
+      className={selected ? styles.btn : styles["btn--disabled"]}
+      disabled={!selected}
+      onClick={onClick}
+    >
       {text}
-    </a>
+    </button>
   );
 }
 

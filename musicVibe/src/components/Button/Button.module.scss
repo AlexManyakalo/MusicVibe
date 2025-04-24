@@ -3,6 +3,7 @@
 .btn {
   @include g.flex-col-center;
 
+  cursor: pointer;
   justify-content: center;
   padding: 0px 20px;
   width: 100%;
@@ -14,5 +15,16 @@
 
   &:hover {
     background: g.$color-blue-70;
+  }
+
+  &--disabled {
+    @include g.flex-col-center;
+
+    justify-content: center;
+    width: 100%;
+    height: g.$input-height;
+    border-radius: g.$border-radius;
+    color: g.$color-gray;
+    background: g.$color-gray-20;
   }
 }
