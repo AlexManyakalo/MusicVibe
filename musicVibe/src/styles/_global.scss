@@ -11,6 +11,7 @@
 body {
   @include g.style-text();
 
+  overflow: hidden;
   line-height: 1;
   background-color: g.$color-dark;
 }
@@ -29,10 +30,20 @@ a {
 }
 
 button {
+  cursor: pointer;
   padding: 0;
   border: none;
   background: none;
   user-select: none;
+
+  svg {
+    color: g.$color-gray;
+    transition-duration: g.$transition-duration;
+
+    &:hover {
+      color: g.$color-light;
+    }
+  }
 }
 
 input {
