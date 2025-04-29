@@ -1,10 +1,51 @@
-import loginImage from "../../assets/images/login.jpg";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import api from "@/api";
+
 import MenuBtn from "@/components/MenuBtn/MenuBtn.jsx";
 import MenuLink from "@/components/MenuLink/MenuLink.jsx";
 import Section from "@/components/Section/Section.jsx";
+import Loader from "@/components/Loader/Loader.jsx";
+
 import styles from "./MusicianPage.module.scss";
 
-function MusiciansPage({ songs }) {
+function MusicianPage() {
+  const { id } = useParams();
+  const [musician, setMusician] = useState({});
+  const [tracks, setTracks] = useState([]); // Должна быть выборка только песен этого автора
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    async function fetchMusician() {
+      try {
+        const res = await api.get(`/musician/${id}`);
+        setMusician(res.data);
+      } catch (err) {
+        console.error("Музыкант не найден:", err);
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    fetchMusician();
+
+    // Должна быть выборка только песен этого автора
+    async function fetchTracks() {
+      try {
+        const res = await api.get("/tracks");
+        setTracks(res.data);
+      } catch (err) {
+        console.error("Ошибка при получении треков:", err);
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    fetchTracks();
+  }, [id]);
+
+  if (loading) return <Loader />;
+
   return (
     <>
       <header className={styles.header}>
@@ -20,12 +61,14 @@ function MusiciansPage({ songs }) {
             <div className={styles["header__bottom-block"]}>
               <img
                 className={styles["bottom__block-image"]}
-                src={loginImage}
+                src={musician.image}
                 alt="Аватарка"
               />
             </div>
             <div className={styles["header__bottom-info"]}>
-              <h2 className={styles["header__bottom-title"]}>Александр</h2>
+              <h2 className={styles["header__bottom-title"]}>
+                {musician.name}
+              </h2>
               <p className={styles["header__bottom-paragraph"]}>291 в месяц</p>
             </div>
           </div>
@@ -59,10 +102,7 @@ function MusiciansPage({ songs }) {
         <div className={styles.info__block}>
           <h3 className={styles["info__left-title"]}>О музыканте</h3>
           <p className={styles["info__left-paragraph"]}>
-            Благодарим вас за проявленный интерес к нашей компании и добро
-            пожаловать в нашу компанию. Кое-что из того, что я смеялся, кое-что
-            из того, что я наряжал, и кое-что из того, что я хотел сделать. У
-            нас тут очень весело, очень-очень прикольно. Общение максимально…
+            {musician.description}
           </p>
         </div>
       </section>
@@ -70,15 +110,15 @@ function MusiciansPage({ songs }) {
         <Section
           title="Популярные треки"
           link="#"
-          songs={songs}
+          tracks={tracks}
           isChart="true"
         />
       </div>
       <div className={styles.wrapper}>
-        <Section title="Альбомы" link="#" songs={songs} />
+        <Section title="Альбомы" link="#" tracks={tracks} />
       </div>
     </>
   );
 }
 
-export default MusiciansPage;
+export default MusicianPage;
