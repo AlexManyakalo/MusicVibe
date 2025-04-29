@@ -1,12 +1,13 @@
+import { NavLink } from "react-router-dom";
 import styles from "./LayoutNavBtn.module.scss";
 
-const LayoutNavBtn = ({ icon, label }) => {
+const LayoutNavBtn = ({ path, icon, label }) => {
   return (
     <li className={styles["aside__nav-item"]}>
-      <a href="#" className={styles["aside__nav-link"]}>
+      <NavLink className={styles["aside__nav-link"]} to={path}>
         {icon}
         <p>{label}</p>
-      </a>
+      </NavLink>
     </li>
   );
 };
