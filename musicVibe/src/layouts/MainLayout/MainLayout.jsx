@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect } from "react";
+import { Link, Outlet } from "react-router-dom";
 import loginImage from "@/assets/images/login.jpg";
 import LayoutNavBtn from "@/components/LayoutNavBtn/LayoutNavBtn.jsx";
 import Player from "@/components/Player/Player.jsx";
@@ -18,7 +19,7 @@ import {
 
 import styles from "./MainLayout.module.scss";
 
-const MainLayout = ({ children }) => {
+function MainLayout() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const menuRef = useRef(null);
   const buttonRef = useRef(null);
@@ -50,13 +51,25 @@ const MainLayout = ({ children }) => {
         <div className={styles["layout__inner-nav"]}>
           <nav className={styles.aside__nav}>
             <h1 className={styles["aside__nav-title"]}>
-              <a href="#">MusicVibe</a>
+              <Link to={"/home"}>MusicVibe</Link>
             </h1>
             <ul className={styles["aside__nav-list"]}>
-              <LayoutNavBtn icon={<SearchIcon />} label="Поиск" />
-              <LayoutNavBtn icon={<HomeIcon />} label="Главная" />
-              <LayoutNavBtn icon={<NoteIcon />} label="Моя музыка" />
-              <LayoutNavBtn icon={<UsersIcon />} label="Сообщество" />
+              <LayoutNavBtn
+                path="/search"
+                icon={<SearchIcon />}
+                label="Поиск"
+              />
+              <LayoutNavBtn path="/home" icon={<HomeIcon />} label="Главная" />
+              <LayoutNavBtn
+                path="/my-music"
+                icon={<NoteIcon />}
+                label="Моя музыка"
+              />
+              <LayoutNavBtn
+                path="/community"
+                icon={<UsersIcon />}
+                label="Сообщество"
+              />
             </ul>
             <div
               ref={menuRef}
@@ -95,11 +108,11 @@ const MainLayout = ({ children }) => {
         </div>
       </aside>
       <main className={styles.content}>
-        {children}
+        <Outlet />
         <Player />
       </main>
     </div>
   );
-};
+}
 
 export default MainLayout;
