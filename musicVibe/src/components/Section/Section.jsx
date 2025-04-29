@@ -2,7 +2,7 @@ import MusicCard from "@/components/MusicCard/MusicCard.jsx";
 import ChartItem from "@/components/ChartItem/ChartItem.jsx";
 import styles from "./Section.module.scss";
 
-function Section({ title, link, songs }) {
+function Section({ title, link, songs, isChart = false }) {
   return (
     <section className={styles.section}>
       <div className={styles.section__top}>
@@ -13,14 +13,10 @@ function Section({ title, link, songs }) {
           Показать все
         </a>
       </div>
-      <ul
-        className={title === "Чарт" ? styles.chart__list : styles.section__list}
-      >
+      <ul className={isChart ? styles.chart__list : styles.section__list}>
         {songs.map((song, index) =>
-          title === "Чарт" ? (
-            <ChartItem key={song.id} index={index}>
-              {song.image}
-            </ChartItem>
+          isChart ? (
+            <ChartItem key={song.id} index={index} image={song.image} />
           ) : (
             <MusicCard key={song.id}>{song.image}</MusicCard>
           ),
