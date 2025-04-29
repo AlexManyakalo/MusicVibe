@@ -1,6 +1,7 @@
-import loginImage from "../../assets/images/login.jpg";
-import Link from "../Link/Link";
-import Input from "../Input/Input";
+import { NavLink } from "react-router-dom";
+import loginImage from "@/assets/images/login.jpg";
+import Button from "@/components/Button/Button.jsx";
+import Input from "@/components/Input/Input";
 import styles from "./AuthForm.module.scss";
 
 function AuthForm({ type }) {
@@ -19,15 +20,22 @@ function AuthForm({ type }) {
         </div>
         <div className={styles.auth__right}>
           <div className={styles["auth__right-switch"]}>
-            <a
-              className={`${styles.switch__btn} ${styles["switch__btn--active"]}`}
-              href="#"
+            <NavLink
+              className={({ isActive }) =>
+                `${styles.switch__btn} ${isActive ? styles["switch__btn--active"] : ""}`
+              }
+              to={"/login"}
             >
               Авторизация
-            </a>
-            <a className={styles.switch__btn} href="#">
+            </NavLink>
+            <NavLink
+              className={({ isActive }) =>
+                `${styles.switch__btn} ${isActive ? styles["switch__btn--active"] : ""}`
+              }
+              to={"/register"}
+            >
               Регистрация
-            </a>
+            </NavLink>
           </div>
           <form className={styles["auth__right-form"]}>
             {!isLogin && <Input type="text" placeholder="Имя" />}
@@ -36,7 +44,7 @@ function AuthForm({ type }) {
             {!isLogin && (
               <Input type="password" placeholder="Повторите пароль" />
             )}
-            <Link text={isLogin ? "Войти" : "Зарегистрироваться"} />
+            <Button text={isLogin ? "Войти" : "Зарегистрироваться"} />
           </form>
         </div>
       </section>
