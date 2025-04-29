@@ -1,24 +1,26 @@
+import { Link } from "react-router-dom";
 import MusicCard from "@/components/MusicCard/MusicCard.jsx";
 import ChartItem from "@/components/ChartItem/ChartItem.jsx";
+
 import styles from "./Section.module.scss";
 
-function Section({ title, link, songs, isChart = false }) {
+function Section({ title, link, tracks, isChart = false }) {
   return (
     <section className={styles.section}>
       <div className={styles.section__top}>
         <h2 className={styles.section__title}>
-          <a href={link}>{title}</a>
+          <Link to={link}>{title}</Link>
         </h2>
-        <a className={styles.section__link} href={link}>
+        <Link className={styles.section__link} to={link}>
           Показать все
-        </a>
+        </Link>
       </div>
       <ul className={isChart ? styles.chart__list : styles.section__list}>
-        {songs.map((song, index) =>
+        {tracks.map((track, index) =>
           isChart ? (
-            <ChartItem key={song.id} index={index} image={song.image} />
+            <ChartItem key={track.id} index={index} track={track} />
           ) : (
-            <MusicCard key={song.id}>{song.image}</MusicCard>
+            <MusicCard key={track.id} track={track}></MusicCard>
           ),
         )}
       </ul>
