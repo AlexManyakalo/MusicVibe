@@ -1,4 +1,4 @@
-import Link from "../../components/Link/Link.jsx";
+import { Link } from "react-router";
 import styles from "./StartPage.module.scss";
 
 function StartPage() {
@@ -14,12 +14,17 @@ function StartPage() {
           </p>
         </div>
         <div className={styles["start__inner-bottom"]}>
-          <Link text="Войти" />
+          <Link className={styles["start__inner-link"]} to="/login">
+            Войти
+          </Link>
           <p className={styles["start__inner-paragraph"]}>
             Нет аккаунта?{" "}
-            <a className={`${styles["start__inner-paragraph"]} link`} href="#">
+            <Link
+              className={`${styles["start__inner-paragraph"]} link`}
+              to={"/register"}
+            >
               Регистрация
-            </a>
+            </Link>
           </p>
         </div>
       </section>
