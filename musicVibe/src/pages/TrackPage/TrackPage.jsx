@@ -1,27 +1,72 @@
+import { useEffect, useState } from "react";
+import { Link, useParams } from "react-router-dom";
+import api from "@/api";
+
 import ChartItem from "@/components/ChartItem/ChartItem.jsx";
 import MenuBtn from "@/components/MenuBtn/MenuBtn.jsx";
 import Input from "@/components/Input/Input.jsx";
+import Loader from "@/components/Loader/Loader.jsx";
 import { HeartIcon } from "@/components/Icons/icons.jsx";
-import LoginImage from "@/assets/images/login.jpg";
+
 import styles from "./TrackPage.module.scss";
 
-function TrackPage({ songs }) {
+import LoginImage from "@/assets/images/login.jpg";
+
+// TODO: Здесь нужен запрос к АПИ (наверное у каждой страницы будет отдельный запрос к АПИ)
+
+function TrackPage() {
+  const { id } = useParams();
+  const [track, setTrack] = useState({});
+  const [tracks, setTracks] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    async function fetchTrack() {
+      try {
+        const res = await api.get(`/track/${id}`);
+        setTrack(res.data);
+      } catch (err) {
+        console.error("Трек не найден:", err);
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    fetchTrack();
+
+    // Должна быть выборка только песен этого автора
+    async function fetchTracks() {
+      try {
+        const res = await api.get("/tracks");
+        setTracks(res.data);
+      } catch (err) {
+        console.error("Ошибка при получении треков:", err);
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    fetchTracks();
+  }, [id]);
+
+  if (loading) return <Loader />;
+
   return (
     <>
       <div className={styles.track__song}>
         <div className={styles["track__song-block"]}>
           <img
             className={styles.block__image}
-            src={songs[0].image}
+            src={track.image}
             alt="Превью песни"
           />
         </div>
         <div className={styles.info}>
           <div className={styles.info__top}>
-            <h2 className={styles["info__top-title"]}>Название трека</h2>
-            <a className={styles["info__top-link"]} href="#">
-              Артист
-            </a>
+            <h2 className={styles["info__top-title"]}>{track.title}</h2>
+            <Link className={styles["info__top-link"]} href="#">
+              {track.artistName}
+            </Link>
           </div>
           <div className={styles.info__bottom}>
             <MenuBtn label="Слушать" />
@@ -29,7 +74,6 @@ function TrackPage({ songs }) {
               className={styles["item__right-like"]}
               onClick={e => {
                 e.stopPropagation();
-                handleLike();
               }}
             >
               <HeartIcon />
@@ -37,12 +81,12 @@ function TrackPage({ songs }) {
           </div>
         </div>
       </div>
-      {songs.map((song, index) => (
-        <ChartItem key={song.id} index={index} image={song.image} />
+      {tracks.map((track, index) => (
+        <ChartItem key={track.id} index={index} track={track} />
       ))}
       <div className={styles.track__comment}>
         <h2 className={styles["track__comment-title"]}>10 комментариев</h2>
-        <div className={styles.comment__bottom}>
+        <form className={styles.comment__bottom}>
           <div className={styles["comment__bottom-input"]}>
             <div className={styles["track__comment-block"]} href="#">
               <img
@@ -57,20 +101,23 @@ function TrackPage({ songs }) {
             <MenuBtn label="Отмена" />
             <MenuBtn label="Оставить комментарий" />
           </div>
-        </div>
+        </form>
       </div>
       <ul className={styles.comments__list}>
         <li className={styles.comments__item}>
-          <a className={styles.comments__block} href="#">
+          <Link
+            className={styles.comments__block}
+            to={`/musician/пользователь_чей_коммент`}
+          >
             <img
               className={styles["comments__block-image"]}
               src={LoginImage}
               alt="Аватарка пользователя"
             />
-          </a>
+          </Link>
           <div className={styles.comment}>
             <h4 className={styles.comments__title}>
-              <a href="#">Александр</a>
+              <Link to={`/musician/пользователь_чей_коммент`}>Александр</Link>
             </h4>
             <p className={styles.comments__paragraph}>
               Далеко-далеко за словесными горами в стране гласных и согласных
