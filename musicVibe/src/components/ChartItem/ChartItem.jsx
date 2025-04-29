@@ -1,7 +1,8 @@
+import { Link } from "react-router-dom";
 import styles from "./ChartItem.module.scss";
 import { PlayIcon, HeartIcon } from "@/components/Icons/icons.jsx";
 
-function ChartItem({ index, image }) {
+function ChartItem({ index, track }) {
   function handlePlay() {
     console.log(`Play`);
   }
@@ -14,29 +15,33 @@ function ChartItem({ index, image }) {
       <div className={styles.item__left}>
         <p className={styles["item__left-num"]}>{index + 1}</p>
         <div className={styles["item__left-block"]}>
-          <img src={image} alt="Превью песни" className={styles.block__image} />
+          <img
+            src={track.image}
+            alt="Превью песни"
+            className={styles.block__image}
+          />
           <PlayIcon />
         </div>
         <div className={styles["item__left-text"]}>
           <h3 className={styles["text__title"]}>
-            <a
-              href="#"
+            <Link
+              to={`/track/${track.id}`}
               onClick={e => {
                 e.stopPropagation();
               }}
             >
-              Название песни
-            </a>
+              {track.title}
+            </Link>
           </h3>
-          <a
+          <Link
             className={styles["text__link"]}
-            href="#"
+            to={`/musician/${track.artistId}`}
             onClick={e => {
               e.stopPropagation();
             }}
           >
-            Артист
-          </a>
+            {track.artistName}
+          </Link>
         </div>
       </div>
       <div className={styles.item__right}>
