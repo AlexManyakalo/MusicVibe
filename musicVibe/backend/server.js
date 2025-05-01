@@ -97,7 +97,7 @@ const tracks = [
     artistId: 1,
     artistName: "Алексей Ветров",
     image: "/previewMusic/1.jpg",
-    audio: "/audio/1.mp3",
+    audio: "/tracks/Numb The Pain.mp3",
     duration: "3:42",
   },
   {
@@ -106,7 +106,7 @@ const tracks = [
     artistId: 2,
     artistName: "NEON BLVD",
     image: "/previewMusic/2.jpg",
-    audio: "/audio/2.mp3",
+    audio: "/tracks/ONLAP - Unstoppable.m4a",
     duration: "4:08",
   },
   {
@@ -115,7 +115,7 @@ const tracks = [
     artistId: 3,
     artistName: "Мирослава",
     image: "/previewMusic/3.jpg",
-    audio: "/audio/3.mp3",
+    audio: "/tracks/Numb The Pain.mp3",
     duration: "2:57",
   },
   {
@@ -124,7 +124,7 @@ const tracks = [
     artistId: 4,
     artistName: "DJ Крутой",
     image: "/previewMusic/4.jpg",
-    audio: "/audio/4.mp3",
+    audio: "/tracks/ONLAP - Unstoppable.m4a",
     duration: "5:14",
   },
   {
@@ -133,7 +133,7 @@ const tracks = [
     artistId: 5,
     artistName: "Звукозапад",
     image: "/previewMusic/5.jpg",
-    audio: "/audio/5.mp3",
+    audio: "/tracks/Numb The Pain.mp3",
     duration: "3:26",
   },
   {
@@ -142,7 +142,7 @@ const tracks = [
     artistId: 6,
     artistName: "Катя Лёд",
     image: "/previewMusic/1.jpg",
-    audio: "/audio/6.mp3",
+    audio: "/tracks/ONLAP - Unstoppable.m4a",
     duration: "4:01",
   },
   {
@@ -151,7 +151,7 @@ const tracks = [
     artistId: 7,
     artistName: "ROTOR",
     image: "/previewMusic/2.jpg",
-    audio: "/audio/7.mp3",
+    audio: "/tracks/Numb The Pain.mp3",
     duration: "3:50",
   },
   {
@@ -160,7 +160,7 @@ const tracks = [
     artistId: 8,
     artistName: "Луна на Пульсе",
     image: "/previewMusic/3.jpg",
-    audio: "/audio/8.mp3",
+    audio: "/tracks/ONLAP - Unstoppable.m4a",
     duration: "3:58",
   },
   {
@@ -169,7 +169,7 @@ const tracks = [
     artistId: 9,
     artistName: "Слава Битмейкер",
     image: "/previewMusic/4.jpg",
-    audio: "/audio/9.mp3",
+    audio: "/tracks/Numb The Pain.mp3",
     duration: "2:45",
   },
   {
@@ -178,7 +178,7 @@ const tracks = [
     artistId: 10,
     artistName: "Ольга Янтарь",
     image: "/previewMusic/5.jpg",
-    audio: "/audio/10.mp3",
+    audio: "/tracks/ONLAP - Unstoppable.m4a",
     duration: "3:33",
   },
 ];
