@@ -14,15 +14,15 @@ export function PlayerProvider({ children }) {
   useEffect(() => {
     const audio = audioRef.current;
 
-    const handleLoadedMetadata = () => {
+    function handleLoadedMetadata() {
       setDuration(audio.duration);
     };
 
-    const handleTimeUpdate = () => {
+    function handleTimeUpdate() {
       setCurrentTime(audio.currentTime);
     };
 
-    const handleEnded = () => {
+    function handleEnded() {
       setIsPlaying(false);
       setCurrentTime(0);
       // Здесь можно вызвать nextTrack() если будет очередь
