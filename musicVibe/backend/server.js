@@ -98,7 +98,7 @@ const tracks = [
     artistName: "Алексей Ветров",
     imageUrl: "/previewMusic/1.jpg",
     audioUrl: "/tracks/Numb%20The%20Pain.mp3",
-    duration: "3:42",
+    duration: 153,
   },
   {
     id: 2,
@@ -107,7 +107,7 @@ const tracks = [
     artistName: "NEON BLVD",
     imageUrl: "/previewMusic/2.jpg",
     audioUrl: "/tracks/ONLAP%20-%20Unstoppable.m4a",
-    duration: "4:08",
+    duration: 202,
   },
   {
     id: 3,
@@ -116,7 +116,7 @@ const tracks = [
     artistName: "Мирослава",
     imageUrl: "/previewMusic/3.jpg",
     audioUrl: "/tracks/Numb%20The%20Pain.mp3",
-    duration: "2:57",
+    duration: 153,
   },
   {
     id: 4,
@@ -125,7 +125,7 @@ const tracks = [
     artistName: "DJ Крутой",
     imageUrl: "/previewMusic/4.jpg",
     audioUrl: "/tracks/ONLAP%20-%20Unstoppable.m4a",
-    duration: "5:14",
+    duration: 202,
   },
   {
     id: 5,
@@ -134,7 +134,7 @@ const tracks = [
     artistName: "Звукозапад",
     imageUrl: "/previewMusic/5.jpg",
     audioUrl: "/tracks/Numb%20The%20Pain.mp3",
-    duration: "3:26",
+    duration: 153,
   },
   {
     id: 6,
@@ -143,7 +143,7 @@ const tracks = [
     artistName: "Катя Лёд",
     imageUrl: "/previewMusic/1.jpg",
     audioUrl: "/tracks/ONLAP%20-%20Unstoppable.m4a",
-    duration: "4:01",
+    duration: 202,
   },
   {
     id: 7,
@@ -152,7 +152,7 @@ const tracks = [
     artistName: "ROTOR",
     imageUrl: "/previewMusic/2.jpg",
     audioUrl: "/tracks/Numb%20The%20Pain.mp3",
-    duration: "3:50",
+    duration: 153,
   },
   {
     id: 8,
@@ -161,7 +161,7 @@ const tracks = [
     artistName: "Луна на Пульсе",
     imageUrl: "/previewMusic/3.jpg",
     audioUrl: "/tracks/ONLAP%20-%20Unstoppable.m4a",
-    duration: "3:58",
+    duration: 202,
   },
   {
     id: 9,
@@ -170,7 +170,7 @@ const tracks = [
     artistName: "Слава Битмейкер",
     imageUrl: "/previewMusic/4.jpg",
     audioUrl: "/tracks/Numb%20The%20Pain.mp3",
-    duration: "2:45",
+    duration: 153,
   },
   {
     id: 10,
@@ -179,7 +179,7 @@ const tracks = [
     artistName: "Ольга Янтарь",
     imageUrl: "/previewMusic/5.jpg",
     audioUrl: "/tracks/ONLAP%20-%20Unstoppable.m4a",
-    duration: "3:33",
+    duration: 202,
   },
 ];
 
