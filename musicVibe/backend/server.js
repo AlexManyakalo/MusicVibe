@@ -93,7 +93,7 @@ const musicians = [
 const tracks = [
   {
     id: 1,
-    title: "Навстречу ветру",
+    title: "Навстречу ветру htkrjthkrtjh rtjhl rtjh krjth lkjrthkrtjhrltkhjlrth",
     artistId: 1,
     artistName: "Алексей Ветров",
     imageUrl: "/previewMusic/1.jpg",
@@ -104,7 +104,7 @@ const tracks = [
     id: 2,
     title: "Неоновые сны",
     artistId: 2,
-    artistName: "NEON BLVD",
+    artistName: "NEON BLVD trthjlr tkjh krtjhlrktjhktrlh",
     imageUrl: "/previewMusic/2.jpg",
     audioUrl: "/tracks/ONLAP%20-%20Unstoppable.m4a",
     duration: 202,
