@@ -247,8 +247,9 @@ export const ExitIcon = () => (
   </svg>
 );
 
-export const PlayIcon = () => (
+export const PlayIcon = ({ className }) => (
   <svg
+    className={className}
     width="48"
     height="48"
     viewBox="0 0 48 48"
@@ -279,8 +280,9 @@ export const PlayIcon = () => (
   </svg>
 );
 
-export const PauseIcon = () => (
+export const PauseIcon = ({ className }) => (
   <svg
+    className={className}
     width="41"
     height="40"
     viewBox="0 0 41 40"
