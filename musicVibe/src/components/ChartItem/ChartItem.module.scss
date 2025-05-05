@@ -26,12 +26,16 @@
 .item__left {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-start;
+  column-gap: 15px;
   width: 100%;
-  max-width: 245px;
 }
 
 .item__left-num {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
   font-weight: 700;
   font-size: 1.25rem;
   color: g.$color-gray;
@@ -66,6 +70,11 @@
   object-fit: cover;
 }
 
+.pause__btn {
+  width: 44px;
+  height: 44px;
+}
+
 .item__left-text {
   display: flex;
   flex-direction: column;
@@ -78,6 +87,9 @@
   font-size: 1rem;
 
   a {
+    @include g.cut-text(200);
+
+    display: inline-block;
     color: g.$color-light;
   }
   a:hover {
@@ -86,6 +98,9 @@
 }
 
 .text__link {
+  @include g.cut-text(200);
+  
+  display: inline-block;
   font-weight: 700;
   font-size: 0.875rem;
 
