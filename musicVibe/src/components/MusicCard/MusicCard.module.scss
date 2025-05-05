@@ -67,6 +67,11 @@
   }
 }
 
+.pause__btn {
+  width: 48px;
+  height: 48px;
+}
+
 .item__text {
   display: flex;
   flex-direction: column;
@@ -81,6 +86,9 @@
   font-size: 1rem;
 
   a {
+    @include g.cut-text(190);
+
+    display: inline-block;
     color: g.$color-light;
   }
   a:hover {
@@ -89,6 +97,9 @@
 }
 
 .item__link {
+  @include g.cut-text(190);
+
+  display: inline-block;
   font-weight: 700;
   font-size: 0.875rem;
 

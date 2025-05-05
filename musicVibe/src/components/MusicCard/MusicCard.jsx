@@ -1,19 +1,37 @@
+import { useContext } from "react";
+import { PlayerContext } from "@/context/PlayerContext";
 import { Link } from "react-router-dom";
-import { PlayIcon, HeartIcon } from "@/components/Icons/icons.jsx";
+import { PlayIcon, PauseIcon, HeartIcon } from "@/components/Icons/icons.jsx";
 import styles from "./MusicCard.module.scss";
 
 function MusicCard({ track }) {
+  const { playTrack, togglePlayPause, currentTrack, isPlaying } =
+    useContext(PlayerContext);
+
+  const isCurrent = currentTrack?.id === track.id;
+
+  function handlePlay(e) {
+    e.preventDefault(); // предотвращаем переход по ссылке
+
+    if (isCurrent) togglePlayPause();
+    else playTrack(track);
+  }
+
   return (
     <li className={styles.item}>
       <Link className={styles["item__block-link"]} to={`/track/${track.id}`}>
         <img
           className={styles.block__image}
-          src={track.image}
+          src={track.imageUrl}
           alt={track.title}
         />
         <div className={styles.link__controls}>
-          <button className={styles.controls__play}>
-            <PlayIcon />
+          <button className={styles.controls__play} onClick={handlePlay}>
+            {isCurrent && isPlaying ? (
+              <PauseIcon className={styles.pause__btn} />
+            ) : (
+              <PlayIcon />
+            )}
           </button>
           <button className={styles.controls__like}>
             <HeartIcon />
