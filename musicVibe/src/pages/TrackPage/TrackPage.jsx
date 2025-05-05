@@ -17,6 +17,7 @@ import LoginImage from "@/assets/images/login.jpg";
 // TODO: Здесь нужен запрос к АПИ (наверное у каждой страницы будет отдельный запрос к АПИ)
 
 function TrackPage() {
+  // ЗАПРОСЫ
   const { id } = useParams();
   const [track, setTrack] = useState({});
   const [tracks, setTracks] = useState([]);
@@ -51,6 +52,7 @@ function TrackPage() {
     fetchTracks();
   }, [id]);
 
+  // ПЛЕЕР
   const { playTrack, togglePlayPause, currentTrack, isPlaying } =
     useContext(PlayerContext);
   const isCurrent = currentTrack?.id === track.id;
@@ -62,6 +64,7 @@ function TrackPage() {
     else playTrack(track);
   }
 
+  // ЛОАДЕР
   if (loading) return <Loader />;
 
   return (
