@@ -35,3 +35,8 @@
     }
   }
 }
+
+.nav__link--active {
+  color: g.$color-light;
+  background: g.$color-blue-55;
+}
