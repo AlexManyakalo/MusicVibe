@@ -1,3 +1,5 @@
+import { useContext } from "react";
+import { PlayerContext } from "@/context/PlayerContext";
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import api from "@/api";
@@ -49,6 +51,17 @@ function TrackPage() {
     fetchTracks();
   }, [id]);
 
+  const { playTrack, togglePlayPause, currentTrack, isPlaying } =
+    useContext(PlayerContext);
+  const isCurrent = currentTrack?.id === track.id;
+
+  function handlePlay(e) {
+    e.preventDefault(); // предотвращаем переход по ссылке
+
+    if (isCurrent) togglePlayPause();
+    else playTrack(track);
+  }
+
   if (loading) return <Loader />;
 
   return (
@@ -57,19 +70,22 @@ function TrackPage() {
         <div className={styles["track__song-block"]}>
           <img
             className={styles.block__image}
-            src={track.image}
+            src={track.imageUrl}
             alt="Превью песни"
           />
         </div>
         <div className={styles.info}>
           <div className={styles.info__top}>
             <h2 className={styles["info__top-title"]}>{track.title}</h2>
-            <Link className={styles["info__top-link"]} href="#">
+            <Link
+              className={styles["info__top-link"]}
+              to={`/musician/${track.artistId}`}
+            >
               {track.artistName}
             </Link>
           </div>
           <div className={styles.info__bottom}>
-            <MenuBtn label="Слушать" />
+            <MenuBtn label="Слушать" handlePlay={handlePlay} />
             <button
               className={styles["item__right-like"]}
               onClick={e => {
