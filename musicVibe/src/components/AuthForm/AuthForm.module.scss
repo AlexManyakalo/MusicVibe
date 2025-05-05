@@ -20,6 +20,7 @@
   width: 563px;
   height: 697px;
   overflow: hidden;
+  background-color: g.$color-gray;
 
   @media (max-width: g.$breakpoint-lg) {
     display: none;
