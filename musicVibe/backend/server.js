@@ -12,7 +12,9 @@ const musicians = [
     id: 1,
     name: "Алексей Ветров",
     genre: "Поп",
-    image: "/avatarUser/login1.jpg",
+    imageUrl: "/avatarUser/login1.jpg",
+    backgroundUrl:
+      "https://avatars.mds.yandex.net/i?id=2d0ed205049cd9c3b56db4cab9f02b9d_l-4255743-images-thumbs&n=13",
     description:
       "Благодарим вас за проявленный интерес к нашей компании и добро пожаловать в нашу компанию. Кое-что из того, что я смеялся, кое-что из того, что я наряжал, и кое-что из того, что я хотел сделать. У нас тут очень весело, очень-очень прикольно. Общение максимально…",
   },
@@ -20,7 +22,9 @@ const musicians = [
     id: 2,
     name: "NEON BLVD",
     genre: "Электроника",
-    image: "/avatarUser/login2.jpg",
+    imageUrl: "/avatarUser/login2.jpg",
+    backgroundUrl:
+      "https://avatars.mds.yandex.net/i?id=2d0ed205049cd9c3b56db4cab9f02b9d_l-4255743-images-thumbs&n=13",
     description:
       "Благодарим вас за проявленный интерес к нашей компании и добро пожаловать в нашу компанию. Кое-что из того, что я смеялся, кое-что из того, что я наряжал, и кое-что из того, что я хотел сделать. У нас тут очень весело, очень-очень прикольно. Общение максимально…",
   },
@@ -28,7 +32,9 @@ const musicians = [
     id: 3,
     name: "Мирослава",
     genre: "Инди",
-    image: "/avatarUser/login1.jpg",
+    imageUrl: "/avatarUser/login1.jpg",
+    backgroundUrl:
+      "https://avatars.mds.yandex.net/i?id=2d0ed205049cd9c3b56db4cab9f02b9d_l-4255743-images-thumbs&n=13",
     description:
       "Благодарим вас за проявленный интерес к нашей компании и добро пожаловать в нашу компанию. Кое-что из того, что я смеялся, кое-что из того, что я наряжал, и кое-что из того, что я хотел сделать. У нас тут очень весело, очень-очень прикольно. Общение максимально…",
   },
@@ -36,7 +42,9 @@ const musicians = [
     id: 4,
     name: "DJ Крутой",
     genre: "EDM",
-    image: "/avatarUser/login2.jpg",
+    imageUrl: "/avatarUser/login2.jpg",
+    backgroundUrl:
+      "https://avatars.mds.yandex.net/i?id=2d0ed205049cd9c3b56db4cab9f02b9d_l-4255743-images-thumbs&n=13",
     description:
       "Благодарим вас за проявленный интерес к нашей компании и добро пожаловать в нашу компанию. Кое-что из того, что я смеялся, кое-что из того, что я наряжал, и кое-что из того, что я хотел сделать. У нас тут очень весело, очень-очень прикольно. Общение максимально…",
   },
@@ -44,7 +52,9 @@ const musicians = [
     id: 5,
     name: "Звукозапад",
     genre: "Хип-хоп",
-    image: "/avatarUser/login1.jpg",
+    imageUrl: "/avatarUser/login1.jpg",
+    backgroundUrl:
+      "https://avatars.mds.yandex.net/i?id=2d0ed205049cd9c3b56db4cab9f02b9d_l-4255743-images-thumbs&n=13",
     description:
       "Благодарим вас за проявленный интерес к нашей компании и добро пожаловать в нашу компанию. Кое-что из того, что я смеялся, кое-что из того, что я наряжал, и кое-что из того, что я хотел сделать. У нас тут очень весело, очень-очень прикольно. Общение максимально…",
   },
@@ -52,7 +62,9 @@ const musicians = [
     id: 6,
     name: "Катя Лёд",
     genre: "Поп",
-    image: "/avatarUser/login2.jpg",
+    imageUrl: "/avatarUser/login2.jpg",
+    backgroundUrl:
+      "https://avatars.mds.yandex.net/i?id=2d0ed205049cd9c3b56db4cab9f02b9d_l-4255743-images-thumbs&n=13",
     description:
       "Благодарим вас за проявленный интерес к нашей компании и добро пожаловать в нашу компанию. Кое-что из того, что я смеялся, кое-что из того, что я наряжал, и кое-что из того, что я хотел сделать. У нас тут очень весело, очень-очень прикольно. Общение максимально…",
   },
@@ -60,7 +72,9 @@ const musicians = [
     id: 7,
     name: "ROTOR",
     genre: "Рок",
-    image: "/avatarUser/login1.jpg",
+    imageUrl: "/avatarUser/login1.jpg",
+    backgroundUrl:
+      "https://avatars.mds.yandex.net/i?id=2d0ed205049cd9c3b56db4cab9f02b9d_l-4255743-images-thumbs&n=13",
     description:
       "Благодарим вас за проявленный интерес к нашей компании и добро пожаловать в нашу компанию. Кое-что из того, что я смеялся, кое-что из того, что я наряжал, и кое-что из того, что я хотел сделать. У нас тут очень весело, очень-очень прикольно. Общение максимально…",
   },
@@ -68,7 +82,9 @@ const musicians = [
     id: 8,
     name: "Луна на Пульсе",
     genre: "Альтернатива",
-    image: "/avatarUser/login2.jpg",
+    imageUrl: "/avatarUser/login2.jpg",
+    backgroundUrl:
+      "https://avatars.mds.yandex.net/i?id=2d0ed205049cd9c3b56db4cab9f02b9d_l-4255743-images-thumbs&n=13",
     description:
       "Благодарим вас за проявленный интерес к нашей компании и добро пожаловать в нашу компанию. Кое-что из того, что я смеялся, кое-что из того, что я наряжал, и кое-что из того, что я хотел сделать. У нас тут очень весело, очень-очень прикольно. Общение максимально…",
   },
@@ -76,7 +92,9 @@ const musicians = [
     id: 9,
     name: "Слава Битмейкер",
     genre: "Бит",
-    image: "/avatarUser/login1.jpg",
+    imageUrl: "/avatarUser/login1.jpg",
+    backgroundUrl:
+      "https://avatars.mds.yandex.net/i?id=2d0ed205049cd9c3b56db4cab9f02b9d_l-4255743-images-thumbs&n=13",
     description:
       "Благодарим вас за проявленный интерес к нашей компании и добро пожаловать в нашу компанию. Кое-что из того, что я смеялся, кое-что из того, что я наряжал, и кое-что из того, что я хотел сделать. У нас тут очень весело, очень-очень прикольно. Общение максимально…",
   },
@@ -84,7 +102,9 @@ const musicians = [
     id: 10,
     name: "Ольга Янтарь",
     genre: "Фолк",
-    image: "/avatarUser/login2.jpg",
+    imageUrl: "/avatarUser/login2.jpg",
+    backgroundUrl:
+      "https://avatars.mds.yandex.net/i?id=2d0ed205049cd9c3b56db4cab9f02b9d_l-4255743-images-thumbs&n=13",
     description:
       "Благодарим вас за проявленный интерес к нашей компании и добро пожаловать в нашу компанию. Кое-что из того, что я смеялся, кое-что из того, что я наряжал, и кое-что из того, что я хотел сделать. У нас тут очень весело, очень-очень прикольно. Общение максимально…",
   },
@@ -93,7 +113,8 @@ const musicians = [
 const tracks = [
   {
     id: 1,
-    title: "Навстречу ветру htkrjthkrtjh rtjhl rtjh krjth lkjrthkrtjhrltkhjlrth",
+    title:
+      "Навстречу ветру htkrjthkrtjh rtjhl rtjh krjth lkjrthkrtjhrltkhjlrth",
     artistId: 1,
     artistName: "Алексей Ветров",
     imageUrl: "/previewMusic/1.jpg",
