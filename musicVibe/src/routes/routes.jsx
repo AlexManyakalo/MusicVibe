@@ -20,8 +20,8 @@ const AppRoutes = () => {
     <Routes>
       {/* Страницы без лэйаута */}
       <Route path="/" element={<StartPage />} />
-      <Route path="/login" element={<LoginPage />} />
-      <Route path="/register" element={<RegisterPage />} />
+      <Route path="/auth/login" element={<LoginPage />} />
+      <Route path="/auth/register" element={<RegisterPage />} />
       <Route path="/genres" element={<GenresPage />} />
       <Route path="/musicians" element={<MusiciansPage />} />
 
