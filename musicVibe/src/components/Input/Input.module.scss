@@ -1,12 +1,17 @@
 @use "../../styles/globals" as g;
 
+.input__wrapper {
+  position: relative;
+  width: 100%;
+}
+
 .input {
   border: g.$border;
   border-radius: g.$border-radius;
   padding: 0px 20px;
   width: 100%;
   height: g.$input-height;
-  color: g.$color-blue-55;
+  color: g.$color-gray;
   background-color: transparent;
   transition-duration: g.$transition-duration;
 
@@ -15,17 +20,30 @@
   }
 
   &:focus {
+    color: g.$color-blue-55;
     border-color: g.$color-blue-55;
 
     &::placeholder {
       color: g.$color-blue-55;
     }
   }
+
+  &__bottom {
+    border-top: none;
+    border-right: none;
+    border-left: none;
+    border-radius: 0;
+  }
+
+  &__error {
+    border-color: g.$color-red;
+  }
 }
 
-.input__bottom {
-  border-top: none;
-  border-right: none;
-  border-left: none;
-  border-radius: 0;
+.input__error_message {
+  position: absolute;
+  left: 0;
+  bottom: -1.25rem;
+  font-size: 0.875rem;
+  color: g.$color-red;
 }
