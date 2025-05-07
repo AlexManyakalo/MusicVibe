@@ -12,7 +12,13 @@
   background-color: g.$color-gray-20;
   transition-duration: g.$transition-duration;
 
-  &:hover {
+  &:hover:not(.disabled) {
     background-color: g.$color-blue-55;
+  }
+
+  &.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    background-color: g.$color-gray-20;
   }
 }
