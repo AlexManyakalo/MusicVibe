@@ -204,6 +204,8 @@ const tracks = [
   },
 ];
 
+const users = [{ email: "1234@mail.ru", password: "123456" }];
+
 // Все артисты
 app.get("/musicians", (req, res) => {
   res.json(musicians);
@@ -220,6 +222,41 @@ app.get("/musician/:id", (req, res) => {
 // Все треки
 app.get("/tracks", (req, res) => {
   res.json(tracks);
+});
+
+// Авторизация
+app.post("/auth/register", (req, res) => {
+  const { name, email, password } = req.body;
+
+  if (!name || !email || !password)
+    return res.status(400).json({ message: "Все поля обязательны" });
+
+  const existingUser = users.find(user => user.email === email);
+  if (existingUser)
+    return res.status(409).json({ message: "Пользователь уже существует" });
+
+  const newUser = { name, email, password };
+  users.push(newUser);
+
+  console.log("Текущие пользователи:", users);
+
+  res.status(201).json({ message: "Пользователь успешно зарегистрирован" });
+});
+
+// Регистрация
+app.post("/auth/login", (req, res) => {
+  const { email, password } = req.body;
+
+  const user = users.find(u => u.email === email && u.password === password);
+
+  if (!user) {
+    return res.status(401).json({ message: "Неверная почта или пароль" });
+  }
+
+  res.status(200).json({
+    message: "Вход выполнен успешно",
+    user: { name: user.name, email: user.email },
+  });
 });
 
 // Трек по ID
