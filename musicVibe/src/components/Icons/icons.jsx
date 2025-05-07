@@ -280,6 +280,25 @@ export const PlayIcon = ({ className }) => (
   </svg>
 );
 
+export const MiniPlayIcon = ({ className }) => (
+  <svg
+    className={className}
+    width="17"
+    height="21"
+    viewBox="0 0 17 21"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      d="M15.4035 11.6081C16.1988 11.081 16.1988 9.91903 15.4035 9.39187L3.0827 1.22592C2.19245 0.635877 1 1.27034 1 2.33405V18.666C1 19.7297 2.19245 20.3641 3.0827 19.7741L15.4035 11.6081Z"
+      stroke="white"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+  </svg>
+);
+
 export const PauseIcon = ({ className }) => (
   <svg
     className={className}
@@ -303,6 +322,32 @@ export const PauseIcon = ({ className }) => (
         <rect width="40" height="40" fill="white" transform="translate(0.5)" />
       </clipPath>
     </defs>
+  </svg>
+);
+
+export const MiniPauseIcon = ({ className }) => (
+  <svg
+    className={className}
+    width="17"
+    height="21"
+    viewBox="0 0 17 21"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      d="M1 2.35714C1 1.60761 1.44772 1 2 1H5C5.55228 1 6 1.60761 6 2.35714V18.6429C6 19.3924 5.55228 20 5 20H2C1.44772 20 1 19.3924 1 18.6429V2.35714Z"
+      stroke="white"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <path
+      d="M11 2.35714C11 1.60761 11.4477 1 12 1H15C15.5523 1 16 1.60761 16 2.35714V18.6429C16 19.3924 15.5523 20 15 20H12C11.4477 20 11 19.3924 11 18.6429V2.35714Z"
+      stroke="white"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
   </svg>
 );
 
@@ -360,3 +405,21 @@ export const SoundIcon = () => (
     />
   </svg>
 );
+
+export const ArrowIcon = () => {
+  <svg
+    width="14"
+    height="26"
+    viewBox="0 0 14 26"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      d="M13 25L1 13L13 1"
+      stroke="white"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+  </svg>;
+};
