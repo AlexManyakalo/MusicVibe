@@ -1,1 +1,24 @@
 @use "@/styles/globals" as g;
+
+.arrow__btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  aspect-ratio: 1;
+  border-radius: g.$border-radius;
+  background-color: g.$color-gray-20;
+  transition-duration: g.$transition-duration;
+
+  &:hover {
+    background-color: g.$color-blue-55;
+
+    svg {
+      color: g.$color-light;
+    }
+  }
+
+  &.forward {
+    transform: rotate(180deg);
+  }
+}
