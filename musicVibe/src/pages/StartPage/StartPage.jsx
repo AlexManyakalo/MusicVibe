@@ -14,14 +14,14 @@ function StartPage() {
           </p>
         </div>
         <div className={styles["start__inner-bottom"]}>
-          <Link className={styles["start__inner-link"]} to="/login">
+          <Link className={styles["start__inner-link"]} to="/auth/login">
             Войти
           </Link>
           <p className={styles["start__inner-paragraph"]}>
             Нет аккаунта?{" "}
             <Link
               className={`${styles["start__inner-paragraph"]} link`}
-              to={"/register"}
+              to={"/auth/register"}
             >
               Регистрация
             </Link>
