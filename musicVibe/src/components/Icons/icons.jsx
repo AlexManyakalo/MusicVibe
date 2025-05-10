@@ -406,10 +406,10 @@ export const SoundIcon = () => (
   </svg>
 );
 
-export const ArrowIcon = () => {
+export const ArrowIcon = () => (
   <svg
-    width="14"
-    height="26"
+    width="8"
+    height="20"
     viewBox="0 0 14 26"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
@@ -421,5 +421,5 @@ export const ArrowIcon = () => {
       strokeLinecap="round"
       strokeLinejoin="round"
     />
-  </svg>;
-};
+  </svg>
+);
