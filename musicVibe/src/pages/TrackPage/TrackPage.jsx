@@ -6,6 +6,8 @@ import api from "@/api";
 
 import ChartItem from "@/components/ChartItem/ChartItem.jsx";
 import MenuBtn from "@/components/MenuBtn/MenuBtn.jsx";
+import ArrowBtn from "@/components/ArrowBtn/ArrowBtn.jsx";
+import MenuBtnMusic from "@/components/MenuBtnMusic/MenuBtnMusic.jsx";
 import Input from "@/components/Input/Input.jsx";
 import Loader from "@/components/Loader/Loader.jsx";
 import { HeartIcon } from "@/components/Icons/icons.jsx";
@@ -22,34 +24,25 @@ function TrackPage() {
   const [track, setTrack] = useState({});
   const [tracks, setTracks] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [comment, setComment] = useState("");
 
   useEffect(() => {
-    async function fetchTrack() {
+    async function fetchData() {
       try {
-        const res = await api.get(`/track/${id}`);
-        setTrack(res.data);
+        const [trackRes, tracksRes] = await Promise.all([
+          api.get(`/track/${id}`),
+          api.get("/tracks"),
+        ]);
+        setTrack(trackRes.data);
+        setTracks(tracksRes.data);
       } catch (err) {
-        console.error("Трек не найден:", err);
+        console.error("Ошибка при загрузке данных:", err);
       } finally {
         setLoading(false);
       }
     }
 
-    fetchTrack();
-
-    // Должна быть выборка только песен этого автора
-    async function fetchTracks() {
-      try {
-        const res = await api.get("/tracks");
-        setTracks(res.data);
-      } catch (err) {
-        console.error("Ошибка при получении треков:", err);
-      } finally {
-        setLoading(false);
-      }
-    }
-
-    fetchTracks();
+    fetchData();
   }, [id]);
 
   // ПЛЕЕР
@@ -64,11 +57,20 @@ function TrackPage() {
     else playTrack(track);
   }
 
+  // Обработка изменения комментария
+  const handleCommentChange = e => {
+    setComment(e.target.value);
+  };
+
   // ЛОАДЕР
   if (loading) return <Loader />;
 
   return (
     <>
+      <div className={styles.arrow__btns}>
+        <ArrowBtn direction="back" />
+        <ArrowBtn direction="forward" />
+      </div>
       <div className={styles.track__song}>
         <div className={styles["track__song-block"]}>
           <img
@@ -88,7 +90,11 @@ function TrackPage() {
             </Link>
           </div>
           <div className={styles.info__bottom}>
-            <MenuBtn label="Слушать" handlePlay={handlePlay} />
+            <MenuBtnMusic
+              label="Слушать"
+              isPlaying={isCurrent && isPlaying}
+              handlePlay={handlePlay}
+            />
             <button
               className={styles["item__right-like"]}
               onClick={e => {
@@ -114,11 +120,21 @@ function TrackPage() {
                 alt="Аватарка пользователя"
               />
             </div>
-            <Input placeholder="Введите комментарий" isBottom="true" />
+            <Input
+              placeholder="Введите комментарий"
+              isBottom="true"
+              value={comment}
+              onChange={handleCommentChange}
+              name="comment"
+            />
           </div>
           <div className={styles.controls}>
-            <MenuBtn label="Отмена" />
-            <MenuBtn label="Оставить комментарий" />
+            <MenuBtn label="Отмена" onClick={() => setComment("")} />
+            <MenuBtn
+              label="Оставить комментарий"
+              type="submit"
+              disabled={!comment.trim()}
+            />
           </div>
         </form>
       </div>
