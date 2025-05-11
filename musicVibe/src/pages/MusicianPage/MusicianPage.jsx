@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import api from "@/api";
 
+import ArrowBtns from "@/components/ArrowBtns/ArrowBtns.jsx";
 import MenuBtn from "@/components/MenuBtn/MenuBtn.jsx";
 import MenuLink from "@/components/MenuLink/MenuLink.jsx";
 import Section from "@/components/Section/Section.jsx";
@@ -10,50 +11,43 @@ import Loader from "@/components/Loader/Loader.jsx";
 import styles from "./MusicianPage.module.scss";
 
 function MusicianPage() {
+  // ЗАПРОСЫ
   const { id } = useParams();
   const [musician, setMusician] = useState({});
   const [tracks, setTracks] = useState([]); // Должна быть выборка только песен этого автора
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    async function fetchMusician() {
+    async function fetchData() {
       try {
-        const res = await api.get(`/musician/${id}`);
-        setMusician(res.data);
+        const [musicianRes, tracksRes] = await Promise.all([
+          api.get(`/musician/${id}`),
+          api.get("/tracks"),
+        ]);
+        setMusician(musicianRes.data);
+        setTracks(tracksRes.data);
       } catch (err) {
-        console.error("Музыкант не найден:", err);
+        console.error("Данные музыканта не найдены:", err);
       } finally {
         setLoading(false);
       }
     }
 
-    fetchMusician();
-
-    // Должна быть выборка только песен этого автора
-    async function fetchTracks() {
-      try {
-        const res = await api.get("/tracks");
-        setTracks(res.data);
-      } catch (err) {
-        console.error("Ошибка при получении треков:", err);
-      } finally {
-        setLoading(false);
-      }
-    }
-
-    fetchTracks();
+    fetchData();
   }, [id]);
 
+  // ЛОАДЕР
   if (loading) return <Loader />;
 
   return (
     <>
+      <ArrowBtns />
       <header className={styles.header}>
         <div className={styles.header__top}>
           <img
             className={styles["header__top-image"]}
-            src="https://avatars.mds.yandex.net/i?id=2d0ed205049cd9c3b56db4cab9f02b9d_l-4255743-images-thumbs&n=13"
-            alt="Баннер артиста"
+            src={musician.backgroundUrl}
+            alt={`Баннер ${musician.name}`}
           />
         </div>
         <div className={styles.header__bottom}>
@@ -61,8 +55,8 @@ function MusicianPage() {
             <div className={styles["header__bottom-block"]}>
               <img
                 className={styles["bottom__block-image"]}
-                src={musician.image}
-                alt="Аватарка"
+                src={musician.imageUrl}
+                alt={`Аватарка ${musician.name}`}
               />
             </div>
             <div className={styles["header__bottom-info"]}>
