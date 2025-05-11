@@ -6,7 +6,7 @@ import api from "@/api";
 
 import ChartItem from "@/components/ChartItem/ChartItem.jsx";
 import MenuBtn from "@/components/MenuBtn/MenuBtn.jsx";
-import ArrowBtn from "@/components/ArrowBtn/ArrowBtn.jsx";
+import ArrowBtns from "@/components/ArrowBtns/ArrowBtns.jsx";
 import MenuBtnMusic from "@/components/MenuBtnMusic/MenuBtnMusic.jsx";
 import Input from "@/components/Input/Input.jsx";
 import Loader from "@/components/Loader/Loader.jsx";
@@ -67,10 +67,7 @@ function TrackPage() {
 
   return (
     <>
-      <div className={styles.arrow__btns}>
-        <ArrowBtn direction="back" />
-        <ArrowBtn direction="forward" />
-      </div>
+      <ArrowBtns />
       <div className={styles.track__song}>
         <div className={styles["track__song-block"]}>
           <img
