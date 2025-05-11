@@ -408,8 +408,8 @@ export const SoundIcon = () => (
 
 export const ArrowIcon = () => (
   <svg
-    width="8"
-    height="20"
+    width="9"
+    height="21"
     viewBox="0 0 14 26"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
