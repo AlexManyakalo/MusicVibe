@@ -1,5 +1,12 @@
 @use "@/styles/globals" as g;
 
+.arrow__btns {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  column-gap: 15px;
+}
+
 .arrow__btn {
   display: flex;
   align-items: center;
