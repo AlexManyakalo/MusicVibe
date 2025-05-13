@@ -28,7 +28,7 @@ function HomePage() {
   return (
     <>
       <Section title="Рекомендовано для вас" link="#" tracks={tracks} />
-      <Section title="Новинки" link="#" tracks={tracks} />
+      <Section title="Отслеживаемое" link="#" tracks={tracks} />
       <Section title="Чарт" link="#" tracks={tracks} isChart="true" />
     </>
   );
