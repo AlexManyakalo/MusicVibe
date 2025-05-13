@@ -77,13 +77,30 @@ function MainLayout() {
             >
               <ul className={styles.menu__list}>
                 <div className={styles.wrapper__btn}>
-                  <LayoutNavBtn icon={<SettingsIcon />} label="Профиль" />
-                  <LayoutNavBtn icon={<HeadphonesIcon />} label="Студия" />
-                  <LayoutNavBtn icon={<CardBankIcon />} label="Подписка" />
-                  <LayoutNavBtn icon={<MoonIcon />} label="Тема" />
-                  <LayoutNavBtn icon={<CircleHelpIcon />} label="Поддержка" />
+                  <LayoutNavBtn
+                    path="/profile/1"
+                    icon={<SettingsIcon />}
+                    label="Профиль"
+                  />
+                  <LayoutNavBtn
+                    path="/studio/1"
+                    icon={<HeadphonesIcon />}
+                    label="Студия"
+                  />
+                  <LayoutNavBtn
+                    path="/subscribe/1"
+                    icon={<CardBankIcon />}
+                    label="Подписка"
+                  />
+                  <LayoutNavBtn path="/" icon={<MoonIcon />} label="Тема" />
+                  <LayoutNavBtn
+                    path="/support/1"
+                    icon={<CircleHelpIcon />}
+                    label="Поддержка"
+                  />
                 </div>
                 <LayoutNavBtn
+                  path="/"
                   icon={<ExitIcon />}
                   label="Выйти"
                   className={styles.exit__btn}
