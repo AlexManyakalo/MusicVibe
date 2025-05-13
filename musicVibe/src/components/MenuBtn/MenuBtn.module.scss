@@ -21,4 +21,7 @@
     cursor: not-allowed;
     background-color: g.$color-gray-20;
   }
+  &:hover.danger {
+    background-color: g.$color-red;
+  }
 }
