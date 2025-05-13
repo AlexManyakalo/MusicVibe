@@ -3,6 +3,12 @@
 .input__wrapper {
   position: relative;
   width: 100%;
+
+  &:focus-within {
+    .input__search-icon {
+      color: g.$color-blue-55;
+    }
+  }
 }
 
 .input {
@@ -28,13 +34,24 @@
     }
   }
 
-  &__bottom {
+  &__comment {
     border-top: none;
     border-right: none;
     border-left: none;
     border-radius: 0;
   }
+  &__search {
+    padding-inline: 44px 10px;
+    height: 45px;
 
+    &-icon {
+      position: absolute;
+      top: 50%;
+      left: 10px;
+      transform: translateY(-50%);
+      color: g.$color-gray;
+    }
+  }
   &__error {
     border-color: g.$color-red;
   }

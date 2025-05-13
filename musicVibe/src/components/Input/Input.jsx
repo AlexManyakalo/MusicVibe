@@ -1,27 +1,30 @@
+// Components
+import { SearchIcon } from "@/components/Icons/icons.jsx";
+// Styles
 import styles from "./Input.module.scss";
 
 function Input({
   type = "text",
   placeholder = "",
-  isBottom = false,
+  isComment = false,
+  isSearch = false,
   value = "",
   onChange,
-  name,
   error = "",
   required = false,
   disabled = false,
 }) {
   return (
     <div className={styles.input__wrapper}>
+      <SearchIcon className={styles["input__search-icon"]} />
       <input
-        className={`${styles.input} ${isBottom ? styles.input__bottom : ""} ${
+        className={`${styles.input} ${isComment ? styles.input__comment : ""} ${isSearch ? styles.input__search : ""} ${
           error ? styles.input__error : ""
         }`}
         type={type}
         placeholder={placeholder}
         value={value}
         onChange={onChange}
-        name={name}
         required={required}
         disabled={disabled}
       />
