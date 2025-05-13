@@ -119,10 +119,9 @@ function TrackPage() {
             </div>
             <Input
               placeholder="Введите комментарий"
-              isBottom="true"
+              isComment="true"
               value={comment}
               onChange={handleCommentChange}
-              name="comment"
             />
           </div>
           <div className={styles.controls}>
