@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import api from "@/api";
+// Components
 import Section from "@/components/Section/Section.jsx";
 import Loader from "@/components/Loader/Loader.jsx";
 
