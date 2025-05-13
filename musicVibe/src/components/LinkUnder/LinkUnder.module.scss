@@ -1,0 +1,23 @@
+@use "@/styles/globals" as g;
+
+.link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 98px;
+  height: 45px;
+  border: g.$border;
+  transition-duration: g.$transition-duration;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+
+  &--active {
+    color: g.$color-light;
+    border-color: g.$color-blue-55;
+  }
+  &:hover {
+    color: g.$color-light;
+    border-color: g.$color-blue-55;
+  }
+}
