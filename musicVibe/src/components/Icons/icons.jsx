@@ -1,7 +1,8 @@
 import React from "react";
 
-export const SearchIcon = () => (
+export const SearchIcon = ({ className }) => (
   <svg
+    className={className}
     width="24"
     height="25"
     viewBox="0 0 24 25"
