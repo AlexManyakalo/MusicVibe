@@ -16,7 +16,8 @@ function Input({
 }) {
   return (
     <div className={styles.input__wrapper}>
-      <SearchIcon className={styles["input__search-icon"]} />
+      {isSearch && <SearchIcon className={styles["input__search-icon"]} />}
+
       <input
         className={`${styles.input} ${isComment ? styles.input__comment : ""} ${isSearch ? styles.input__search : ""} ${
           error ? styles.input__error : ""
