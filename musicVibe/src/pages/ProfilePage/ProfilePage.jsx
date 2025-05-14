@@ -1,12 +1,8 @@
 import { useEffect, useState } from "react";
 import api from "@/api";
 // Components
-import ArrowBtns from "@/components/ArrowBtns/ArrowBtns.jsx";
-import MenuBtn from "@/components/MenuBtn/MenuBtn.jsx";
-import LinkUnder from "@/components/LinkUnder/LinkUnder.jsx";
-import Input from "@/components/Input/Input";
-import Loader from "@/components/Loader/Loader.jsx";
-import { QuestionIcon, ArrowUpIcon } from "@/components/Icons/icons.jsx";
+import { ArrowBtns, MenuBtn, LinkUnder, Input, Loader } from "@/components/index.js";
+import { QuestionIcon, ArrowUpIcon } from "@/components/index.js";
 // Styles
 import styles from "./ProfilePage.module.scss";
 import LoginImage from "@/assets/images/login.jpg";

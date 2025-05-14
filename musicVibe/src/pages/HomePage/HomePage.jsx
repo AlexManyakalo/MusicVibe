@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
 import api from "@/api";
 // Components
-import Section from "@/components/Section/Section.jsx";
-import Loader from "@/components/Loader/Loader.jsx";
+import { Section, Loader } from "@/components/index.js";
 
 function HomePage() {
   const [tracks, setTracks] = useState([]);
@@ -27,9 +26,9 @@ function HomePage() {
 
   return (
     <>
-      <Section title="Рекомендовано для вас" link="#" tracks={tracks} />
+      <Section title="Рекомендовано для вас" link="/recommend/1" tracks={tracks} />
       <Section title="Отслеживаемое" link="#" tracks={tracks} />
-      <Section title="Чарт" link="#" tracks={tracks} isChart="true" />
+      <Section title="Чарт" link="/chart" tracks={tracks} isChart="true" />
     </>
   );
 }

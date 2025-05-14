@@ -1,5 +1,6 @@
-import SelectionPage from "@/components/SelectionPage/SelectionPage";
 import { useNavigate } from "react-router-dom";
+// Components
+import { SelectionPage } from "@/components/index.js";
 
 function MusiciansPage() {
   const navigate = useNavigate();

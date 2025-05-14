@@ -1,9 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import { Link, Outlet } from "react-router-dom";
-import loginImage from "@/assets/images/login.jpg";
-import LayoutNavBtn from "@/components/LayoutNavBtn/LayoutNavBtn.jsx";
-import Player from "@/components/Player/Player.jsx";
-
+// Components
+import { LayoutNavBtn, Player } from "@/components/index.js";
 import {
   SearchIcon,
   HomeIcon,
@@ -15,8 +13,9 @@ import {
   MoonIcon,
   CircleHelpIcon,
   ExitIcon,
-} from "@/components/Icons/icons.jsx";
-
+} from "@/components/index.js";
+import loginImage from "@/assets/images/login.jpg";
+// Styles
 import styles from "./MainLayout.module.scss";
 
 function MainLayout() {

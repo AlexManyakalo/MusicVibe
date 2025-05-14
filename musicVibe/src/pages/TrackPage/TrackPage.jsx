@@ -3,15 +3,10 @@ import { PlayerContext } from "@/context/PlayerContext";
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import api from "@/api";
-
-import ChartItem from "@/components/ChartItem/ChartItem.jsx";
-import MenuBtn from "@/components/MenuBtn/MenuBtn.jsx";
-import ArrowBtns from "@/components/ArrowBtns/ArrowBtns.jsx";
-import MenuBtnMusic from "@/components/MenuBtnMusic/MenuBtnMusic.jsx";
-import Input from "@/components/Input/Input.jsx";
-import Loader from "@/components/Loader/Loader.jsx";
-import { HeartIcon } from "@/components/Icons/icons.jsx";
-
+// Components
+import { ArrowBtns, MenuBtn, MenuBtnMusic, Input, Loader } from "@/components/index.js";
+import { HeartIcon } from "@/components/index.js";
+// Styles
 import styles from "./TrackPage.module.scss";
 
 import LoginImage from "@/assets/images/login.jpg";

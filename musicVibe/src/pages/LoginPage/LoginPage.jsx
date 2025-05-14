@@ -1,4 +1,4 @@
-import AuthForm from "../../components/AuthForm/AuthForm.jsx";
+import { AuthForm } from "@/components/index.js";
 
 function LoginPage() {
   return <AuthForm type="login" />;

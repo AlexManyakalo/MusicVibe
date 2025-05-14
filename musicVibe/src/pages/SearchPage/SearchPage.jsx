@@ -1,9 +1,7 @@
 import { useEffect, useState } from "react";
 import api from "@/api";
 // Components
-import Input from "@/components/Input/Input";
-import Section from "@/components/Section/Section.jsx";
-import Loader from "@/components/Loader/Loader.jsx";
+import { Input, Section, Loader } from "@/components/index.js";
 // Styles
 import styles from "./SearchPage.module.scss";
 
@@ -42,8 +40,8 @@ function SearchPage() {
         value={search}
         onChange={handleSearhChange}
       />
-      <Section title="Новинки" link="#" tracks={tracks} />
-      <Section title="Чарт" link="#" tracks={tracks} isChart="true" />
+      <Section title="Новинки" link="/new" tracks={tracks} />
+      <Section title="Чарт" link="/chart" tracks={tracks} isChart="true" />
     </>
   );
 }

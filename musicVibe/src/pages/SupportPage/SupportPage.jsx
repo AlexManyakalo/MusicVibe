@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import api from "@/api";
 // Components
-import Loader from "@/components/Loader/Loader.jsx";
+import { Loader } from "@/components/index.js";
 // Styles
 import styles from "./SupportPage.module.scss";
 

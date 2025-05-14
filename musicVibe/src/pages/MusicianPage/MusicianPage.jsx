@@ -1,13 +1,9 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import api from "@/api";
-
-import ArrowBtns from "@/components/ArrowBtns/ArrowBtns.jsx";
-import MenuBtn from "@/components/MenuBtn/MenuBtn.jsx";
-import MenuLink from "@/components/MenuLink/MenuLink.jsx";
-import Section from "@/components/Section/Section.jsx";
-import Loader from "@/components/Loader/Loader.jsx";
-
+// Components
+import { ArrowBtns, MenuBtn, MenuLink, Section, Loader } from "@/components/index.js";
+// Styles
 import styles from "./MusicianPage.module.scss";
 
 function MusicianPage() {
