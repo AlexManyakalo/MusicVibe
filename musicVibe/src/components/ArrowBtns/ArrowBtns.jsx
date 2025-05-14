@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { ArrowIcon } from "@/components/Icons/icons.jsx";
+import { ArrowIcon } from "@/components/index.js";
 import styles from "./ArrowBtns.module.scss";
 
 function ArrowBtns() {

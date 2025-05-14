@@ -2,6 +2,7 @@ import { useContext, useState, useEffect } from "react";
 import { PlayerContext } from "@/context/PlayerContext";
 import { formatTime } from "@/utils/formatTime.js";
 import { Link } from "react-router-dom";
+// Components
 import {
   HeartIcon,
   PlayIcon,
@@ -9,7 +10,8 @@ import {
   NextIcon,
   RandomIcon,
   SoundIcon,
-} from "@/components/Icons/icons.jsx";
+} from "@/components/index.js";
+// Styles
 import styles from "./Player.module.scss";
 
 function Player() {

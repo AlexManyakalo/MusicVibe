@@ -1,7 +1,8 @@
 import { useState } from "react";
-import Button from "../Button/Button";
-import loginImage from "../../assets/images/login.jpg";
-
+// Components
+import { Button } from "@/components/index.js";
+import loginImage from "@/assets/images/login.jpg";
+// Styles
 import styles from "./SelectionPage.module.scss";
 
 function SelectionPage({ title, items, onNextClick }) {

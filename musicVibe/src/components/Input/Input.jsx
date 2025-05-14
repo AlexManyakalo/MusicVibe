@@ -1,5 +1,5 @@
 // Components
-import { SearchIcon } from "@/components/Icons/icons.jsx";
+import { SearchIcon } from "@/components/index.js";
 // Styles
 import styles from "./Input.module.scss";
 

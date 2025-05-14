@@ -2,10 +2,10 @@ import { useState, useEffect } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { z } from "zod";
 import api from "@/api";
+// Components
 import loginImage from "@/assets/images/login.jpg";
-import Button from "@/components/Button/Button.jsx";
-import Input from "@/components/Input/Input";
-import Notification from "@/components/Notification/Notification";
+import { Button, Input, Notification } from "@/components/index.js";
+// Styles
 import styles from "./AuthForm.module.scss";
 
 // Схема валидации для регистрации

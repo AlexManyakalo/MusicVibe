@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
-import MusicCard from "@/components/MusicCard/MusicCard.jsx";
-import ChartItem from "@/components/ChartItem/ChartItem.jsx";
-
+// Components
+import { MusicCard, ChartItem } from "@/components/index.js";
+// Styles
 import styles from "./Section.module.scss";
 
 function Section({ title, link, tracks, isChart = false }) {

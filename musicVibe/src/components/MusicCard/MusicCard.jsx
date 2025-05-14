@@ -1,7 +1,9 @@
 import { useContext } from "react";
 import { PlayerContext } from "@/context/PlayerContext";
 import { Link } from "react-router-dom";
-import { PlayIcon, PauseIcon, HeartIcon } from "@/components/Icons/icons.jsx";
+// Components
+import { PlayIcon, PauseIcon, HeartIcon } from "@/components/index.js";
+// Styles
 import styles from "./MusicCard.module.scss";
 
 function MusicCard({ track }) {

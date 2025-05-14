@@ -1,5 +1,5 @@
 import { Suspense } from "react";
-import Loader from "@/components/Loader/Loader";
+import { Loader } from "@/components/index.js";
 
 const LoadPage = ({ Component }) => (
   <Suspense fallback={<Loader />}>

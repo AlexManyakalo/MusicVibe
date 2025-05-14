@@ -2,8 +2,10 @@ import { useContext, useState, useEffect } from "react";
 import { PlayerContext } from "@/context/PlayerContext";
 import { formatTime } from "@/utils/formatTime.js";
 import { Link } from "react-router-dom";
+// Components
+import { PlayIcon, PauseIcon, HeartIcon } from "@/components/index.js";
+// Styles
 import styles from "./ChartItem.module.scss";
-import { PlayIcon, PauseIcon, HeartIcon } from "@/components/Icons/icons.jsx";
 
 function ChartItem({ index, track }) {
   const { playTrack, togglePlayPause, currentTrack, isPlaying, audio } =

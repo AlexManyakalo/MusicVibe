@@ -1,4 +1,4 @@
-import { MiniPlayIcon, MiniPauseIcon } from "@/components/Icons/icons.jsx";
+import { MiniPlayIcon, MiniPauseIcon } from "@/components/index.js";
 import styles from "./MenuBtnMusic.module.scss";
 
 function MenuBtnMusic ({ label, handlePlay, isPlaying = false }) {
