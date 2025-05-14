@@ -28,6 +28,7 @@ function TrackPage() {
 
   useEffect(() => {
     async function fetchData() {
+      setLoading(true);
       try {
         const [trackRes, tracksRes] = await Promise.all([
           api.get(`/track/${id}`),
@@ -43,6 +44,7 @@ function TrackPage() {
     }
 
     fetchData();
+    window.scrollTo({ top: 0, behavior: "auto" });
   }, [id]);
 
   // ПЛЕЕР
@@ -138,7 +140,7 @@ function TrackPage() {
         <li className={styles.comments__item}>
           <Link
             className={styles.comments__block}
-            to={`/musician/пользователь_чей_коммент`}
+            to={`/musician/1`}
           >
             <img
               className={styles["comments__block-image"]}
@@ -148,7 +150,7 @@ function TrackPage() {
           </Link>
           <div className={styles.comment}>
             <h4 className={styles.comments__title}>
-              <Link to={`/musician/пользователь_чей_коммент`}>Александр</Link>
+              <Link to={`/musician/1`}>Александр</Link>
             </h4>
             <p className={styles.comments__paragraph}>
               Далеко-далеко за словесными горами в стране гласных и согласных
