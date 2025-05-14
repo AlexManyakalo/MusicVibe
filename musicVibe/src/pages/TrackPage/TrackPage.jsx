@@ -1,15 +1,20 @@
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { PlayerContext } from "@/context/PlayerContext";
-import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import api from "@/api";
 // Components
-import { ArrowBtns, MenuBtn, MenuBtnMusic, Input, Loader } from "@/components/index.js";
+import {
+  ArrowBtns,
+  MenuBtn,
+  MenuBtnMusic,
+  Input,
+  ChartItem,
+  Loader,
+} from "@/components/index.js";
 import { HeartIcon } from "@/components/index.js";
+import LoginImage from "@/assets/images/login.jpg";
 // Styles
 import styles from "./TrackPage.module.scss";
-
-import LoginImage from "@/assets/images/login.jpg";
 
 // TODO: Здесь нужен запрос к АПИ (наверное у каждой страницы будет отдельный запрос к АПИ)
 
