@@ -28,6 +28,10 @@ const RecommendPage = lazy(
 const TrackedPage = lazy(() => import("@/pages/TrackedPage/TrackedPage.jsx"));
 const NewPage = lazy(() => import("@/pages/NewPage/NewPage.jsx"));
 const ChartPage = lazy(() => import("@/pages/ChartPage/ChartPage.jsx"));
+const PopularTracksPage = lazy(
+  () => import("@/pages/PopularTracksPage/PopularTracksPage.jsx"),
+);
+const AlbumsPage = lazy(() => import("@/pages/AlbumsPage/AlbumsPage.jsx"));
 const MusicianPage = lazy(
   () => import("@/pages/MusicianPage/MusicianPage.jsx"),
 );
@@ -109,6 +113,14 @@ export const privateRoutes = [
   {
     path: "/chart",
     element: ChartPage,
+  },
+  {
+    path: "/popular-tracks/:id",
+    element: PopularTracksPage,
+  },
+  {
+    path: "/albums/:id",
+    element: AlbumsPage,
   },
   {
     path: "/musician/:id",
