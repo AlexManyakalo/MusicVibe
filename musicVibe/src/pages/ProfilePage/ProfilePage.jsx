@@ -1,7 +1,14 @@
 import { useEffect, useState } from "react";
 import api from "@/api";
 // Components
-import { ArrowBtns, MenuBtn, LinkUnder, Input, Loader } from "@/components/index.js";
+import {
+  ArrowBtns,
+  MenuBtn,
+  LinkUnder,
+  Input,
+  Loader,
+  Tooltip,
+} from "@/components/index.js";
 import { QuestionIcon, ArrowUpIcon } from "@/components/index.js";
 // Styles
 import styles from "./ProfilePage.module.scss";
@@ -10,6 +17,18 @@ import LoginImage from "@/assets/images/login.jpg";
 function ProfilePage() {
   const [username, setUsername] = useState("");
   const [loading, setLoading] = useState(true);
+  const [isExpanded, setIsExpanded] = useState(false);
+
+  const tooltips = {
+    avatar:
+      "Загрузите фотографию для вашего профиля. Рекомендуемый размер: 500x500 пикселей.",
+    username:
+      "Выберите уникальное имя пользователя. Оно будет отображаться в вашем профиле.",
+    email:
+      "Укажите вашу электронную почту для восстановления доступа к аккаунту.",
+    password: "Создайте надежный пароль для защиты вашего аккаунта.",
+    additional: "Управление аккаунтом: выход из системы или удаление аккаунта.",
+  };
 
   useEffect(() => {
     async function fetchUser() {
@@ -21,6 +40,11 @@ function ProfilePage() {
   // Обработка изменения поиска
   function handleUsernameChange(e) {
     setUsername(e.target.value);
+  }
+
+  // Обработка раскрытия/скрытия блока
+  function toggleExpanded() {
+    setIsExpanded(prev => !prev);
   }
 
   if (loading) return <Loader />;
@@ -44,9 +68,11 @@ function ProfilePage() {
       <div className={styles.profile__avatar}>
         <div className={styles.top__block}>
           <h4 className={styles["profile__title"]}>Фото профиля</h4>
-          <button className={styles["profile__question-btn"]}>
-            <QuestionIcon />
-          </button>
+          <Tooltip content={tooltips.avatar}>
+            <button className={styles["profile__question-btn"]}>
+              <QuestionIcon />
+            </button>
+          </Tooltip>
         </div>
         <div className={styles.avatar__bottom}>
           <div className={styles.profile__block}>
@@ -65,9 +91,11 @@ function ProfilePage() {
       <div className={styles["profile__settings-block"]}>
         <div className={styles.top__block}>
           <h4 className={styles["profile__title"]}>Имя пользователя</h4>
-          <button className={styles["profile__question-btn"]}>
-            <QuestionIcon />
-          </button>
+          <Tooltip content={tooltips.username}>
+            <button className={styles["profile__question-btn"]}>
+              <QuestionIcon />
+            </button>
+          </Tooltip>
         </div>
         <Input
           placeholder="Имя пользователя"
@@ -78,9 +106,11 @@ function ProfilePage() {
       <div className={styles["profile__settings-block"]}>
         <div className={styles.top__block}>
           <h4 className={styles["profile__title"]}>Почта</h4>
-          <button className={styles["profile__question-btn"]}>
-            <QuestionIcon />
-          </button>
+          <Tooltip content={tooltips.email}>
+            <button className={styles["profile__question-btn"]}>
+              <QuestionIcon />
+            </button>
+          </Tooltip>
         </div>
         <Input
           type="email"
@@ -92,9 +122,11 @@ function ProfilePage() {
       <div className={styles["profile__settings-block"]}>
         <div className={styles.top__block}>
           <h4 className={styles["profile__title"]}>Сменить пароль</h4>
-          <button className={styles["profile__question-btn"]}>
-            <QuestionIcon />
-          </button>
+          <Tooltip content={tooltips.password}>
+            <button className={styles["profile__question-btn"]}>
+              <QuestionIcon />
+            </button>
+          </Tooltip>
         </div>
         <Input
           type="password"
@@ -105,16 +137,25 @@ function ProfilePage() {
       </div>
       <div className={styles["profile__settings-block"]}>
         <div className={styles.top__block}>
-          <button className={styles["profile__add-btn"]}>
+          <button
+            className={`${styles["profile__add-btn"]} ${!isExpanded ? styles["profile__add-btn--collapsed"] : ""}`}
+            onClick={toggleExpanded}
+          >
             <ArrowUpIcon />
             <h4 className={styles["profile__title"]}>Дополнитель</h4>
           </button>
-          <button className={styles["profile__question-btn"]}>
-            <QuestionIcon />
-          </button>
+          <Tooltip content={tooltips.additional}>
+            <button className={styles["profile__question-btn"]}>
+              <QuestionIcon />
+            </button>
+          </Tooltip>
         </div>
-        <MenuBtn label="Выйти из аккаунта" danger={true} />
-        <MenuBtn label="Удалить аккаунт" danger={true} />
+        <div
+          className={`${styles["profile__buttons-wrapper"]} ${!isExpanded ? styles["profile__buttons-wrapper--collapsed"] : ""}`}
+        >
+          <MenuBtn label="Выйти из аккаунта" danger={true} />
+          <MenuBtn label="Удалить аккаунт" danger={true} />
+        </div>
       </div>
     </>
   );

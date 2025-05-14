@@ -86,9 +86,21 @@
   display: flex;
   align-items: center;
   column-gap: 10px;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+
+  svg {
+    transition: transform g.$transition-duration;
+  }
 
   &:hover svg {
     color: g.$color-light;
+  }
+
+  &--collapsed svg {
+    transform: rotate(180deg);
   }
 }
 
@@ -96,4 +108,19 @@
 }
 
 .profile__question-btn {
+}
+
+.profile__buttons-wrapper {
+  display: flex;
+  flex-direction: column;
+  row-gap: 20px;
+  opacity: 1;
+  transition:
+    max-height g.$transition-duration,
+    opacity g.$transition-duration;
+  overflow: hidden;
+
+  &--collapsed {
+    opacity: 0;
+  }
 }
