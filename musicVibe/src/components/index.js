@@ -18,3 +18,4 @@ export { default as ArrowBtns } from "./ArrowBtns/ArrowBtns";
 export { default as MenuBtnMusic } from "./MenuBtnMusic/MenuBtnMusic";
 export { default as LayoutNavBtn } from "./LayoutNavBtn/LayoutNavBtn";
 export { default as SelectionPage } from "./SelectionPage/SelectionPage";
+export { default as Tooltip } from "./Tooltip/Tooltip";
