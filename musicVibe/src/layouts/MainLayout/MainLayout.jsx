@@ -27,6 +27,10 @@ function MainLayout() {
     setIsMenuOpen(prev => !prev);
   };
 
+  const handleMenuClick = () => {
+    setIsMenuOpen(false); // Закрываем меню
+  };
+
   useEffect(() => {
     const handleClickOutside = event => {
       if (
@@ -80,22 +84,26 @@ function MainLayout() {
                     path="/profile/1"
                     icon={<SettingsIcon />}
                     label="Профиль"
+                    onMenuClick={handleMenuClick}
                   />
                   <LayoutNavBtn
                     path="/studio/1"
                     icon={<HeadphonesIcon />}
                     label="Студия"
+                    onMenuClick={handleMenuClick}
                   />
                   <LayoutNavBtn
                     path="/subscribe/1"
                     icon={<CardBankIcon />}
                     label="Подписка"
+                    onMenuClick={handleMenuClick}
                   />
                   <LayoutNavBtn path="/" icon={<MoonIcon />} label="Тема" />
                   <LayoutNavBtn
                     path="/support/1"
                     icon={<CircleHelpIcon />}
                     label="Поддержка"
+                    onMenuClick={handleMenuClick}
                   />
                 </div>
                 <LayoutNavBtn
@@ -103,6 +111,7 @@ function MainLayout() {
                   icon={<ExitIcon />}
                   label="Выйти"
                   className={styles.exit__btn}
+                  onMenuClick={handleMenuClick}
                 />
               </ul>
             </div>
