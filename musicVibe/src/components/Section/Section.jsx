@@ -20,7 +20,7 @@ function Section({ title, link, tracks, isChart = false }) {
           isChart ? (
             <ChartItem key={track.id} index={index} track={track} />
           ) : (
-            <MusicCard key={track.id} track={track}></MusicCard>
+            <MusicCard key={track.id} track={track} />
           ),
         )}
       </ul>
