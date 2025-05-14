@@ -1,0 +1,37 @@
+@use "@/styles/globals" as g;
+
+.tooltip__wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.tooltip__content {
+  position: absolute;
+  top: 50%;
+  left: calc(100% + 10px);
+  transform: translateY(-50%);
+  background-color: g.$color-dark-gray;
+  border: g.$border;
+  border-radius: g.$border-radius;
+  padding: 15px;
+  min-width: 150px;
+  width: 370px;
+  z-index: 2;
+  animation: fadeIn 0.2s ease-in-out;
+}
+
+.tooltip__text {
+  color: g.$color-gray;
+  font-size: 1rem;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translate(10px, -50%);
+  }
+  to {
+    opacity: 1;
+    transform: translate(0, -50%);
+  }
+}
