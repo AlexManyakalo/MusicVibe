@@ -2,7 +2,13 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import api from "@/api";
 // Components
-import { ArrowBtns, MenuBtn, MenuLink, Section, Loader } from "@/components/index.js";
+import {
+  ArrowBtns,
+  MenuBtn,
+  MenuLink,
+  Section,
+  Loader,
+} from "@/components/index.js";
 // Styles
 import styles from "./MusicianPage.module.scss";
 
@@ -15,6 +21,7 @@ function MusicianPage() {
 
   useEffect(() => {
     async function fetchData() {
+      setLoading(true);
       try {
         const [musicianRes, tracksRes] = await Promise.all([
           api.get(`/musician/${id}`),
@@ -30,6 +37,7 @@ function MusicianPage() {
     }
 
     fetchData();
+    window.scrollTo({ top: 0, behavior: "auto" });
   }, [id]);
 
   // ЛОАДЕР
@@ -99,13 +107,13 @@ function MusicianPage() {
       <div className={styles.wrapper}>
         <Section
           title="Популярные треки"
-          link="#"
+          link="/popular-tracks/1"
           tracks={tracks}
           isChart="true"
         />
       </div>
       <div className={styles.wrapper}>
-        <Section title="Альбомы" link="#" tracks={tracks} />
+        <Section title="Альбомы" link="/albums/1" tracks={tracks} />
       </div>
     </>
   );
