@@ -451,7 +451,7 @@ export const ArrowUpIcon = () => (
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
   >
-    <g clip-path="url(#clip0_93_15)">
+    <g clipPath="url(#clip0_93_15)">
       <path
         d="M1 5L5 1L9 5"
         stroke="white"
