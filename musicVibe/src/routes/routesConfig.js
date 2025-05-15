@@ -16,7 +16,12 @@ const MyMusicPage = lazy(() => import("@/pages/MyMusicPage/MyMusicPage.jsx"));
 const CommunityPage = lazy(
   () => import("@/pages/CommunityPage/CommunityPage.jsx"),
 );
-const ProfilePage = lazy(() => import("@/pages/ProfilePage/ProfilePage.jsx"));
+const SettingsProfilePage = lazy(
+  () => import("@/pages/SettingsProfilePage/SettingsProfilePage.jsx"),
+);
+const SettingsCardPage = lazy(
+  () => import("@/pages/SettingsCardPage/SettingsCardPage.jsx"),
+);
 const StudioPage = lazy(() => import("@/pages/StudioPage/StudioPage.jsx"));
 const SubscribePage = lazy(
   () => import("@/pages/SubscribePage/SubscribePage.jsx"),
@@ -83,8 +88,12 @@ export const privateRoutes = [
     element: CommunityPage,
   },
   {
-    path: "/profile/:id",
-    element: ProfilePage,
+    path: "/profile/profile-settings/:id",
+    element: SettingsProfilePage,
+  },
+  {
+    path: "/profile/card-settings/:id",
+    element: SettingsCardPage,
   },
   {
     path: "/studio/:id",
