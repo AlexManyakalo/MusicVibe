@@ -19,3 +19,4 @@ export { default as MenuBtnMusic } from "./MenuBtnMusic/MenuBtnMusic";
 export { default as LayoutNavBtn } from "./LayoutNavBtn/LayoutNavBtn";
 export { default as SelectionPage } from "./SelectionPage/SelectionPage";
 export { default as Tooltip } from "./Tooltip/Tooltip";
+export { default as SettingsProfile } from "./SettingsProfile/SettingsProfile";
