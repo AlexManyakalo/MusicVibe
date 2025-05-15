@@ -44,7 +44,7 @@ function AuthForm({ type }) {
 
   // Проверка валидности формы при изменении данных
   useEffect(() => {
-    const validateForm = async () => {
+    async function validateForm() {
       try {
         const schema = isLogin ? loginSchema : registerSchema;
         const dataToValidate = isLogin
