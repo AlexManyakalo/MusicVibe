@@ -113,13 +113,13 @@ function MusicianPage() {
       <div className={styles.wrapper}>
         <Section
           title="Популярные треки"
-          link="/popular-tracks/1"
+          link={`/popular-tracks/${musician.id}`}
           tracks={tracks}
           isChart="true"
         />
       </div>
       <div className={styles.wrapper}>
-        <Section title="Альбомы" link="/albums/1" tracks={tracks} />
+        <Section title="Альбомы" link={`/albums/${musician.id}`} tracks={tracks} />
       </div>
     </>
   );
