@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import api from "@/api";
 // Components
 import {
@@ -9,6 +9,8 @@ import {
   Section,
   Loader,
 } from "@/components/index.js";
+// Icons
+import { EditIcon } from "@/components/Icons/icons.jsx";
 // Styles
 import styles from "./MusicianPage.module.scss";
 
@@ -56,13 +58,17 @@ function MusicianPage() {
         </div>
         <div className={styles.header__bottom}>
           <div className={styles["header__bottom-left"]}>
-            <div className={styles["header__bottom-block"]}>
+            <Link
+              to="/profile/profile-settings/1"
+              className={styles["header__bottom-block"]}
+            >
+              <EditIcon className={styles["bottom__block-edit"]} />
               <img
                 className={styles["bottom__block-image"]}
                 src={musician.imageUrl}
                 alt={`Аватарка ${musician.name}`}
               />
-            </div>
+            </Link>
             <div className={styles["header__bottom-info"]}>
               <h2 className={styles["header__bottom-title"]}>
                 {musician.name}

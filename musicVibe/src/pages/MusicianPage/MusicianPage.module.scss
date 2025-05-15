@@ -16,11 +16,12 @@
   width: 100%;
   height: 200px;
   overflow: hidden;
+  transition-duration: g.$transition-duration;
 }
 
 .header__top-image {
   position: relative;
-  z-index: -1;
+  z-index: -3;
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -42,11 +43,33 @@
 }
 
 .header__bottom-block {
+  position: relative;
   border-radius: 50%;
   border: g.$border;
   overflow: hidden;
   width: 150px;
   aspect-ratio: 1;
+  transition-duration: g.$transition-duration;
+
+  &:hover {
+    box-shadow: 0px 0px 100px 100px rgba(11, 12, 16, 0.5) inset;
+
+    .bottom__block-edit {
+      opacity: 1;
+    }
+  }
+}
+
+.bottom__block-edit {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 35px;
+  height: 35px;
+  color: g.$color-light;
+  transition-duration: g.$transition-duration;
+  opacity: 0;
 }
 
 .bottom__block-image {
