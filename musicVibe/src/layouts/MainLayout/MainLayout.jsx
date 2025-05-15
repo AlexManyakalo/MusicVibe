@@ -81,7 +81,7 @@ function MainLayout() {
               <ul className={styles.menu__list}>
                 <div className={styles.wrapper__btn}>
                   <LayoutNavBtn
-                    path="/profile/1"
+                    path="/profile/profile-settings/1"
                     icon={<SettingsIcon />}
                     label="Профиль"
                     onMenuClick={handleMenuClick}
