@@ -467,3 +467,43 @@ export const ArrowUpIcon = () => (
     </defs>
   </svg>
 );
+
+export const EditIcon = ({ className }) => (
+  <svg
+    className={className}
+    width="18"
+    height="20"
+    viewBox="0 0 18 20"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      d="M3 9V2C3 1.44772 3.44772 1 4 1H11.5631C11.8416 1 12.1076 1.11619 12.2968 1.32059L16.7338 6.11246C16.9049 6.29731 17 6.53995 17 6.79187V18C17 18.5523 16.5523 19 16 19H10"
+      stroke="white"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <path
+      d="M1 19H3.5L11 11.5L8.5 9L1 16.5V19Z"
+      stroke="white"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <path
+      d="M6 12L8 14"
+      stroke="white"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <path
+      d="M17 7L12 7C11.4477 7 11 6.55228 11 6L11 1"
+      stroke="white"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+  </svg>
+);
