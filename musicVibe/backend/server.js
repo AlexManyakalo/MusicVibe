@@ -10,106 +10,186 @@ app.use(cors());
 app.use(json());
 app.use(express.static("public"));
 
-const musicians = [
+const users = [
   {
     id: 1,
     name: "Алексей Ветров",
-    genre: "Поп",
-    imageUrl: "/avatarUser/login1.jpg",
+    email: "alex@mail.ru",
+    password: "123456",
+    avatarUrl: "/avatarUser/login1.jpg",
     backgroundUrl:
       "https://avatars.mds.yandex.net/i?id=2d0ed205049cd9c3b56db4cab9f02b9d_l-4255743-images-thumbs&n=13",
     description:
       "Благодарим вас за проявленный интерес к нашей компании и добро пожаловать в нашу компанию. Кое-что из того, что я смеялся, кое-что из того, что я наряжал, и кое-что из того, что я хотел сделать. У нас тут очень весело, очень-очень прикольно. Общение максимально…",
+    genres: ["Поп", "Рок", "Электроника"],
+    auditions: 0,
+    hasCompletedSetup: true,
+    socialLinks: [
+      {
+        name: "VK",
+        url: "https://vk.com/alexvetrov",
+      },
+      {
+        name: "Telegram",
+        url: "https://t.me/alexvetrov",
+      },
+      {
+        name: "YouTube",
+        url: "https://youtube.com/@alexvetrov",
+      },
+      {
+        name: "Instagram",
+        url: "https://instagram.com/alexvetrov",
+      },
+      {
+        name: "Spotify",
+        url: "https://open.spotify.com/artist/alexvetrov",
+      },
+    ],
   },
   {
     id: 2,
     name: "NEON BLVD",
-    genre: "Электроника",
-    imageUrl: "/avatarUser/login2.jpg",
+    email: "neon@mail.ru",
+    password: "123456",
+    avatarUrl: "/avatarUser/login2.jpg",
     backgroundUrl:
       "https://avatars.mds.yandex.net/i?id=2d0ed205049cd9c3b56db4cab9f02b9d_l-4255743-images-thumbs&n=13",
     description:
       "Благодарим вас за проявленный интерес к нашей компании и добро пожаловать в нашу компанию. Кое-что из того, что я смеялся, кое-что из того, что я наряжал, и кое-что из того, что я хотел сделать. У нас тут очень весело, очень-очень прикольно. Общение максимально…",
+    genres: ["Электроника", "EDM", "Хаус"],
+    auditions: 430,
+    hasCompletedSetup: true,
+    socialLinks: [
+      {
+        name: "VK",
+        url: "https://vk.com/neonblvd",
+      },
+      {
+        name: "Telegram",
+        url: "https://t.me/neonblvd",
+      },
+      {
+        name: "YouTube",
+        url: "https://youtube.com/@neonblvd",
+      },
+      {
+        name: "Instagram",
+        url: "https://instagram.com/neonblvd",
+      },
+      {
+        name: "Spotify",
+        url: "https://open.spotify.com/artist/neonblvd",
+      },
+    ],
   },
   {
     id: 3,
     name: "Мирослава",
-    genre: "Инди",
-    imageUrl: "/avatarUser/login1.jpg",
+    email: "mira@mail.ru",
+    password: "123456",
+    avatarUrl: "/avatarUser/login1.jpg",
     backgroundUrl:
       "https://avatars.mds.yandex.net/i?id=2d0ed205049cd9c3b56db4cab9f02b9d_l-4255743-images-thumbs&n=13",
     description:
       "Благодарим вас за проявленный интерес к нашей компании и добро пожаловать в нашу компанию. Кое-что из того, что я смеялся, кое-что из того, что я наряжал, и кое-что из того, что я хотел сделать. У нас тут очень весело, очень-очень прикольно. Общение максимально…",
+    genres: ["Инди", "Альтернатива", "Фолк"],
+    auditions: 300,
+    hasCompletedSetup: true,
+    socialLinks: [
+      {
+        name: "VK",
+        url: "https://vk.com/miroslava",
+      },
+      {
+        name: "Telegram",
+        url: "https://t.me/miroslava",
+      },
+      {
+        name: "YouTube",
+        url: "https://youtube.com/@miroslava",
+      },
+      {
+        name: "Instagram",
+        url: "https://instagram.com/miroslava",
+      },
+      {
+        name: "Spotify",
+        url: "https://open.spotify.com/artist/miroslava",
+      },
+    ],
   },
   {
     id: 4,
     name: "DJ Крутой",
-    genre: "EDM",
-    imageUrl: "/avatarUser/login2.jpg",
+    email: "dj@mail.ru",
+    password: "123456",
+    avatarUrl: "/avatarUser/login2.jpg",
     backgroundUrl:
       "https://avatars.mds.yandex.net/i?id=2d0ed205049cd9c3b56db4cab9f02b9d_l-4255743-images-thumbs&n=13",
     description:
       "Благодарим вас за проявленный интерес к нашей компании и добро пожаловать в нашу компанию. Кое-что из того, что я смеялся, кое-что из того, что я наряжал, и кое-что из того, что я хотел сделать. У нас тут очень весело, очень-очень прикольно. Общение максимально…",
+    genres: ["EDM", "Хаус", "Техно"],
+    auditions: 100,
+    hasCompletedSetup: true,
+    socialLinks: [
+      {
+        name: "VK",
+        url: "https://vk.com/djkrutoy",
+      },
+      {
+        name: "Telegram",
+        url: "https://t.me/djkrutoy",
+      },
+      {
+        name: "YouTube",
+        url: "https://youtube.com/@djkrutoy",
+      },
+      {
+        name: "Instagram",
+        url: "https://instagram.com/djkrutoy",
+      },
+      {
+        name: "Spotify",
+        url: "https://open.spotify.com/artist/djkrutoy",
+      },
+    ],
   },
   {
     id: 5,
     name: "Звукозапад",
-    genre: "Хип-хоп",
-    imageUrl: "/avatarUser/login1.jpg",
+    email: "sound@mail.ru",
+    password: "123456",
+    avatarUrl: "/avatarUser/login1.jpg",
     backgroundUrl:
       "https://avatars.mds.yandex.net/i?id=2d0ed205049cd9c3b56db4cab9f02b9d_l-4255743-images-thumbs&n=13",
     description:
       "Благодарим вас за проявленный интерес к нашей компании и добро пожаловать в нашу компанию. Кое-что из того, что я смеялся, кое-что из того, что я наряжал, и кое-что из того, что я хотел сделать. У нас тут очень весело, очень-очень прикольно. Общение максимально…",
-  },
-  {
-    id: 6,
-    name: "Катя Лёд",
-    genre: "Поп",
-    imageUrl: "/avatarUser/login2.jpg",
-    backgroundUrl:
-      "https://avatars.mds.yandex.net/i?id=2d0ed205049cd9c3b56db4cab9f02b9d_l-4255743-images-thumbs&n=13",
-    description:
-      "Благодарим вас за проявленный интерес к нашей компании и добро пожаловать в нашу компанию. Кое-что из того, что я смеялся, кое-что из того, что я наряжал, и кое-что из того, что я хотел сделать. У нас тут очень весело, очень-очень прикольно. Общение максимально…",
-  },
-  {
-    id: 7,
-    name: "ROTOR",
-    genre: "Рок",
-    imageUrl: "/avatarUser/login1.jpg",
-    backgroundUrl:
-      "https://avatars.mds.yandex.net/i?id=2d0ed205049cd9c3b56db4cab9f02b9d_l-4255743-images-thumbs&n=13",
-    description:
-      "Благодарим вас за проявленный интерес к нашей компании и добро пожаловать в нашу компанию. Кое-что из того, что я смеялся, кое-что из того, что я наряжал, и кое-что из того, что я хотел сделать. У нас тут очень весело, очень-очень прикольно. Общение максимально…",
-  },
-  {
-    id: 8,
-    name: "Луна на Пульсе",
-    genre: "Альтернатива",
-    imageUrl: "/avatarUser/login2.jpg",
-    backgroundUrl:
-      "https://avatars.mds.yandex.net/i?id=2d0ed205049cd9c3b56db4cab9f02b9d_l-4255743-images-thumbs&n=13",
-    description:
-      "Благодарим вас за проявленный интерес к нашей компании и добро пожаловать в нашу компанию. Кое-что из того, что я смеялся, кое-что из того, что я наряжал, и кое-что из того, что я хотел сделать. У нас тут очень весело, очень-очень прикольно. Общение максимально…",
-  },
-  {
-    id: 9,
-    name: "Слава Битмейкер",
-    genre: "Бит",
-    imageUrl: "/avatarUser/login1.jpg",
-    backgroundUrl:
-      "https://avatars.mds.yandex.net/i?id=2d0ed205049cd9c3b56db4cab9f02b9d_l-4255743-images-thumbs&n=13",
-    description:
-      "Благодарим вас за проявленный интерес к нашей компании и добро пожаловать в нашу компанию. Кое-что из того, что я смеялся, кое-что из того, что я наряжал, и кое-что из того, что я хотел сделать. У нас тут очень весело, очень-очень прикольно. Общение максимально…",
-  },
-  {
-    id: 10,
-    name: "Ольга Янтарь",
-    genre: "Фолк",
-    imageUrl: "/avatarUser/login2.jpg",
-    backgroundUrl:
-      "https://avatars.mds.yandex.net/i?id=2d0ed205049cd9c3b56db4cab9f02b9d_l-4255743-images-thumbs&n=13",
-    description:
-      "Благодарим вас за проявленный интерес к нашей компании и добро пожаловать в нашу компанию. Кое-что из того, что я смеялся, кое-что из того, что я наряжал, и кое-что из того, что я хотел сделать. У нас тут очень весело, очень-очень прикольно. Общение максимально…",
+    genres: ["Хип-хоп", "Рэп", "R&B"],
+    auditions: 12,
+    hasCompletedSetup: true,
+    socialLinks: [
+      {
+        name: "VK",
+        url: "https://vk.com/zvukozapad",
+      },
+      {
+        name: "Telegram",
+        url: "https://t.me/zvukozapad",
+      },
+      {
+        name: "YouTube",
+        url: "https://youtube.com/@zvukozapad",
+      },
+      {
+        name: "Instagram",
+        url: "https://instagram.com/zvukozapad",
+      },
+      {
+        name: "Spotify",
+        url: "https://open.spotify.com/artist/zvukozapad",
+      },
+    ],
   },
 ];
 
@@ -207,8 +287,6 @@ const tracks = [
   },
 ];
 
-const users = [{ email: "1234@mail.ru", password: "123456" }];
-
 // Middleware для проверки JWT токена
 const authenticateToken = (req, res, next) => {
   const authHeader = req.headers["authorization"];
@@ -227,17 +305,17 @@ const authenticateToken = (req, res, next) => {
   });
 };
 
-// Все артисты
+// Все музыканты
 app.get("/musicians", authenticateToken, (req, res) => {
-  res.json(musicians);
+  res.json(users);
 });
 
-// Артист по ID
+// Музыкант по ID
 app.get("/musician/:id", authenticateToken, (req, res) => {
-  const artist = musicians.find(a => a.id === parseInt(req.params.id));
-  artist
-    ? res.json(artist)
-    : res.status(404).json({ message: "Артист не найден" });
+  const musician = users.find(u => u.id === parseInt(req.params.id));
+  musician
+    ? res.json(musician)
+    : res.status(404).json({ message: "Музыкант не найден" });
 });
 
 // Все треки
@@ -245,19 +323,14 @@ app.get("/tracks", authenticateToken, (req, res) => {
   res.json(tracks);
 });
 
-// Авторизация
+// Регистрация
 app.post("/auth/register", (req, res) => {
   const { name, email, password } = req.body;
-
-  console.log("Попытка регистрации:", { name, email, password });
-  console.log("Существующие пользователи:", users);
 
   if (!name || !email || !password)
     return res.status(400).json({ message: "Все поля обязательны" });
 
   const existingUser = users.find(user => user.email === email);
-  console.log("Найден существующий пользователь:", existingUser);
-
   if (existingUser)
     return res.status(409).json({ message: "Пользователь уже существует" });
 
@@ -266,9 +339,15 @@ app.post("/auth/register", (req, res) => {
     name,
     email,
     password,
+    avatarUrl: "/avatarUser/default.jpg",
+    backgroundUrl:
+      "https://avatars.mds.yandex.net/i?id=2d0ed205049cd9c3b56db4cab9f02b9d_l-4255743-images-thumbs&n=13",
+    description: "",
+    genres: [],
+    hasCompletedSetup: false,
+    socialLinks: [],
   };
   users.push(newUser);
-  console.log("Новый пользователь добавлен:", newUser);
 
   // Генерация JWT токена
   const token = jwt.sign(
@@ -283,6 +362,12 @@ app.post("/auth/register", (req, res) => {
       id: newUser.id,
       name: newUser.name,
       email: newUser.email,
+      avatarUrl: newUser.avatarUrl,
+      backgroundUrl: newUser.backgroundUrl,
+      description: newUser.description,
+      genres: newUser.genres,
+      hasCompletedSetup: newUser.hasCompletedSetup,
+      socialLinks: newUser.socialLinks,
     },
   });
 });
@@ -309,6 +394,12 @@ app.post("/auth/login", (req, res) => {
       id: user.id,
       name: user.name,
       email: user.email,
+      avatarUrl: user.avatarUrl,
+      backgroundUrl: user.backgroundUrl,
+      description: user.description,
+      genres: user.genres,
+      hasCompletedSetup: user.hasCompletedSetup,
+      socialLinks: user.socialLinks,
     },
   });
 });
@@ -325,6 +416,12 @@ app.get("/auth/me", authenticateToken, (req, res) => {
       id: user.id,
       name: user.name,
       email: user.email,
+      avatarUrl: user.avatarUrl,
+      backgroundUrl: user.backgroundUrl,
+      description: user.description,
+      genres: user.genres,
+      hasCompletedSetup: user.hasCompletedSetup,
+      socialLinks: user.socialLinks,
     },
   });
 });
