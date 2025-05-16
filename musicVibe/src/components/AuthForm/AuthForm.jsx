@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { z } from "zod";
-import api from "@/api";
+import { useAuth } from "@/context/AuthContext";
 // Components
 import loginImage from "@/assets/images/login.jpg";
 import { Button, Input, Notification } from "@/components/index.js";
@@ -29,7 +29,7 @@ const loginSchema = z.object({
 
 function AuthForm({ type }) {
   const isLogin = type === "login";
-  const navigate = useNavigate();
+  const { login, register } = useAuth();
   const [isFormValid, setIsFormValid] = useState(false);
   const [notification, setNotification] = useState(null);
 
@@ -63,7 +63,7 @@ function AuthForm({ type }) {
         }
         setIsFormValid(false);
       }
-    };
+    }
 
     validateForm();
   }, [formData, isLogin]);
@@ -92,21 +92,12 @@ function AuthForm({ type }) {
 
       const validatedData = schema.parse(dataToValidate);
 
-      const urlServer = isLogin ? "/auth/login" : "/auth/register";
-      const payload = isLogin
-        ? {
-            email: validatedData.email,
-            password: validatedData.password,
-          }
-        : {
-            name: validatedData.name,
-            email: validatedData.email,
-            password: validatedData.password,
-          };
-
-      const res = await api.post(urlServer, payload);
-      // Перенаправляем на разные страницы в зависимости от типа формы
-      navigate(isLogin ? "/home" : "/genres");
+      // Вызов соответствующего метода из AuthContext
+      if (isLogin) {
+        await login(validatedData);
+      } else {
+        await register(validatedData);
+      }
     } catch (err) {
       if (err instanceof z.ZodError) {
         // Обработка ошибок валидации
@@ -118,9 +109,11 @@ function AuthForm({ type }) {
       } else {
         console.error("Ошибка авторизации:", err);
         setNotification({
-          message: isLogin
-            ? "Неверный email или пароль"
-            : "Такой email уже зарегистрирован",
+          message:
+            err.response?.data?.message ||
+            (isLogin
+              ? "Неверный email или пароль"
+              : "Такой email уже зарегистрирован"),
           type: "error",
         });
       }
