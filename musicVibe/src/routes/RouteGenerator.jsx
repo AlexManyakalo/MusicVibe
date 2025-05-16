@@ -4,7 +4,11 @@ import { useAuth } from "@/context/AuthContext";
 
 // Компонент для защиты приватных маршрутов
 const ProtectedRoute = ({ element: Component }) => {
-  const { isAuthenticated } = useAuth();
+  const { isAuthenticated, isLoading } = useAuth();
+
+  if (isLoading) {
+    return <LoadPage />;
+  }
 
   if (!isAuthenticated) {
     return <Navigate to="/auth/login" replace />;
@@ -15,7 +19,11 @@ const ProtectedRoute = ({ element: Component }) => {
 
 // Компонент для защиты маршрутов начальной настройки
 const SetupRoute = ({ element: Component }) => {
-  const { isAuthenticated, hasCompletedSetup } = useAuth();
+  const { isAuthenticated, hasCompletedSetup, isLoading } = useAuth();
+
+  if (isLoading) {
+    return <LoadPage />;
+  }
 
   if (!isAuthenticated) {
     return <Navigate to="/auth/login" replace />;
