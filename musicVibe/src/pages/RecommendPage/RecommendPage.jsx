@@ -2,8 +2,6 @@ import { useEffect, useState } from "react";
 import api from "@/api";
 // Components
 import { Loader, TrackList } from "@/components/index.js";
-// Styles
-import styles from "./RecommendPage.module.scss";
 
 // TODO:
 // На этой странице запрос должен быть на все необходимые треки
@@ -16,7 +14,7 @@ function RecommendPage() {
   useEffect(() => {
     async function fetchTracks() {
       try {
-        const res = await api.get("/tracks"); // TODO: изменить на запрос к трекам рекомендаций ()
+        const res = await api.get("/tracks/recommended"); // TODO: изменить на запрос к трекам рекомендаций ()
         setTracks(res.data);
       } catch (err) {
         console.error("Ошибка при получении треков:", err);
