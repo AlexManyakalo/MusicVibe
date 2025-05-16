@@ -108,11 +108,11 @@ export const privateRoutes = [
     element: SupportPage,
   },
   {
-    path: "/recommend/:id",
+    path: "/recommend",
     element: RecommendPage,
   },
   {
-    path: "/tracked/:id",
+    path: "/tracked",
     element: TrackedPage,
   },
   {
