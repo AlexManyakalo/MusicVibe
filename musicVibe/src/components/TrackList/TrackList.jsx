@@ -1,5 +1,3 @@
-import { useEffect, useState } from "react";
-import api from "@/api";
 // Components
 import { ArrowBtns, ChartItem, MusicCard } from "@/components/index.js";
 // Styles
@@ -14,7 +12,7 @@ function TrackList({ tracks, isChart = false }) {
           isChart ? (
             <ChartItem key={track.id} index={index} track={track} />
           ) : (
-            <MusicCard key={track.id} track={track} />
+            <MusicCard key={track.id} item={track} isAlbum={false} />
           ),
         )}
       </ul>
