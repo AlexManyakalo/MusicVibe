@@ -18,19 +18,19 @@ function MusicianPage() {
   // ЗАПРОСЫ
   const { id } = useParams();
   const [musician, setMusician] = useState({});
-  const [tracks, setTracks] = useState([]); // Должна быть выборка только песен этого автора
+  const [tracks, setTracks] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     async function fetchData() {
       setLoading(true);
       try {
-        const [musicianRes, tracksRes] = await Promise.all([
+        const [musicianRes, popularTracksRes] = await Promise.all([
           api.get(`/musician/${id}`),
-          api.get("/tracks"),
+          api.get(`/musician/${id}/popular-tracks`),
         ]);
         setMusician(musicianRes.data);
-        setTracks(tracksRes.data);
+        setTracks(popularTracksRes.data);
       } catch (err) {
         console.error("Данные музыканта не найдены:", err);
       } finally {
@@ -89,7 +89,7 @@ function MusicianPage() {
           <h3 className={styles["info__left-title"]}>Ссылки</h3>
           <ul className={styles["info__left-list"]}>
             {musician.socialLinks?.map(link => (
-              <li key={link.icon} className={styles["info__left-item"]}>
+              <li key={link.name} className={styles["info__left-item"]}>
                 <MenuLink label={link.name} path={link.url} />
               </li>
             ))}
@@ -114,7 +114,7 @@ function MusicianPage() {
         <Section
           title="Альбомы"
           link={`/albums/${musician.id}`}
-          tracks={tracks}
+          tracks={musician.albums || []}
         />
       </div>
     </>
