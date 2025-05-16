@@ -7,7 +7,7 @@
   width: 100%;
   max-width: 200px;
   height: 100%;
-  max-height: 251px;
+  max-height: 272px;
 }
 
 .item__block-link {
@@ -106,4 +106,9 @@
   &:hover {
     text-decoration: underline;
   }
+}
+
+.item__year {
+  font-size: 0.875rem;
+  color: g.$color-gray;
 }
