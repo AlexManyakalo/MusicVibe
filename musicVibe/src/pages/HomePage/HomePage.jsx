@@ -50,7 +50,7 @@ function HomePage() {
     <>
       <Section
         title="Рекомендованные треки"
-        link="/recommend"
+        link="/recommend-tracks"
         tracks={recommendedTracks}
       />
       <Section
