@@ -13,6 +13,7 @@ function Input({
   error = "",
   required = false,
   disabled = false,
+  name = "",
 }) {
   return (
     <div className={styles.input__wrapper}>
@@ -28,6 +29,7 @@ function Input({
         onChange={onChange}
         required={required}
         disabled={disabled}
+        name={name}
       />
       {error && <span className={styles.input__error_message}>{error}</span>}
     </div>
