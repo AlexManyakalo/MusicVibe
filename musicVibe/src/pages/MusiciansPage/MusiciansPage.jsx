@@ -7,7 +7,7 @@ function MusiciansPage() {
   const musicians = Array.from({ length: 9 }, (_, i) => ({
     id: i + 1,
     name: `Исполнитель ${i + 1}`,
-  }));  
+  }));
 
   function handleNext(selectedIds) {
     const selectedNames = musicians
@@ -16,7 +16,7 @@ function MusiciansPage() {
       .join(", ");
     console.log("Вы выбрали артистов: " + selectedNames);
     navigate("/home");
-  };
+  }
 
   return (
     <SelectionPage

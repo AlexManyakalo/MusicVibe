@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from "react";
-import { Link, Outlet } from "react-router-dom";
+import { Link, Outlet, useNavigate } from "react-router-dom";
 // Components
 import { LayoutNavBtn, Player } from "@/components/index.js";
 import {
@@ -14,11 +14,13 @@ import {
   CircleHelpIcon,
   ExitIcon,
 } from "@/components/index.js";
-import loginImage from "@/assets/images/login.jpg";
+import { useAuth } from "@/context/AuthContext";
 // Styles
 import styles from "./MainLayout.module.scss";
 
 function MainLayout() {
+  const { user, logout } = useAuth();
+  const navigate = useNavigate();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const menuRef = useRef(null);
   const buttonRef = useRef(null);
@@ -28,7 +30,12 @@ function MainLayout() {
   };
 
   const handleMenuClick = () => {
-    setIsMenuOpen(false); // Закрываем меню
+    setIsMenuOpen(false);
+  };
+
+  const handleLogout = () => {
+    logout();
+    navigate("/");
   };
 
   useEffect(() => {
@@ -81,19 +88,19 @@ function MainLayout() {
               <ul className={styles.menu__list}>
                 <div className={styles.wrapper__btn}>
                   <LayoutNavBtn
-                    path="/profile/profile-settings/1"
+                    path={`/profile/profile-settings/${user?.id}`}
                     icon={<SettingsIcon />}
                     label="Профиль"
                     onMenuClick={handleMenuClick}
                   />
                   <LayoutNavBtn
-                    path="/studio/1"
+                    path={`/studio/${user?.id}`}
                     icon={<HeadphonesIcon />}
                     label="Студия"
                     onMenuClick={handleMenuClick}
                   />
                   <LayoutNavBtn
-                    path="/subscribe/1"
+                    path={`/subscribe/${user?.id}`}
                     icon={<CardBankIcon />}
                     label="Подписка"
                     onMenuClick={handleMenuClick}
@@ -111,7 +118,7 @@ function MainLayout() {
                   icon={<ExitIcon />}
                   label="Выйти"
                   className={styles.exit__btn}
-                  onMenuClick={handleMenuClick}
+                  onMenuClick={handleLogout}
                 />
               </ul>
             </div>
@@ -124,11 +131,11 @@ function MainLayout() {
             <div className={styles["btn__image-block"]}>
               <img
                 className={styles.btn__image}
-                src={loginImage}
-                alt="Аватар пользователя"
+                src={user?.avatarUrl || "/avatarUser/default.jpg"}
+                alt={`Аватар ${user?.name || "пользователя"}`}
               />
             </div>
-            <p className={styles.btn__paragraph}>Александр</p>
+            <p className={styles.btn__paragraph}>{user?.name || "Гость"}</p>
           </button>
         </div>
       </aside>
