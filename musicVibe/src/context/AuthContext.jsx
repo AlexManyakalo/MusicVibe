@@ -21,7 +21,7 @@ export function AuthProvider({ children }) {
   }, []);
 
   // Проверка валидности токена
-  const checkAuth = async () => {
+  async function checkAuth() {
     try {
       const { data } = await api.get("/auth/me");
       setUser(data.user);
@@ -31,28 +31,28 @@ export function AuthProvider({ children }) {
     } finally {
       setIsLoading(false);
     }
-  };
+  }
 
   // Вход
-  const login = async credentials => {
+  async function login(credentials) {
     const { data } = await api.post("/auth/login", credentials);
     localStorage.setItem("jwt_token", data.token);
     setUser(data.user);
     setHasCompletedSetup(data.user.hasCompletedSetup || false);
     navigate("/home");
-  };
+  }
 
   // Регистрация
-  const register = async userData => {
+  async function register(userData) {
     const { data } = await api.post("/auth/register", userData);
     localStorage.setItem("jwt_token", data.token);
     setUser(data.user);
     setHasCompletedSetup(false);
     navigate("/genres");
-  };
+  }
 
   // Завершение начальной настройки
-  const completeSetup = async () => {
+  async function completeSetup() {
     try {
       const { data } = await api.post("/auth/complete-setup");
       setHasCompletedSetup(true);
@@ -61,15 +61,15 @@ export function AuthProvider({ children }) {
     } catch (error) {
       console.error("Ошибка при завершении настройки:", error);
     }
-  };
+  }
 
   // Выход
-  const logout = () => {
+  function logout() {
     localStorage.removeItem("jwt_token");
     setUser(null);
     setHasCompletedSetup(false);
     navigate("/");
-  };
+  }
 
   return (
     <AuthContext.Provider
@@ -89,10 +89,8 @@ export function AuthProvider({ children }) {
   );
 }
 
-export const useAuth = () => {
+export function useAuth() {
   const context = useContext(AuthContext);
-  if (!context) {
-    throw new Error("useAuth must be used within an AuthProvider");
-  }
+  if (!context) throw new Error("useAuth must be used within an AuthProvider");
   return context;
-};
+}
