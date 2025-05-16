@@ -13,11 +13,8 @@ export function AuthProvider({ children }) {
   // Проверка авторизации при загрузке
   useEffect(() => {
     const token = localStorage.getItem("jwt_token");
-    if (token) {
-      checkAuth();
-    } else {
-      setIsLoading(false);
-    }
+    if (token) checkAuth();
+    else setIsLoading(false);
   }, []);
 
   // Проверка валидности токена
