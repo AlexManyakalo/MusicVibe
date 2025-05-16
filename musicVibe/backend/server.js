@@ -16,7 +16,7 @@ const users = [
     name: "Алексей Ветров",
     email: "alex@mail.ru",
     password: "123456",
-    avatarUrl: "/avatarUser/login1.jpg",
+    avatarUrl: "/avatarUser/ava1.png",
     backgroundUrl:
       "https://avatars.mds.yandex.net/i?id=2d0ed205049cd9c3b56db4cab9f02b9d_l-4255743-images-thumbs&n=13",
     description:
@@ -46,15 +46,31 @@ const users = [
         url: "https://open.spotify.com/artist/alexvetrov",
       },
     ],
+    albums: [
+      {
+        id: 1,
+        title: "Начало пути",
+        year: 2023,
+        coverUrl: "/previewAlbums/3.jpg",
+        tracks: [1, 2, 3],
+      },
+      {
+        id: 2,
+        title: "Новые горизонты",
+        year: 2024,
+        coverUrl: "/previewAlbums/4.jpg",
+        tracks: [4, 5, 6],
+      },
+    ],
   },
   {
     id: 2,
     name: "NEON BLVD",
     email: "neon@mail.ru",
     password: "123456",
-    avatarUrl: "/avatarUser/login2.jpg",
+    avatarUrl: "/avatarUser/ava2.png",
     backgroundUrl:
-      "https://avatars.mds.yandex.net/i?id=2d0ed205049cd9c3b56db4cab9f02b9d_l-4255743-images-thumbs&n=13",
+      "https://i.pinimg.com/736x/dd/40/19/dd40196aedbbaa4512df9f5f77145dd8.jpg",
     description:
       "Благодарим вас за проявленный интерес к нашей компании и добро пожаловать в нашу компанию. Кое-что из того, что я смеялся, кое-что из того, что я наряжал, и кое-что из того, что я хотел сделать. У нас тут очень весело, очень-очень прикольно. Общение максимально…",
     genres: ["Электроника", "EDM", "Хаус"],
@@ -88,9 +104,9 @@ const users = [
     name: "Мирослава",
     email: "mira@mail.ru",
     password: "123456",
-    avatarUrl: "/avatarUser/login1.jpg",
+    avatarUrl: "/avatarUser/ava3.png",
     backgroundUrl:
-      "https://avatars.mds.yandex.net/i?id=2d0ed205049cd9c3b56db4cab9f02b9d_l-4255743-images-thumbs&n=13",
+      "https://i.pinimg.com/originals/0e/10/b5/0e10b5dee4f4d73f7facac1fac79a9c9.png",
     description:
       "Благодарим вас за проявленный интерес к нашей компании и добро пожаловать в нашу компанию. Кое-что из того, что я смеялся, кое-что из того, что я наряжал, и кое-что из того, что я хотел сделать. У нас тут очень весело, очень-очень прикольно. Общение максимально…",
     genres: ["Инди", "Альтернатива", "Фолк"],
@@ -124,7 +140,7 @@ const users = [
     name: "DJ Крутой",
     email: "dj@mail.ru",
     password: "123456",
-    avatarUrl: "/avatarUser/login2.jpg",
+    avatarUrl: "/avatarUser/ava4.png",
     backgroundUrl:
       "https://avatars.mds.yandex.net/i?id=2d0ed205049cd9c3b56db4cab9f02b9d_l-4255743-images-thumbs&n=13",
     description:
@@ -160,9 +176,9 @@ const users = [
     name: "Звукозапад",
     email: "sound@mail.ru",
     password: "123456",
-    avatarUrl: "/avatarUser/login1.jpg",
+    avatarUrl: "/avatarUser/ava5.jpg",
     backgroundUrl:
-      "https://avatars.mds.yandex.net/i?id=2d0ed205049cd9c3b56db4cab9f02b9d_l-4255743-images-thumbs&n=13",
+      "https://avatars.mds.yandex.net/i?id=40b15cd0bc96913ab03eccdac940f18905e05fde-5904855-images-thumbs&n=13",
     description:
       "Благодарим вас за проявленный интерес к нашей компании и добро пожаловать в нашу компанию. Кое-что из того, что я смеялся, кое-что из того, что я наряжал, и кое-что из того, что я хотел сделать. У нас тут очень весело, очень-очень прикольно. Общение максимально…",
     genres: ["Хип-хоп", "Рэп", "R&B"],
@@ -191,6 +207,201 @@ const users = [
       },
     ],
   },
+  {
+    id: 6,
+    name: "Катя Лёд",
+    email: "katya@mail.ru",
+    password: "123456",
+    avatarUrl: "/avatarUser/ava1.png",
+    backgroundUrl:
+      "https://i.pinimg.com/originals/0e/10/b5/0e10b5dee4f4d73f7facac1fac79a9c9.png",
+    description:
+      "Электронный музыкант и продюсер, создающий атмосферную электронику и экспериментальные звуковые ландшафты. Моя музыка сочетает в себе элементы эмбиента, IDM и экспериментальной электроники, создавая уникальные звуковые пространства.",
+    genres: ["Электроника", "Ambient", "IDM"],
+    auditions: 250,
+    hasCompletedSetup: true,
+    socialLinks: [
+      {
+        name: "VK",
+        url: "https://vk.com/katyaled",
+      },
+      {
+        name: "SoundCloud",
+        url: "https://soundcloud.com/katyaled",
+      },
+    ],
+    albums: [
+      {
+        id: 11,
+        title: "Ледяные сны",
+        year: 2023,
+        coverUrl: "/previewAlbums/2.jpg",
+        tracks: [11, 12, 13],
+      },
+    ],
+  },
+  {
+    id: 7,
+    name: "ROTOR",
+    email: "rotor@mail.ru",
+    password: "123456",
+    avatarUrl: "/avatarUser/ava2.png",
+    backgroundUrl:
+      "https://avatars.mds.yandex.net/i?id=2d0ed205049cd9c3b56db4cab9f02b9d_l-4255743-images-thumbs&n=13",
+    description:
+      "Индустриальный рок проект, объединяющий жесткие гитарные риффы с механическими ритмами и электронными элементами. Наша музыка исследует темы технологий, урбанизации и взаимодействия человека с машиной.",
+    genres: ["Индастриал", "Рок", "Электроника"],
+    auditions: 180,
+    hasCompletedSetup: true,
+    socialLinks: [
+      {
+        name: "VK",
+        url: "https://vk.com/rotor",
+      },
+      {
+        name: "YouTube",
+        url: "https://youtube.com/@rotor",
+      },
+      {
+        name: "Bandcamp",
+        url: "https://rotor.bandcamp.com",
+      },
+    ],
+    albums: [
+      {
+        id: 12,
+        title: "Механизмы",
+        year: 2023,
+        coverUrl: "/previewAlbums/1.jpg",
+        tracks: [14, 15, 16],
+      },
+      {
+        id: 13,
+        title: "Цифровая эра",
+        year: 2024,
+        coverUrl: "/previewAlbums/5.jpg",
+        tracks: [17, 18, 19],
+      },
+    ],
+  },
+  {
+    id: 8,
+    name: "Луна на Пульсе",
+    email: "luna@mail.ru",
+    password: "123456",
+    avatarUrl: "/avatarUser/ava3.png",
+    backgroundUrl:
+      "https://avatars.mds.yandex.net/i?id=d4afdd5a5d2a64efc38e9e52a71e297cceb28583-5430182-images-thumbs&n=13",
+    description:
+      "Экспериментальный проект на стыке электроники и живых инструментов. Мы создаем музыку, где органические звуки переплетаются с цифровыми, а джазовые импровизации встречаются с электронными битами.",
+    genres: ["Экспериментальная", "Электроника", "Джаз"],
+    auditions: 320,
+    hasCompletedSetup: true,
+    socialLinks: [
+      {
+        name: "VK",
+        url: "https://vk.com/luna",
+      },
+      {
+        name: "Instagram",
+        url: "https://instagram.com/luna",
+      },
+      {
+        name: "Spotify",
+        url: "https://open.spotify.com/artist/luna",
+      },
+    ],
+    albums: [
+      {
+        id: 14,
+        title: "Пульсар",
+        year: 2023,
+        coverUrl: "/previewAlbums/4.jpg",
+        tracks: [20, 21, 22],
+      },
+    ],
+  },
+  {
+    id: 9,
+    name: "Слава Битмейкер",
+    email: "slava@mail.ru",
+    password: "123456",
+    avatarUrl: "/avatarUser/ava4.png",
+    backgroundUrl:
+      "https://avatars.mds.yandex.net/i?id=d4afdd5a5d2a64efc38e9e52a71e297cceb28583-5430182-images-thumbs&n=13",
+    description:
+      "Продюсер и битмейкер, специализирующийся на создании битов для рэп-исполнителей и электронной музыки. Мои работы отличаются глубокими басами, сложными ритмами и инновационным подходом к звуковому дизайну.",
+    genres: ["Хип-хоп", "Электроника", "Trap"],
+    auditions: 450,
+    hasCompletedSetup: true,
+    socialLinks: [
+      {
+        name: "VK",
+        url: "https://vk.com/slavabeat",
+      },
+      {
+        name: "YouTube",
+        url: "https://youtube.com/@slavabeat",
+      },
+      {
+        name: "SoundCloud",
+        url: "https://soundcloud.com/slavabeat",
+      },
+    ],
+    albums: [
+      {
+        id: 15,
+        title: "Бит-мастер",
+        year: 2023,
+        coverUrl: "/previewAlbums/3.jpg",
+        tracks: [23, 24, 25],
+      },
+      {
+        id: 16,
+        title: "Новые ритмы",
+        year: 2024,
+        coverUrl: "/previewAlbums/2.jpg",
+        tracks: [26, 27, 28],
+      },
+    ],
+  },
+  {
+    id: 10,
+    name: "Ольга Янтарь",
+    email: "olga@mail.ru",
+    password: "123456",
+    avatarUrl: "/avatarUser/ava5.jpg",
+    backgroundUrl:
+      "https://avatars.mds.yandex.net/i?id=2d0ed205049cd9c3b56db4cab9f02b9d_l-4255743-images-thumbs&n=13",
+    description:
+      "Фолк-рок исполнительница, создающая современную интерпретацию народной музыки. В моих песнях традиционные народные мотивы переплетаются с современными аранжировками, создавая уникальный звук, который соединяет прошлое и настоящее.",
+    genres: ["Фолк", "Рок", "Этно"],
+    auditions: 280,
+    hasCompletedSetup: true,
+    socialLinks: [
+      {
+        name: "VK",
+        url: "https://vk.com/olgayantar",
+      },
+      {
+        name: "YouTube",
+        url: "https://youtube.com/@olgayantar",
+      },
+      {
+        name: "Instagram",
+        url: "https://instagram.com/olgayantar",
+      },
+    ],
+    albums: [
+      {
+        id: 17,
+        title: "Янтарные сны",
+        year: 2023,
+        coverUrl: "/previewAlbums/1.jpg",
+        tracks: [29, 30, 31],
+      },
+    ],
+  },
 ];
 
 const tracks = [
@@ -200,7 +411,7 @@ const tracks = [
       "Навстречу ветру htkrjthkrtjh rtjhl rtjh krjth lkjrthkrtjhrltkhjlrth",
     artistId: 1,
     artistName: "Алексей Ветров",
-    imageUrl: "/previewMusic/1.jpg",
+    imageUrl: "/previewMusic/1.png",
     audioUrl: "/tracks/Numb%20The%20Pain.mp3",
     duration: 153,
   },
@@ -209,7 +420,7 @@ const tracks = [
     title: "Неоновые сны",
     artistId: 2,
     artistName: "NEON BLVD trthjlr tkjh krtjhlrktjhktrlh",
-    imageUrl: "/previewMusic/2.jpg",
+    imageUrl: "/previewMusic/2.png",
     audioUrl: "/tracks/ONLAP%20-%20Unstoppable.m4a",
     duration: 202,
   },
@@ -218,8 +429,8 @@ const tracks = [
     title: "Тишина внутри",
     artistId: 3,
     artistName: "Мирослава",
-    imageUrl: "/previewMusic/3.jpg",
-    audioUrl: "/tracks/Numb%20The%20Pain.mp3",
+    imageUrl: "/previewMusic/3.png",
+    audioUrl: "/tracks/Awake%20and%20Alive.mp3",
     duration: 153,
   },
   {
@@ -227,8 +438,8 @@ const tracks = [
     title: "Энергия ночи",
     artistId: 4,
     artistName: "DJ Крутой",
-    imageUrl: "/previewMusic/4.jpg",
-    audioUrl: "/tracks/ONLAP%20-%20Unstoppable.m4a",
+    imageUrl: "/previewMusic/4.png",
+    audioUrl: "/tracks/Fight%20Back.mp3",
     duration: 202,
   },
   {
@@ -236,8 +447,8 @@ const tracks = [
     title: "Улицы молчат",
     artistId: 5,
     artistName: "Звукозапад",
-    imageUrl: "/previewMusic/5.jpg",
-    audioUrl: "/tracks/Numb%20The%20Pain.mp3",
+    imageUrl: "/previewMusic/5.png",
+    audioUrl: "/tracks/Hero.mp3",
     duration: 153,
   },
   {
@@ -245,8 +456,8 @@ const tracks = [
     title: "Без остатка",
     artistId: 6,
     artistName: "Катя Лёд",
-    imageUrl: "/previewMusic/1.jpg",
-    audioUrl: "/tracks/ONLAP%20-%20Unstoppable.m4a",
+    imageUrl: "/previewMusic/6.png",
+    audioUrl: "/tracks/In%20The%20End.mp3",
     duration: 202,
   },
   {
@@ -254,8 +465,8 @@ const tracks = [
     title: "Бензин",
     artistId: 7,
     artistName: "ROTOR",
-    imageUrl: "/previewMusic/2.jpg",
-    audioUrl: "/tracks/Numb%20The%20Pain.mp3",
+    imageUrl: "/previewMusic/7.png",
+    audioUrl: "/tracks/My%20Way.mp3",
     duration: 153,
   },
   {
@@ -263,7 +474,7 @@ const tracks = [
     title: "Гравитация",
     artistId: 8,
     artistName: "Луна на Пульсе",
-    imageUrl: "/previewMusic/3.jpg",
+    imageUrl: "/previewMusic/8.png",
     audioUrl: "/tracks/ONLAP%20-%20Unstoppable.m4a",
     duration: 202,
   },
@@ -272,7 +483,7 @@ const tracks = [
     title: "На битах",
     artistId: 9,
     artistName: "Слава Битмейкер",
-    imageUrl: "/previewMusic/4.jpg",
+    imageUrl: "/previewMusic/9.png",
     audioUrl: "/tracks/Numb%20The%20Pain.mp3",
     duration: 153,
   },
@@ -281,9 +492,198 @@ const tracks = [
     title: "Берёзовая весна",
     artistId: 10,
     artistName: "Ольга Янтарь",
-    imageUrl: "/previewMusic/5.jpg",
-    audioUrl: "/tracks/ONLAP%20-%20Unstoppable.m4a",
+    imageUrl: "/previewMusic/1.png",
+    audioUrl: "/tracks/My%20Way.mp3",
     duration: 202,
+  },
+  {
+    id: 11,
+    title: "Ледяной дождь",
+    artistId: 6,
+    artistName: "Катя Лёд",
+    imageUrl: "/previewMusic/2.png",
+    audioUrl: "/tracks/In%20The%20End.mp3",
+    duration: 245,
+  },
+  {
+    id: 12,
+    title: "Арктика",
+    artistId: 6,
+    artistName: "Катя Лёд",
+    imageUrl: "/previewMusic/3.png",
+    audioUrl: "/tracks/Hero.mp3",
+    duration: 198,
+  },
+  {
+    id: 13,
+    title: "Северное сияние",
+    artistId: 6,
+    artistName: "Катя Лёд",
+    imageUrl: "/previewMusic/4.png",
+    audioUrl: "/tracks/Fight%20Back.mp3",
+    duration: 312,
+  },
+  {
+    id: 14,
+    title: "Механический танец",
+    artistId: 7,
+    artistName: "ROTOR",
+    imageUrl: "/previewMusic/5.png",
+    audioUrl: "/tracks/Awake%20and%20Alive.mp3",
+    duration: 267,
+  },
+  {
+    id: 15,
+    title: "Цифровой мир",
+    artistId: 7,
+    artistName: "ROTOR",
+    imageUrl: "/previewMusic/6.png",
+    audioUrl: "/tracks/ONLAP%20-%20Unstoppable.m4a",
+    duration: 234,
+  },
+  {
+    id: 16,
+    title: "Роботы",
+    artistId: 7,
+    artistName: "ROTOR",
+    imageUrl: "/previewMusic/7.png",
+    audioUrl: "/tracks/Awake%20and%20Alive.mp3",
+    duration: 289,
+  },
+  {
+    id: 17,
+    title: "Новая эра",
+    artistId: 7,
+    artistName: "ROTOR",
+    imageUrl: "/previewMusic/8.png",
+    audioUrl: "/tracks/Fight%20Back.mp3",
+    duration: 256,
+  },
+  {
+    id: 18,
+    title: "Киберпространство",
+    artistId: 7,
+    artistName: "ROTOR",
+    imageUrl: "/previewMusic/9.png",
+    audioUrl: "/tracks/Hero.mp3",
+    duration: 278,
+  },
+  {
+    id: 19,
+    title: "Технологии будущего",
+    artistId: 7,
+    artistName: "ROTOR",
+    imageUrl: "/previewMusic/1.png",
+    audioUrl: "/tracks/In%20The%20End.mp3",
+    duration: 245,
+  },
+  {
+    id: 20,
+    title: "Космический пульс",
+    artistId: 8,
+    artistName: "Луна на Пульсе",
+    imageUrl: "/previewMusic/2.png",
+    audioUrl: "/tracks/My%20Way.mp3",
+    duration: 312,
+  },
+  {
+    id: 21,
+    title: "Лунная соната",
+    artistId: 8,
+    artistName: "Луна на Пульсе",
+    imageUrl: "/previewMusic/3.png",
+    audioUrl: "/tracks/Numb%20The%20Pain.mp3",
+    duration: 289,
+  },
+  {
+    id: 22,
+    title: "Звездный путь",
+    artistId: 8,
+    artistName: "Луна на Пульсе",
+    imageUrl: "/previewMusic/4.png",
+    audioUrl: "/tracks/Awake%20and%20Alive.mp3",
+    duration: 267,
+  },
+  {
+    id: 23,
+    title: "Бит-мастер",
+    artistId: 9,
+    artistName: "Слава Битмейкер",
+    imageUrl: "/previewMusic/5.png",
+    audioUrl: "/tracks/ONLAP%20-%20Unstoppable.m4a",
+    duration: 234,
+  },
+  {
+    id: 24,
+    title: "Новый ритм",
+    artistId: 9,
+    artistName: "Слава Битмейкер",
+    imageUrl: "/previewMusic/6.png",
+    audioUrl: "/tracks/My%20Way.mp3",
+    duration: 245,
+  },
+  {
+    id: 25,
+    title: "Бит-бокс",
+    artistId: 9,
+    artistName: "Слава Битмейкер",
+    imageUrl: "/previewMusic/7.png",
+    audioUrl: "/tracks/Awake%20and%20Alive.mp3",
+    duration: 198,
+  },
+  {
+    id: 26,
+    title: "Ритмы улиц",
+    artistId: 9,
+    artistName: "Слава Битмейкер",
+    imageUrl: "/previewMusic/8.png",
+    audioUrl: "/tracks/My%20Way.mp3",
+    duration: 267,
+  },
+  {
+    id: 27,
+    title: "Бит-лаборатория",
+    artistId: 9,
+    artistName: "Слава Битмейкер",
+    imageUrl: "/previewMusic/9.png",
+    audioUrl: "/tracks/Awake%20and%20Alive.mp3",
+    duration: 289,
+  },
+  {
+    id: 28,
+    title: "Новые звуки",
+    artistId: 9,
+    artistName: "Слава Битмейкер",
+    imageUrl: "/previewMusic/1.png",
+    audioUrl: "/tracks/Awake%20and%20Alive.mp3",
+    duration: 256,
+  },
+  {
+    id: 29,
+    title: "Янтарный рассвет",
+    artistId: 10,
+    artistName: "Ольга Янтарь",
+    imageUrl: "/previewMusic/2.png",
+    audioUrl: "/tracks/In%20The%20End.mp3",
+    duration: 312,
+  },
+  {
+    id: 30,
+    title: "Народная песня",
+    artistId: 10,
+    artistName: "Ольга Янтарь",
+    imageUrl: "/previewMusic/3.png",
+    audioUrl: "/tracks/Fight%20Back.mp3",
+    duration: 289,
+  },
+  {
+    id: 31,
+    title: "Этнические ритмы",
+    artistId: 10,
+    artistName: "Ольга Янтарь",
+    imageUrl: "/previewMusic/4.png",
+    audioUrl: "/tracks/ONLAP%20-%20Unstoppable.m4a",
+    duration: 267,
   },
 ];
 
@@ -450,6 +850,16 @@ app.post("/auth/complete-setup", authenticateToken, (req, res) => {
       hasCompletedSetup: true,
     },
   });
+});
+
+// Популярные треки музыканта (первые 8)
+app.get("/musician/:id/popular-tracks", authenticateToken, (req, res) => {
+  const musicianId = parseInt(req.params.id);
+  const musicianTracks = tracks
+    .filter(track => track.artistId === musicianId)
+    .slice(0, 8);
+
+  res.json(musicianTracks);
 });
 
 app.listen(PORT, () => {
