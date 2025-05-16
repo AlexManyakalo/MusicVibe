@@ -13,8 +13,11 @@ export function AuthProvider({ children }) {
   // Проверка авторизации при загрузке
   useEffect(() => {
     const token = localStorage.getItem("jwt_token");
-    if (token) checkAuth();
-    else setIsLoading(false);
+    if (token) {
+      checkAuth();
+    } else {
+      setIsLoading(false);
+    }
   }, []);
 
   // Проверка валидности токена
@@ -24,7 +27,10 @@ export function AuthProvider({ children }) {
       setUser(data.user);
       setHasCompletedSetup(data.user.hasCompletedSetup || false);
     } catch (error) {
+      console.error("Ошибка проверки авторизации:", error);
       localStorage.removeItem("jwt_token");
+      setUser(null);
+      setHasCompletedSetup(false);
     } finally {
       setIsLoading(false);
     }
@@ -32,20 +38,30 @@ export function AuthProvider({ children }) {
 
   // Вход
   async function login(credentials) {
-    const { data } = await api.post("/auth/login", credentials);
-    localStorage.setItem("jwt_token", data.token);
-    setUser(data.user);
-    setHasCompletedSetup(data.user.hasCompletedSetup || false);
-    navigate("/home");
+    try {
+      const { data } = await api.post("/auth/login", credentials);
+      localStorage.setItem("jwt_token", data.token);
+      setUser(data.user);
+      setHasCompletedSetup(data.user.hasCompletedSetup || false);
+      navigate("/home");
+    } catch (error) {
+      console.error("Ошибка входа:", error);
+      throw error;
+    }
   }
 
   // Регистрация
   async function register(userData) {
-    const { data } = await api.post("/auth/register", userData);
-    localStorage.setItem("jwt_token", data.token);
-    setUser(data.user);
-    setHasCompletedSetup(false);
-    navigate("/genres");
+    try {
+      const { data } = await api.post("/auth/register", userData);
+      localStorage.setItem("jwt_token", data.token);
+      setUser(data.user);
+      setHasCompletedSetup(false);
+      navigate("/genres");
+    } catch (error) {
+      console.error("Ошибка регистрации:", error);
+      throw error;
+    }
   }
 
   // Завершение начальной настройки
@@ -57,6 +73,7 @@ export function AuthProvider({ children }) {
       navigate("/home");
     } catch (error) {
       console.error("Ошибка при завершении настройки:", error);
+      throw error;
     }
   }
 
@@ -66,6 +83,10 @@ export function AuthProvider({ children }) {
     setUser(null);
     setHasCompletedSetup(false);
     navigate("/");
+  }
+
+  if (isLoading) {
+    return null; // или компонент загрузки
   }
 
   return (
