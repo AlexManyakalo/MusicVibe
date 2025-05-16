@@ -907,6 +907,45 @@ app.get("/tracks/chart", authenticateToken, (req, res) => {
   res.json(chartTracks);
 });
 
+// Новые треки
+app.get("/tracks/new", authenticateToken, (req, res) => {
+  // В реальном приложении здесь была бы сортировка по дате добавления
+  // Сейчас просто возвращаем треки в обратном порядке (как будто последние добавленные)
+  let newTracks = [...tracks].reverse();
+
+  // Если есть параметр limit, ограничиваем количество треков
+  const limit = parseInt(req.query.limit);
+  if (limit) {
+    newTracks = newTracks.slice(0, limit);
+  }
+
+  res.json(newTracks);
+});
+
+// Поиск треков
+app.get("/tracks/search", authenticateToken, (req, res) => {
+  const query = req.query.q?.toLowerCase() || "";
+
+  if (!query) {
+    return res.json([]);
+  }
+
+  // Поиск по названию трека и имени исполнителя
+  const searchResults = tracks.filter(
+    track =>
+      track.title.toLowerCase().includes(query) ||
+      track.artistName.toLowerCase().includes(query),
+  );
+
+  // Если есть параметр limit, ограничиваем количество результатов
+  const limit = parseInt(req.query.limit);
+  if (limit) {
+    return res.json(searchResults.slice(0, limit));
+  }
+
+  res.json(searchResults);
+});
+
 app.listen(PORT, () => {
   console.log(`Сервер запущен: http://localhost:${PORT}`);
 });

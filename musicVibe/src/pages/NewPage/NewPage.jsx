@@ -2,12 +2,10 @@ import { useEffect, useState } from "react";
 import api from "@/api";
 // Components
 import { Loader, TrackList } from "@/components/index.js";
-// Styles
-import styles from "./NewPage.module.scss";
 
 // TODO:
 // На этой странице запрос должен быть на все необходимые треки
-// Например, все 50 треков отслеживаемых (всего 1 запрос)
+// Например, все 50 новых треков (всего 1 запрос)
 
 function NewPage() {
   const [tracks, setTracks] = useState([]);
@@ -16,7 +14,7 @@ function NewPage() {
   useEffect(() => {
     async function fetchTracks() {
       try {
-        const res = await api.get("/tracks"); // TODO: изменить на запрос к трекам отслеживаемых ()
+        const res = await api.get("/tracks/new"); // TODO: изменить на запрос к трекам отслеживаемых ()
         setTracks(res.data);
       } catch (err) {
         console.error("Ошибка при получении треков:", err);

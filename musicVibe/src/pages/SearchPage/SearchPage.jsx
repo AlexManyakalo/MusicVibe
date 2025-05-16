@@ -2,19 +2,24 @@ import { useEffect, useState } from "react";
 import api from "@/api";
 // Components
 import { Input, Section, Loader } from "@/components/index.js";
-// Styles
-import styles from "./SearchPage.module.scss";
 
 function SearchPage() {
-  const [tracks, setTracks] = useState([]);
+  const [newTracks, setNewTracks] = useState([]);
+  const [chartTracks, setChartTracks] = useState([]);
+  const [searchResults, setSearchResults] = useState([]);
   const [search, setSearch] = useState("");
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     async function fetchTracks() {
       try {
-        const res = await api.get("/tracks");
-        setTracks(res.data);
+        const [newRes, chartRes] = await Promise.all([
+          api.get("/tracks/new?limit=8"),
+          api.get("/tracks/chart?limit=8"),
+        ]);
+
+        setNewTracks(newRes.data);
+        setChartTracks(chartRes.data);
       } catch (err) {
         console.error("Ошибка при получении треков:", err);
       } finally {
@@ -25,8 +30,31 @@ function SearchPage() {
     fetchTracks();
   }, []);
 
+  // Поиск треков при изменении поискового запроса
+  useEffect(() => {
+    async function searchTracks() {
+      if (!search.trim()) {
+        setSearchResults([]);
+        return;
+      }
+
+      try {
+        const res = await api.get(
+          `/tracks/search?q=${encodeURIComponent(search)}`,
+        );
+        setSearchResults(res.data);
+      } catch (err) {
+        console.error("Ошибка при поиске треков:", err);
+      }
+    }
+
+    // Добавляем небольшую задержку перед отправкой запроса
+    const timer = setTimeout(searchTracks, 300);
+    return () => clearTimeout(timer);
+  }, [search]);
+
   // Обработка изменения поиска
-  function handleSearhChange(e) {
+  function handleSearchChange(e) {
     setSearch(e.target.value);
   }
 
@@ -38,10 +66,21 @@ function SearchPage() {
         placeholder="Трек, альбом, музыкант"
         isSearch="true"
         value={search}
-        onChange={handleSearhChange}
+        onChange={handleSearchChange}
       />
-      <Section title="Новинки" link="/new" tracks={tracks} />
-      <Section title="Чарт" link="/chart" tracks={tracks} isChart="true" />
+      {search.trim() ? (
+        <Section title="Результаты поиска" tracks={searchResults} />
+      ) : (
+        <>
+          <Section title="Новинки" link="/new" tracks={newTracks} />
+          <Section
+            title="Чарт"
+            link="/chart"
+            tracks={chartTracks}
+            isChart="true"
+          />
+        </>
+      )}
     </>
   );
 }
