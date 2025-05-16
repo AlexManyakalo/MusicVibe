@@ -10,30 +10,38 @@ import { Section, Loader } from "@/components/index.js";
 
 function HomePage() {
   const [recommendedTracks, setRecommendedTracks] = useState([]);
+  const [recommendedAlbums, setRecommendedAlbums] = useState([]);
   const [trackedTracks, setTrackedTracks] = useState([]);
   const [chartTracks, setChartTracks] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    async function fetchTracks() {
+    async function fetchData() {
       try {
-        const [recommendedRes, trackedRes, chartRes] = await Promise.all([
+        const [
+          recommendedTracksRes,
+          recommendedAlbumsRes,
+          trackedRes,
+          chartRes,
+        ] = await Promise.all([
           api.get("/tracks/recommended?limit=8"),
+          api.get("/albums/recommended?limit=6"),
           api.get("/tracks/tracked?limit=8"),
           api.get("/tracks/chart?limit=8"),
         ]);
 
-        setRecommendedTracks(recommendedRes.data);
+        setRecommendedTracks(recommendedTracksRes.data);
+        setRecommendedAlbums(recommendedAlbumsRes.data);
         setTrackedTracks(trackedRes.data);
         setChartTracks(chartRes.data);
       } catch (err) {
-        console.error("Ошибка при получении треков:", err);
+        console.error("Ошибка при получении данных:", err);
       } finally {
         setLoading(false);
       }
     }
 
-    fetchTracks();
+    fetchData();
   }, []);
 
   if (loading) return <Loader />;
@@ -41,9 +49,14 @@ function HomePage() {
   return (
     <>
       <Section
-        title="Рекомендовано для вас"
+        title="Рекомендованные треки"
         link="/recommend"
         tracks={recommendedTracks}
+      />
+      <Section
+        title="Рекомендованные альбомы"
+        link="/recommend-albums"
+        albums={recommendedAlbums}
       />
       <Section title="Отслеживаемое" link="/tracked" tracks={trackedTracks} />
       <Section title="Чарт" link="/chart" tracks={chartTracks} isChart="true" />
