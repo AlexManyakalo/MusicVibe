@@ -7,7 +7,7 @@ import { Loader, TrackList } from "@/components/index.js";
 // На этой странице запрос должен быть на все необходимые треки
 // Например, все 100 треков рекомендаций (всего 1 запрос)
 
-function RecommendPage() {
+function RecommendTrackPage() {
   const [tracks, setTracks] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -31,4 +31,4 @@ function RecommendPage() {
   return <TrackList tracks={tracks} />;
 }
 
-export default RecommendPage;
+export default RecommendTrackPage;
