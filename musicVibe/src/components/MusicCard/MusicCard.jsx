@@ -6,7 +6,7 @@ import { PlayIcon, PauseIcon, HeartIcon } from "@/components/index.js";
 // Styles
 import styles from "./MusicCard.module.scss";
 
-function MusicCard({ track }) {
+function MusicCard({ track, isAlbum }) {
   const { playTrack, togglePlayPause, currentTrack, isPlaying } =
     useContext(PlayerContext);
 
@@ -24,7 +24,7 @@ function MusicCard({ track }) {
       <Link className={styles["item__block-link"]} to={`/track/${track.id}`}>
         <img
           className={styles.block__image}
-          src={track.coverUrl}
+          src={isAlbum ? track.coverUrl : track.imageUrl}
           alt={track.title}
         />
         <div className={styles.link__controls}>

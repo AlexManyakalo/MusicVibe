@@ -4,7 +4,7 @@ import { MusicCard, ChartItem } from "@/components/index.js";
 // Styles
 import styles from "./Section.module.scss";
 
-function Section({ title, link, tracks, isChart = false }) {
+function Section({ title, link, tracks, isChart = false, isAlbum = false }) {
   return (
     <section className={styles.section}>
       <div className={styles.section__top}>
@@ -20,7 +20,7 @@ function Section({ title, link, tracks, isChart = false }) {
           isChart ? (
             <ChartItem key={track.id} index={index} track={track} />
           ) : (
-            <MusicCard key={track.id} track={track} />
+            <MusicCard key={track.id} track={track} isAlbum={isAlbum} />
           ),
         )}
       </ul>

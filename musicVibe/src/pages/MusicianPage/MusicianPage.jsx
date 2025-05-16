@@ -115,6 +115,7 @@ function MusicianPage() {
           title="Альбомы"
           link={`/albums/${musician.id}`}
           tracks={musician.albums || []}
+          isAlbum="true"
         />
       </div>
     </>
