@@ -24,7 +24,7 @@ function MusicCard({ track }) {
       <Link className={styles["item__block-link"]} to={`/track/${track.id}`}>
         <img
           className={styles.block__image}
-          src={track.imageUrl}
+          src={track.coverUrl}
           alt={track.title}
         />
         <div className={styles.link__controls}>
