@@ -946,6 +946,122 @@ app.get("/tracks/search", authenticateToken, (req, res) => {
   res.json(searchResults);
 });
 
+// Получение всех альбомов
+app.get("/albums", authenticateToken, (req, res) => {
+  // Собираем все альбомы из пользователей
+  const allAlbums = users.reduce((albums, user) => {
+    if (user.albums) {
+      const userAlbums = user.albums.map(album => ({
+        ...album,
+        artistId: user.id,
+        artistName: user.name,
+      }));
+      return [...albums, ...userAlbums];
+    }
+    return albums;
+  }, []);
+
+  // Если есть параметр limit, ограничиваем количество альбомов
+  const limit = parseInt(req.query.limit);
+  if (limit) {
+    return res.json(allAlbums.slice(0, limit));
+  }
+
+  res.json(allAlbums);
+});
+
+// Рекомендованные альбомы
+app.get("/albums/recommended", authenticateToken, (req, res) => {
+  // Собираем все альбомы
+  const allAlbums = users.reduce((albums, user) => {
+    if (user.albums) {
+      const userAlbums = user.albums.map(album => ({
+        ...album,
+        artistId: user.id,
+        artistName: user.name,
+      }));
+      return [...albums, ...userAlbums];
+    }
+    return albums;
+  }, []);
+
+  // В реальном приложении здесь была бы логика рекомендаций
+  // Сейчас просто возвращаем альбомы в случайном порядке
+  const shuffledAlbums = [...allAlbums].sort(() => Math.random() - 0.5);
+
+  // Если есть параметр limit, ограничиваем количество альбомов
+  const limit = parseInt(req.query.limit);
+  if (limit) {
+    return res.json(shuffledAlbums.slice(0, limit));
+  }
+
+  res.json(shuffledAlbums);
+});
+
+// Новые альбомы
+app.get("/albums/new", authenticateToken, (req, res) => {
+  // Собираем все альбомы
+  const allAlbums = users.reduce((albums, user) => {
+    if (user.albums) {
+      const userAlbums = user.albums.map(album => ({
+        ...album,
+        artistId: user.id,
+        artistName: user.name,
+      }));
+      return [...albums, ...userAlbums];
+    }
+    return albums;
+  }, []);
+
+  // Сортируем по году (в реальном приложении была бы сортировка по дате добавления)
+  const sortedAlbums = [...allAlbums].sort((a, b) => b.year - a.year);
+
+  // Если есть параметр limit, ограничиваем количество альбомов
+  const limit = parseInt(req.query.limit);
+  if (limit) {
+    return res.json(sortedAlbums.slice(0, limit));
+  }
+
+  res.json(sortedAlbums);
+});
+
+// Поиск альбомов
+app.get("/albums/search", authenticateToken, (req, res) => {
+  const query = req.query.q?.toLowerCase() || "";
+
+  if (!query) {
+    return res.json([]);
+  }
+
+  // Собираем все альбомы
+  const allAlbums = users.reduce((albums, user) => {
+    if (user.albums) {
+      const userAlbums = user.albums.map(album => ({
+        ...album,
+        artistId: user.id,
+        artistName: user.name,
+      }));
+      return [...albums, ...userAlbums];
+    }
+    return albums;
+  }, []);
+
+  // Поиск по названию альбома и имени исполнителя
+  const searchResults = allAlbums.filter(
+    album =>
+      album.title.toLowerCase().includes(query) ||
+      album.artistName.toLowerCase().includes(query),
+  );
+
+  // Если есть параметр limit, ограничиваем количество результатов
+  const limit = parseInt(req.query.limit);
+  if (limit) {
+    return res.json(searchResults.slice(0, limit));
+  }
+
+  res.json(searchResults);
+});
+
 app.listen(PORT, () => {
   console.log(`Сервер запущен: http://localhost:${PORT}`);
 });
