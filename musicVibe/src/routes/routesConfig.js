@@ -27,8 +27,11 @@ const SubscribePage = lazy(
   () => import("@/pages/SubscribePage/SubscribePage.jsx"),
 );
 const SupportPage = lazy(() => import("@/pages/SupportPage/SupportPage.jsx"));
-const RecommendPage = lazy(
-  () => import("@/pages/RecommendPage/RecommendPage.jsx"),
+const RecommendTrackPage = lazy(
+  () => import("@/pages/RecommendTrackPage/RecommendTrackPage.jsx"),
+);
+const RecommendAlbumPage = lazy(
+  () => import("@/pages/RecommendAlbumPage/RecommendAlbumPage.jsx"),
 );
 const TrackedPage = lazy(() => import("@/pages/TrackedPage/TrackedPage.jsx"));
 const NewPage = lazy(() => import("@/pages/NewPage/NewPage.jsx"));
@@ -108,8 +111,12 @@ export const privateRoutes = [
     element: SupportPage,
   },
   {
-    path: "/recommend",
-    element: RecommendPage,
+    path: "/recommend-tracks",
+    element: RecommendTrackPage,
+  },
+  {
+    path: "/recommend-albums",
+    element: RecommendAlbumPage,
   },
   {
     path: "/tracked",
