@@ -65,7 +65,7 @@ function MusicianPage() {
               <EditIcon className={styles["bottom__block-edit"]} />
               <img
                 className={styles["bottom__block-image"]}
-                src={musician.imageUrl}
+                src={musician.avatarUrl}
                 alt={`Аватарка ${musician.name}`}
               />
             </Link>
@@ -73,7 +73,9 @@ function MusicianPage() {
               <h2 className={styles["header__bottom-title"]}>
                 {musician.name}
               </h2>
-              <p className={styles["header__bottom-paragraph"]}>291 в месяц</p>
+              <p className={styles["header__bottom-paragraph"]}>
+                {musician.auditions} в месяц
+              </p>
             </div>
           </div>
           <div className={styles.controls}>
@@ -86,21 +88,11 @@ function MusicianPage() {
         <div className={styles.info__block}>
           <h3 className={styles["info__left-title"]}>Ссылки</h3>
           <ul className={styles["info__left-list"]}>
-            <li className={styles["info__left-item"]}>
-              <MenuLink label="Ютуб" />
-            </li>
-            <li className={styles["info__left-item"]}>
-              <MenuLink label="Твич" />
-            </li>
-            <li className={styles["info__left-item"]}>
-              <MenuLink label="Спотифай" />
-            </li>
-            <li className={styles["info__left-item"]}>
-              <MenuLink label="Яндекс.Музыка" />
-            </li>
-            <li className={styles["info__left-item"]}>
-              <MenuLink label="Яндекс.Музыка" />
-            </li>
+            {musician.socialLinks?.map(link => (
+              <li key={link.icon} className={styles["info__left-item"]}>
+                <MenuLink label={link.name} path={link.url} />
+              </li>
+            ))}
           </ul>
         </div>
         <div className={styles.info__block}>
@@ -119,7 +111,11 @@ function MusicianPage() {
         />
       </div>
       <div className={styles.wrapper}>
-        <Section title="Альбомы" link={`/albums/${musician.id}`} tracks={tracks} />
+        <Section
+          title="Альбомы"
+          link={`/albums/${musician.id}`}
+          tracks={tracks}
+        />
       </div>
     </>
   );
