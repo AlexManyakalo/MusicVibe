@@ -862,6 +862,51 @@ app.get("/musician/:id/popular-tracks", authenticateToken, (req, res) => {
   res.json(musicianTracks);
 });
 
+// Рекомендованные треки для пользователя
+app.get("/tracks/recommended", authenticateToken, (req, res) => {
+  const userId = req.user.id;
+  // В реальном приложении здесь была бы логика рекомендаций
+  // Сейчас просто возвращаем треки с учетом лимита
+  let recommendedTracks = tracks;
+
+  // Если есть параметр limit, ограничиваем количество треков
+  const limit = parseInt(req.query.limit);
+  if (limit) {
+    recommendedTracks = recommendedTracks.slice(0, limit);
+  }
+
+  res.json(recommendedTracks);
+});
+
+// Отслеживаемые треки пользователя
+app.get("/tracks/tracked", authenticateToken, (req, res) => {
+  const userId = req.user.id;
+  // В реальном приложении здесь была бы логика получения отслеживаемых треков
+  let trackedTracks = tracks;
+
+  // Если есть параметр limit, ограничиваем количество треков
+  const limit = parseInt(req.query.limit);
+  if (limit) {
+    trackedTracks = trackedTracks.slice(0, limit);
+  }
+
+  res.json(trackedTracks);
+});
+
+// Чарт (топ треков)
+app.get("/tracks/chart", authenticateToken, (req, res) => {
+  // В реальном приложении здесь была бы логика получения самых популярных треков
+  let chartTracks = tracks;
+
+  // Если есть параметр limit, ограничиваем количество треков
+  const limit = parseInt(req.query.limit);
+  if (limit) {
+    chartTracks = chartTracks.slice(0, limit);
+  }
+
+  res.json(chartTracks);
+});
+
 app.listen(PORT, () => {
   console.log(`Сервер запущен: http://localhost:${PORT}`);
 });
