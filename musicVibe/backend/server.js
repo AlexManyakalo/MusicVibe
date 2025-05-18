@@ -52,7 +52,7 @@ const users = [
         title: "Начало пути",
         year: 2023,
         coverUrl: "/previewAlbums/3.jpg",
-        tracks: [1, 2, 3],
+        tracks: [1, 15, 16],
         description:
           "Дебютный альбом, отражающий первые шаги в музыкальной карьере. Сочетание современного звучания с искренними текстами.",
       },
@@ -61,7 +61,7 @@ const users = [
         title: "Новые горизонты",
         year: 2024,
         coverUrl: "/previewAlbums/4.jpg",
-        tracks: [4, 5, 6],
+        tracks: [24, 25],
         description:
           "Экспериментальный альбом, исследующий новые музыкальные направления и звучания.",
       },
@@ -424,8 +424,7 @@ const users = [
 const tracks = [
   {
     id: 1,
-    title:
-      "Навстречу ветру htkrjthkrtjh rtjhl rtjh krjth lkjrthkrtjhrltkhjlrth",
+    title: "Навстречу ветру",
     artistId: 1,
     artistName: "Алексей Ветров",
     imageUrl: "/previewMusic/1.png",
@@ -566,8 +565,8 @@ const tracks = [
   {
     id: 15,
     title: "Цифровой мир",
-    artistId: 7,
-    artistName: "ROTOR",
+    artistId: 1,
+    artistName: "Алексей Ветров",
     imageUrl: "/previewMusic/6.png",
     audioUrl: "/tracks/ONLAP%20-%20Unstoppable.m4a",
     duration: 234,
@@ -575,9 +574,9 @@ const tracks = [
   },
   {
     id: 16,
-    title: "Роботы",
-    artistId: 7,
-    artistName: "ROTOR",
+    title: "Электронные сны",
+    artistId: 1,
+    artistName: "Алексей Ветров",
     imageUrl: "/previewMusic/7.png",
     audioUrl: "/tracks/Awake%20and%20Alive.mp3",
     duration: 289,
@@ -656,8 +655,8 @@ const tracks = [
   {
     id: 24,
     title: "Новый ритм",
-    artistId: 9,
-    artistName: "Слава Битмейкер",
+    artistId: 1,
+    artistName: "Алексей Ветров",
     imageUrl: "/previewMusic/6.png",
     audioUrl: "/tracks/My%20Way.mp3",
     duration: 245,
@@ -665,9 +664,9 @@ const tracks = [
   },
   {
     id: 25,
-    title: "Бит-бокс",
-    artistId: 9,
-    artistName: "Слава Битмейкер",
+    title: "Глубина звука",
+    artistId: 1,
+    artistName: "Алексей Ветров",
     imageUrl: "/previewMusic/7.png",
     audioUrl: "/tracks/Awake%20and%20Alive.mp3",
     duration: 198,
@@ -732,6 +731,129 @@ const tracks = [
     audioUrl: "/tracks/ONLAP%20-%20Unstoppable.m4a",
     duration: 267,
     plays: 1250,
+  },
+];
+
+const comments = [
+  {
+    id: 1,
+    userId: 1,
+    mediaType: "track",
+    mediaId: 1,
+    text: "Отличный трек! Очень понравился бит и аранжировка.",
+    createdAt: "2024-03-20T10:30:00Z",
+  },
+  {
+    id: 2,
+    userId: 2,
+    mediaType: "track",
+    mediaId: 1,
+    text: "Классная работа! Давно следил за вашим творчеством.",
+    createdAt: "2024-03-20T11:15:00Z",
+  },
+  {
+    id: 3,
+    userId: 3,
+    mediaType: "album",
+    mediaId: 1,
+    text: "Альбом просто огонь! Каждый трек уникален.",
+    createdAt: "2024-03-19T15:45:00Z",
+  },
+  {
+    id: 4,
+    userId: 4,
+    mediaType: "track",
+    mediaId: 2,
+    text: "Неоновые сны - это что-то невероятное! Атмосфера просто космическая.",
+    createdAt: "2024-03-21T09:30:00Z",
+  },
+  {
+    id: 5,
+    userId: 5,
+    mediaType: "track",
+    mediaId: 2,
+    text: "Звучание очень современное, но при этом есть своя изюминка.",
+    createdAt: "2024-03-21T10:45:00Z",
+  },
+  {
+    id: 6,
+    userId: 6,
+    mediaType: "album",
+    mediaId: 11,
+    text: "Ледяные сны - лучший альбом этого года! Каждый трек пробирает до мурашек.",
+    createdAt: "2024-03-22T14:20:00Z",
+  },
+  {
+    id: 7,
+    userId: 7,
+    mediaType: "track",
+    mediaId: 11,
+    text: "Ледяной дождь - мой любимый трек с альбома. Эти синтезаторы просто космос!",
+    createdAt: "2024-03-22T15:30:00Z",
+  },
+  {
+    id: 8,
+    userId: 8,
+    mediaType: "album",
+    mediaId: 12,
+    text: "Механизмы - отличный дебютный альбом. Жду следующих работ!",
+    createdAt: "2024-03-23T11:15:00Z",
+  },
+  {
+    id: 9,
+    userId: 9,
+    mediaType: "track",
+    mediaId: 14,
+    text: "Механический танец заставляет двигаться! Отличный бит и звук.",
+    createdAt: "2024-03-23T12:45:00Z",
+  },
+  {
+    id: 10,
+    userId: 10,
+    mediaType: "track",
+    mediaId: 20,
+    text: "Космический пульс - это просто нечто! Такого звучания я еще не слышала.",
+    createdAt: "2024-03-24T16:20:00Z",
+  },
+  {
+    id: 11,
+    userId: 1,
+    mediaType: "album",
+    mediaId: 14,
+    text: "Пульсар - альбом, который открывает новые горизонты в музыке. Браво!",
+    createdAt: "2024-03-24T17:30:00Z",
+  },
+  {
+    id: 12,
+    userId: 2,
+    mediaType: "track",
+    mediaId: 23,
+    text: "Бит-мастер показывает высший класс! Продакшн на высоте.",
+    createdAt: "2024-03-25T13:15:00Z",
+  },
+  {
+    id: 13,
+    userId: 3,
+    mediaType: "album",
+    mediaId: 15,
+    text: "Бит-мастер - альбом, который должен быть в плейлисте каждого любителя качественной музыки.",
+    createdAt: "2024-03-25T14:45:00Z",
+  },
+  {
+    id: 14,
+    userId: 4,
+    mediaType: "track",
+    mediaId: 29,
+    text: "Янтарный рассвет возвращает к корням, но звучит очень современно!",
+    createdAt: "2024-03-26T10:20:00Z",
+  },
+  {
+    id: 15,
+    userId: 5,
+    mediaType: "album",
+    mediaId: 17,
+    text: "Янтарные сны - прекрасное сочетание традиций и современного звучания.",
+    createdAt: "2024-03-26T11:30:00Z",
   },
 ];
 
@@ -1108,6 +1230,141 @@ app.get("/albums/search", authenticateToken, (req, res) => {
   }
 
   res.json(searchResults);
+});
+
+// Получение комментариев для трека или альбома
+app.get("/comments/:mediaType/:mediaId", authenticateToken, (req, res) => {
+  const { mediaType, mediaId } = req.params;
+  const mediaComments = comments
+    .filter(
+      comment =>
+        comment.mediaType === mediaType &&
+        comment.mediaId === parseInt(mediaId),
+    )
+    .map(comment => {
+      const user = users.find(u => u.id === comment.userId);
+      return {
+        id: comment.id,
+        text: comment.text,
+        createdAt: comment.createdAt,
+        user: {
+          id: user.id,
+          name: user.name,
+          avatarUrl: user.avatarUrl,
+        },
+      };
+    });
+
+  res.json(mediaComments);
+});
+
+// Добавление комментария
+app.post("/comments/:mediaType/:mediaId", authenticateToken, (req, res) => {
+  const { mediaType, mediaId } = req.params;
+  const { text } = req.body;
+
+  if (!text) {
+    return res.status(400).json({ message: "Текст комментария обязателен" });
+  }
+
+  // Проверяем существование медиа (трека или альбома)
+  let mediaExists = false;
+  if (mediaType === "track") {
+    mediaExists = tracks.some(t => t.id === parseInt(mediaId));
+  } else if (mediaType === "album") {
+    mediaExists = users.some(
+      u => u.albums && u.albums.some(a => a.id === parseInt(mediaId)),
+    );
+  }
+
+  if (!mediaExists) {
+    return res.status(404).json({ message: "Медиа не найдено" });
+  }
+
+  const newComment = {
+    id: comments.length + 1,
+    userId: req.user.id,
+    mediaType,
+    mediaId: parseInt(mediaId),
+    text,
+    createdAt: new Date().toISOString(),
+  };
+
+  comments.push(newComment);
+
+  const user = users.find(u => u.id === req.user.id);
+
+  res.status(201).json({
+    id: newComment.id,
+    text: newComment.text,
+    createdAt: newComment.createdAt,
+    user: {
+      id: user.id,
+      name: user.name,
+      avatarUrl: user.avatarUrl,
+    },
+  });
+});
+
+// Удаление комментария
+app.delete("/comments/:commentId", authenticateToken, (req, res) => {
+  const commentIndex = comments.findIndex(
+    c => c.id === parseInt(req.params.commentId) && c.userId === req.user.id,
+  );
+
+  if (commentIndex === -1) {
+    return res.status(404).json({
+      message: "Комментарий не найден или у вас нет прав на его удаление",
+    });
+  }
+
+  comments.splice(commentIndex, 1);
+  res.json({ message: "Комментарий успешно удален" });
+});
+
+// Получение альбома по ID
+app.get("/album/:id", authenticateToken, (req, res) => {
+  const albumId = parseInt(req.params.id);
+
+  // Ищем альбом среди всех пользователей
+  for (const user of users) {
+    if (user.albums) {
+      const album = user.albums.find(a => a.id === albumId);
+      if (album) {
+        // Добавляем информацию об исполнителе
+        return res.json({
+          ...album,
+          artistId: user.id,
+          artistName: user.name,
+          artistAvatarUrl: user.avatarUrl,
+        });
+      }
+    }
+  }
+
+  res.status(404).json({ message: "Альбом не найден" });
+});
+
+// Получение треков альбома
+app.get("/album/:id/tracks", authenticateToken, (req, res) => {
+  const albumId = parseInt(req.params.id);
+
+  // Ищем альбом и его владельца
+  for (const user of users) {
+    if (user.albums) {
+      const album = user.albums.find(a => a.id === albumId);
+      if (album) {
+        // Получаем треки альбома, которые принадлежат этому исполнителю
+        const albumTracks = tracks.filter(
+          track =>
+            album.tracks.includes(track.id) && track.artistId === user.id,
+        );
+        return res.json(albumTracks);
+      }
+    }
+  }
+
+  res.status(404).json({ message: "Альбом не найден" });
 });
 
 app.listen(PORT, () => {
