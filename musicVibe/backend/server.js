@@ -4,7 +4,7 @@ import jwt from "jsonwebtoken";
 
 const app = express();
 const PORT = 3001;
-const JWT_SECRET = "your-secret-key"; // В реальном приложении должен быть в .env
+const JWT_SECRET = "your-secret-key"; // Должен лежать в .env
 
 app.use(cors());
 app.use(json());
@@ -53,6 +53,8 @@ const users = [
         year: 2023,
         coverUrl: "/previewAlbums/3.jpg",
         tracks: [1, 2, 3],
+        description:
+          "Дебютный альбом, отражающий первые шаги в музыкальной карьере. Сочетание современного звучания с искренними текстами.",
       },
       {
         id: 2,
@@ -60,6 +62,8 @@ const users = [
         year: 2024,
         coverUrl: "/previewAlbums/4.jpg",
         tracks: [4, 5, 6],
+        description:
+          "Экспериментальный альбом, исследующий новые музыкальные направления и звучания.",
       },
     ],
   },
@@ -237,6 +241,8 @@ const users = [
         year: 2023,
         coverUrl: "/previewAlbums/2.jpg",
         tracks: [11, 12, 13],
+        description:
+          "Атмосферный электронный альбом, погружающий слушателя в мир холодных синтезаторов и мечтательных мелодий.",
       },
     ],
   },
@@ -274,6 +280,8 @@ const users = [
         year: 2023,
         coverUrl: "/previewAlbums/1.jpg",
         tracks: [14, 15, 16],
+        description:
+          "Индустриальный альбом, сочетающий тяжелые гитарные риффы с электронными элементами.",
       },
       {
         id: 13,
@@ -281,6 +289,8 @@ const users = [
         year: 2024,
         coverUrl: "/previewAlbums/5.jpg",
         tracks: [17, 18, 19],
+        description:
+          "Концептуальный альбом о влиянии технологий на современное общество.",
       },
     ],
   },
@@ -318,6 +328,8 @@ const users = [
         year: 2023,
         coverUrl: "/previewAlbums/4.jpg",
         tracks: [20, 21, 22],
+        description:
+          "Экспериментальный джаз-электронный альбом с космической тематикой.",
       },
     ],
   },
@@ -355,6 +367,7 @@ const users = [
         year: 2023,
         coverUrl: "/previewAlbums/3.jpg",
         tracks: [23, 24, 25],
+        description: "Коллекция инновационных битов и электронных композиций.",
       },
       {
         id: 16,
@@ -362,6 +375,8 @@ const users = [
         year: 2024,
         coverUrl: "/previewAlbums/2.jpg",
         tracks: [26, 27, 28],
+        description:
+          "Свежий взгляд на современную электронную музыку с элементами хип-хопа.",
       },
     ],
   },
@@ -399,6 +414,8 @@ const users = [
         year: 2023,
         coverUrl: "/previewAlbums/1.jpg",
         tracks: [29, 30, 31],
+        description:
+          "Фолк-рок альбом, переосмысляющий традиционные народные мотивы в современном звучании.",
       },
     ],
   },
@@ -414,6 +431,7 @@ const tracks = [
     imageUrl: "/previewMusic/1.png",
     audioUrl: "/tracks/Numb%20The%20Pain.mp3",
     duration: 153,
+    plays: 1250,
   },
   {
     id: 2,
@@ -423,6 +441,7 @@ const tracks = [
     imageUrl: "/previewMusic/2.png",
     audioUrl: "/tracks/ONLAP%20-%20Unstoppable.m4a",
     duration: 202,
+    plays: 3400,
   },
   {
     id: 3,
@@ -432,6 +451,7 @@ const tracks = [
     imageUrl: "/previewMusic/3.png",
     audioUrl: "/tracks/Awake%20and%20Alive.mp3",
     duration: 153,
+    plays: 1250,
   },
   {
     id: 4,
@@ -441,6 +461,7 @@ const tracks = [
     imageUrl: "/previewMusic/4.png",
     audioUrl: "/tracks/Fight%20Back.mp3",
     duration: 202,
+    plays: 3400,
   },
   {
     id: 5,
@@ -450,6 +471,7 @@ const tracks = [
     imageUrl: "/previewMusic/5.png",
     audioUrl: "/tracks/Hero.mp3",
     duration: 153,
+    plays: 1250,
   },
   {
     id: 6,
@@ -459,6 +481,7 @@ const tracks = [
     imageUrl: "/previewMusic/6.png",
     audioUrl: "/tracks/In%20The%20End.mp3",
     duration: 202,
+    plays: 3400,
   },
   {
     id: 7,
@@ -468,6 +491,7 @@ const tracks = [
     imageUrl: "/previewMusic/7.png",
     audioUrl: "/tracks/My%20Way.mp3",
     duration: 153,
+    plays: 1250,
   },
   {
     id: 8,
@@ -477,6 +501,7 @@ const tracks = [
     imageUrl: "/previewMusic/8.png",
     audioUrl: "/tracks/ONLAP%20-%20Unstoppable.m4a",
     duration: 202,
+    plays: 3400,
   },
   {
     id: 9,
@@ -486,6 +511,7 @@ const tracks = [
     imageUrl: "/previewMusic/9.png",
     audioUrl: "/tracks/Numb%20The%20Pain.mp3",
     duration: 153,
+    plays: 1250,
   },
   {
     id: 10,
@@ -495,6 +521,7 @@ const tracks = [
     imageUrl: "/previewMusic/1.png",
     audioUrl: "/tracks/My%20Way.mp3",
     duration: 202,
+    plays: 3400,
   },
   {
     id: 11,
@@ -504,6 +531,7 @@ const tracks = [
     imageUrl: "/previewMusic/2.png",
     audioUrl: "/tracks/In%20The%20End.mp3",
     duration: 245,
+    plays: 1250,
   },
   {
     id: 12,
@@ -513,6 +541,7 @@ const tracks = [
     imageUrl: "/previewMusic/3.png",
     audioUrl: "/tracks/Hero.mp3",
     duration: 198,
+    plays: 3400,
   },
   {
     id: 13,
@@ -522,6 +551,7 @@ const tracks = [
     imageUrl: "/previewMusic/4.png",
     audioUrl: "/tracks/Fight%20Back.mp3",
     duration: 312,
+    plays: 1250,
   },
   {
     id: 14,
@@ -531,6 +561,7 @@ const tracks = [
     imageUrl: "/previewMusic/5.png",
     audioUrl: "/tracks/Awake%20and%20Alive.mp3",
     duration: 267,
+    plays: 3400,
   },
   {
     id: 15,
@@ -540,6 +571,7 @@ const tracks = [
     imageUrl: "/previewMusic/6.png",
     audioUrl: "/tracks/ONLAP%20-%20Unstoppable.m4a",
     duration: 234,
+    plays: 1250,
   },
   {
     id: 16,
@@ -549,6 +581,7 @@ const tracks = [
     imageUrl: "/previewMusic/7.png",
     audioUrl: "/tracks/Awake%20and%20Alive.mp3",
     duration: 289,
+    plays: 3400,
   },
   {
     id: 17,
@@ -558,6 +591,7 @@ const tracks = [
     imageUrl: "/previewMusic/8.png",
     audioUrl: "/tracks/Fight%20Back.mp3",
     duration: 256,
+    plays: 1250,
   },
   {
     id: 18,
@@ -567,6 +601,7 @@ const tracks = [
     imageUrl: "/previewMusic/9.png",
     audioUrl: "/tracks/Hero.mp3",
     duration: 278,
+    plays: 3400,
   },
   {
     id: 19,
@@ -576,6 +611,7 @@ const tracks = [
     imageUrl: "/previewMusic/1.png",
     audioUrl: "/tracks/In%20The%20End.mp3",
     duration: 245,
+    plays: 1250,
   },
   {
     id: 20,
@@ -585,6 +621,7 @@ const tracks = [
     imageUrl: "/previewMusic/2.png",
     audioUrl: "/tracks/My%20Way.mp3",
     duration: 312,
+    plays: 3400,
   },
   {
     id: 21,
@@ -594,6 +631,7 @@ const tracks = [
     imageUrl: "/previewMusic/3.png",
     audioUrl: "/tracks/Numb%20The%20Pain.mp3",
     duration: 289,
+    plays: 1250,
   },
   {
     id: 22,
@@ -603,6 +641,7 @@ const tracks = [
     imageUrl: "/previewMusic/4.png",
     audioUrl: "/tracks/Awake%20and%20Alive.mp3",
     duration: 267,
+    plays: 3400,
   },
   {
     id: 23,
@@ -612,6 +651,7 @@ const tracks = [
     imageUrl: "/previewMusic/5.png",
     audioUrl: "/tracks/ONLAP%20-%20Unstoppable.m4a",
     duration: 234,
+    plays: 1250,
   },
   {
     id: 24,
@@ -621,6 +661,7 @@ const tracks = [
     imageUrl: "/previewMusic/6.png",
     audioUrl: "/tracks/My%20Way.mp3",
     duration: 245,
+    plays: 3400,
   },
   {
     id: 25,
@@ -630,6 +671,7 @@ const tracks = [
     imageUrl: "/previewMusic/7.png",
     audioUrl: "/tracks/Awake%20and%20Alive.mp3",
     duration: 198,
+    plays: 1250,
   },
   {
     id: 26,
@@ -639,6 +681,7 @@ const tracks = [
     imageUrl: "/previewMusic/8.png",
     audioUrl: "/tracks/My%20Way.mp3",
     duration: 267,
+    plays: 3400,
   },
   {
     id: 27,
@@ -648,6 +691,7 @@ const tracks = [
     imageUrl: "/previewMusic/9.png",
     audioUrl: "/tracks/Awake%20and%20Alive.mp3",
     duration: 289,
+    plays: 1250,
   },
   {
     id: 28,
@@ -657,6 +701,7 @@ const tracks = [
     imageUrl: "/previewMusic/1.png",
     audioUrl: "/tracks/Awake%20and%20Alive.mp3",
     duration: 256,
+    plays: 3400,
   },
   {
     id: 29,
@@ -666,6 +711,7 @@ const tracks = [
     imageUrl: "/previewMusic/2.png",
     audioUrl: "/tracks/In%20The%20End.mp3",
     duration: 312,
+    plays: 1250,
   },
   {
     id: 30,
@@ -675,6 +721,7 @@ const tracks = [
     imageUrl: "/previewMusic/3.png",
     audioUrl: "/tracks/Fight%20Back.mp3",
     duration: 289,
+    plays: 3400,
   },
   {
     id: 31,
@@ -684,6 +731,7 @@ const tracks = [
     imageUrl: "/previewMusic/4.png",
     audioUrl: "/tracks/ONLAP%20-%20Unstoppable.m4a",
     duration: 267,
+    plays: 1250,
   },
 ];
 
