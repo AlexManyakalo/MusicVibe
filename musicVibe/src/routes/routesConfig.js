@@ -44,6 +44,7 @@ const MusicianPage = lazy(
   () => import("@/pages/MusicianPage/MusicianPage.jsx"),
 );
 const TrackPage = lazy(() => import("@/pages/TrackPage/TrackPage.jsx"));
+const AlbumPage = lazy(() => import("@/pages/AlbumPage/AlbumPage.jsx"));
 const NotFoundPage = lazy(
   () => import("@/pages/NotFoundPage/NotFoundPage.jsx"),
 );
@@ -145,6 +146,10 @@ export const privateRoutes = [
   {
     path: "/track/:id",
     element: TrackPage,
+  },
+  {
+    path: "/album/:id",
+    element: AlbumPage,
   },
 ];
 
