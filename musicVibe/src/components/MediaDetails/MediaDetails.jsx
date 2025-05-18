@@ -1,3 +1,5 @@
+import { useContext, useState } from "react";
+import { PlayerContext } from "@/context/PlayerContext";
 import { Link } from "react-router-dom";
 // Components
 import {
@@ -6,14 +8,50 @@ import {
   MenuBtnMusic,
   Input,
   ChartItem,
-  Loader,
 } from "@/components/index.js";
 import { HeartIcon } from "@/components/index.js";
+import CommentItem from "@/components/CommentItem/CommentItem";
 import LoginImage from "@/assets/images/login.jpg";
 // Styles
 import styles from "./MediaDetails.module.scss";
 
-function MediaDetails() {
+function MediaDetails({
+  track = {},
+  album = [],
+  albumInfo = {},
+  comments = [],
+  onCommentSubmit,
+}) {
+  const [comment, setComment] = useState("");
+  const isAlbumView = Boolean(albumInfo?.id);
+
+  // ПЛЕЕР
+  const { playTrack, togglePlayPause, currentTrack, isPlaying } =
+    useContext(PlayerContext);
+  const isCurrent = currentTrack?.id === track.id;
+
+  function handlePlay(e) {
+    e.preventDefault();
+    if (isCurrent) togglePlayPause();
+    else playTrack(track);
+  }
+
+  // Обработка отправки комментария
+  async function handleSubmitComment(e) {
+    e.preventDefault();
+    if (!comment.trim()) return;
+
+    if (onCommentSubmit) {
+      await onCommentSubmit(comment);
+      setComment("");
+    }
+  }
+
+  // Обработка изменения комментария
+  function handleCommentChange(e) {
+    setComment(e.target.value);
+  }
+
   return (
     <>
       <ArrowBtns />
@@ -21,26 +59,35 @@ function MediaDetails() {
         <div className={styles["track__song-block"]}>
           <img
             className={styles.block__image}
-            src={track.imageUrl}
-            alt="Превью песни"
+            src={isAlbumView ? albumInfo.coverUrl : track.imageUrl}
+            alt={isAlbumView ? "Обложка альбома" : "Превью песни"}
           />
         </div>
         <div className={styles.info}>
           <div className={styles.info__top}>
-            <h2 className={styles["info__top-title"]}>{track.title}</h2>
+            <h2 className={styles["info__top-title"]}>
+              {isAlbumView ? albumInfo.title : track.title}
+            </h2>
             <Link
               className={styles["info__top-link"]}
-              to={`/musician/${track.artistId}`}
+              to={`/musician/${isAlbumView ? albumInfo.artistId : track.artistId}`}
             >
-              {track.artistName}
+              {isAlbumView ? albumInfo.artistName : track.artistName}
             </Link>
+            {isAlbumView && albumInfo.description && (
+              <p className={styles["info__top-description"]}>
+                {albumInfo.description}
+              </p>
+            )}
           </div>
           <div className={styles.info__bottom}>
-            <MenuBtnMusic
-              label="Слушать"
-              isPlaying={isCurrent && isPlaying}
-              handlePlay={handlePlay}
-            />
+            {!isAlbumView && (
+              <MenuBtnMusic
+                label="Слушать"
+                isPlaying={isCurrent && isPlaying}
+                handlePlay={handlePlay}
+              />
+            )}
             <button
               className={styles["item__right-like"]}
               onClick={e => {
@@ -52,14 +99,20 @@ function MediaDetails() {
           </div>
         </div>
       </div>
-      {tracks.map((track, index) => (
-        <ChartItem key={track.id} index={index} track={track} />
-      ))}
+      {isAlbumView ? (
+        album.map((track, index) => (
+          <ChartItem key={track.id} index={index} track={track} />
+        ))
+      ) : (
+        <ChartItem key={track.id} index={0} track={track} />
+      )}
       <div className={styles.track__comment}>
-        <h2 className={styles["track__comment-title"]}>10 комментариев</h2>
-        <form className={styles.comment__bottom}>
+        <h2 className={styles["track__comment-title"]}>
+          {comments.length} комментариев
+        </h2>
+        <form className={styles.comment__bottom} onSubmit={handleSubmitComment}>
           <div className={styles["comment__bottom-input"]}>
-            <div className={styles["track__comment-block"]} href="#">
+            <div className={styles["track__comment-block"]}>
               <img
                 className={styles["comment__block-image"]}
                 src={LoginImage}
@@ -83,25 +136,11 @@ function MediaDetails() {
           </div>
         </form>
       </div>
+
       <ul className={styles.comments__list}>
-        <li className={styles.comments__item}>
-          <Link className={styles.comments__block} to={`/musician/1`}>
-            <img
-              className={styles["comments__block-image"]}
-              src={LoginImage}
-              alt="Аватарка пользователя"
-            />
-          </Link>
-          <div className={styles.comment}>
-            <h4 className={styles.comments__title}>
-              <Link to={`/musician/1`}>Александр</Link>
-            </h4>
-            <p className={styles.comments__paragraph}>
-              Далеко-далеко за словесными горами в стране гласных и согласных
-              живут рыбные тексты.
-            </p>
-          </div>
-        </li>
+        {comments.map(comment => (
+          <CommentItem key={comment.id} comment={comment} />
+        ))}
       </ul>
     </>
   );
