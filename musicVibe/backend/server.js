@@ -1022,12 +1022,15 @@ app.post("/auth/complete-setup", authenticateToken, (req, res) => {
   });
 });
 
-// Популярные треки музыканта (первые 8)
+// Популярные треки музыканта (сортировка по количеству прослушиваний)
 app.get("/musician/:id/popular-tracks", authenticateToken, (req, res) => {
   const musicianId = parseInt(req.params.id);
+
+  // Находим все треки музыканта
   const musicianTracks = tracks
     .filter(track => track.artistId === musicianId)
-    .slice(0, 8);
+    // Сортируем по количеству прослушиваний (по убыванию)
+    .sort((a, b) => b.plays - a.plays);
 
   res.json(musicianTracks);
 });
