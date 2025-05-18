@@ -1,22 +1,22 @@
 import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import api from "@/api";
 // Components
 import { Loader, TrackList } from "@/components/index.js";
-// Styles
-import styles from "./PopularTracksPage.module.scss";
 
 // TODO:
 // На этой странице запрос должен быть на все необходимые треки
 // Например, все 50 треков музыканта расположенных в порядке популярности (всего 1 запрос)
 
 function PopularTracksPage() {
+  const { id } = useParams(); // Получаем ID музыканта из URL
   const [tracks, setTracks] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     async function fetchTracks() {
       try {
-        const res = await api.get("/tracks"); // TODO: изменить на запрос к трекам отслеживаемых ()
+        const res = await api.get(`/musician/${id}/popular-tracks`);
         setTracks(res.data);
       } catch (err) {
         console.error("Ошибка при получении треков:", err);
@@ -26,11 +26,17 @@ function PopularTracksPage() {
     }
 
     fetchTracks();
-  }, []);
+    window.scrollTo({ top: 0, behavior: "auto" });
+  }, [id]);
 
   if (loading) return <Loader />;
 
-  return <TrackList tracks={tracks} isChart="true" />;
+  return (
+    <>
+      <h2 className="page__title">Популярные треки</h2>
+      <TrackList tracks={tracks} isChart="true" />
+    </>
+  );
 }
 
 export default PopularTracksPage;
