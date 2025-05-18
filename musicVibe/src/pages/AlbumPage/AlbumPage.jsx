@@ -1,39 +1,32 @@
-import { useContext, useEffect, useState } from "react";
-import { PlayerContext } from "@/context/PlayerContext";
-import { Link, useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import api from "@/api";
 // Components
-import {
-  ArrowBtns,
-  MenuBtn,
-  MenuBtnMusic,
-  Input,
-  ChartItem,
-  Loader,
-} from "@/components/index.js";
-import { HeartIcon } from "@/components/index.js";
-import LoginImage from "@/assets/images/login.jpg";
-
-// TODO: Здесь нужен запрос к АПИ (наверное у каждой страницы будет отдельный запрос к АПИ)
+import { Loader } from "@/components/index.js";
+import MediaDetails from "@/components/MediaDetails/MediaDetails";
 
 function AlbumPage() {
   // ЗАПРОСЫ
   const { id } = useParams();
-  const [track, setTrack] = useState({});
-  const [tracks, setTracks] = useState([]);
+  const [album, setAlbum] = useState(null);
+  const [albumTracks, setAlbumTracks] = useState([]);
+  const [comments, setComments] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [comment, setComment] = useState("");
 
   useEffect(() => {
     async function fetchData() {
       setLoading(true);
       try {
-        const [trackRes, tracksRes] = await Promise.all([
-          api.get(`/track/${id}`),
-          api.get("/tracks"),
+        // Получаем все необходимые данные параллельно
+        const [albumRes, tracksRes, commentsRes] = await Promise.all([
+          api.get(`/album/${id}`),
+          api.get(`/album/${id}/tracks`),
+          api.get(`/comments/album/${id}`),
         ]);
-        setTrack(trackRes.data);
-        setTracks(tracksRes.data);
+
+        setAlbum(albumRes.data);
+        setAlbumTracks(tracksRes.data);
+        setComments(commentsRes.data);
       } catch (err) {
         console.error("Ошибка при загрузке данных:", err);
       } finally {
@@ -45,30 +38,28 @@ function AlbumPage() {
     window.scrollTo({ top: 0, behavior: "auto" });
   }, [id]);
 
-  // ПЛЕЕР
-  const { playTrack, togglePlayPause, currentTrack, isPlaying } =
-    useContext(PlayerContext);
-  const isCurrent = currentTrack?.id === track.id;
-
-  function handlePlay(e) {
-    e.preventDefault(); // предотвращаем переход по ссылке
-
-    if (isCurrent) togglePlayPause();
-    else playTrack(track);
+  async function handleCommentSubmit(text) {
+    try {
+      const response = await api.post(`/comments/album/${id}`, { text });
+      setComments(prev => [...prev, response.data]);
+    } catch (err) {
+      console.error("Ошибка при отправке комментария:", err);
+    }
   }
-
-  // Обработка изменения комментария
-  const handleCommentChange = e => {
-    setComment(e.target.value);
-  };
 
   // ЛОАДЕР
   if (loading) return <Loader />;
 
+  // Если альбом не найден
+  if (!album) return <div>Альбом не найден</div>;
+
   return (
-    <>
-      <MediaDetails />
-    </>
+    <MediaDetails
+      album={albumTracks}
+      albumInfo={album}
+      comments={comments}
+      onCommentSubmit={handleCommentSubmit}
+    />
   );
 }
 
