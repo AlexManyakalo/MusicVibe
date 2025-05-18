@@ -45,6 +45,9 @@ function TrackPage() {
   // ЛОАДЕР
   if (loading) return <Loader />;
 
+  // Если альбом не найден
+  if (!track) return <div>Трек не найден</div>;
+
   return (
     <MediaDetails
       track={track}
