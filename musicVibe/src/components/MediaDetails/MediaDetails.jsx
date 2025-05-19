@@ -79,6 +79,11 @@ function MediaDetails({
                 {albumInfo.description}
               </p>
             )}
+            {!isAlbumView && track.plays && (
+              <p className={styles["info__top-plays"]}>
+                {track.plays.toLocaleString()} прослушиваний
+              </p>
+            )}
           </div>
           <div className={styles.info__bottom}>
             {!isAlbumView && (

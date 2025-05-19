@@ -36,26 +36,28 @@
   display: flex;
   flex-direction: column;
   row-gap: 10px;
-}
 
-.info__top-title {
-  display: inline-block;
-  font-size: 2rem;
-  color: g.$color-light;
-}
-
-.info__top-link {
-  display: inline-block;
-  font-size: 1.5rem;
-
-  &:hover {
-    text-decoration: underline;
+  &-title {
+    display: inline-block;
+    font-size: 2rem;
+    color: g.$color-light;
   }
-}
+  &-link {
+    display: inline-block;
+    font-size: 1.5rem;
 
-.info__top-description {
-  font-size: 1.25rem;
-  color: g.$color-gray;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+  &-description {
+    font-size: 1.25rem;
+    color: g.$color-gray;
+  }
+  &-plays {
+    font-size: 1rem;
+    color: g.$color-gray;
+  }
 }
 
 .info__bottom {
