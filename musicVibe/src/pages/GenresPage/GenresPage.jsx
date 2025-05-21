@@ -1,22 +1,39 @@
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import api from "@/api";
 // Components
-import { SelectionPage } from "@/components/index.js";
+import { SelectionPage, Loader } from "@/components/index.js";
 
 function GenresPage() {
   const navigate = useNavigate();
-  const genres = Array.from({ length: 16 }, (_, i) => ({
-    id: i + 1,
-    name: `Жанр ${i + 1}`,
-  }));
+  const [genres, setGenres] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-  function handleNext(selectedIds) {
-    const selectedNames = genres
-      .filter(g => selectedIds.includes(g.id))
-      .map(g => g.name)
-      .join(", ");
-    console.log("Вы выбрали: " + selectedNames);
-    navigate("/musicians");
-  };
+  useEffect(() => {
+    async function fetchGenres() {
+      try {
+        const res = await api.get("/genres");
+        setGenres(res.data);
+      } catch (err) {
+        console.error("Ошибка при получении жанров:", err);
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    fetchGenres();
+  }, []);
+
+  async function handleNext(selectedIds) {
+    try {
+      await api.post("/user/genres", { genreIds: selectedIds });
+      navigate("/musicians");
+    } catch (err) {
+      console.error("Ошибка при сохранении жанров:", err);
+    }
+  }
+
+  if (loading) return <Loader />;
 
   return (
     <SelectionPage
@@ -28,3 +45,12 @@ function GenresPage() {
 }
 
 export default GenresPage;
+
+
+[
+  {
+    "id": 1,
+    "name": "Алексей Ветров",
+    "avatarUrl": "/avatarUser/ava1.png",
+  }
+]

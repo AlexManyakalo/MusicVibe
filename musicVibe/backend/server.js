@@ -857,6 +857,25 @@ const comments = [
   },
 ];
 
+const genres = [
+  { id: 1, name: "Поп", imageUrl: "/genres/pop.jpg" },
+  { id: 2, name: "Рок", imageUrl: "/genres/rock.jpg" },
+  { id: 3, name: "Электроника", imageUrl: "/genres/electronic.jpg" },
+  { id: 4, name: "Хип-хоп", imageUrl: "/genres/hiphop.jpg" },
+  { id: 5, name: "R&B", imageUrl: "/genres/rnb.jpg" },
+  { id: 6, name: "Джаз", imageUrl: "/genres/jazz.jpg" },
+  { id: 7, name: "Классика", imageUrl: "/genres/classic.jpg" },
+  { id: 8, name: "Фолк", imageUrl: "/genres/folk.jpg" },
+  { id: 9, name: "Метал", imageUrl: "/genres/metal.jpg" },
+  { id: 10, name: "Инди", imageUrl: "/genres/indie.jpg" },
+  { id: 11, name: "Альтернатива", imageUrl: "/genres/alternative.jpg" },
+  { id: 12, name: "EDM", imageUrl: "/genres/edm.jpg" },
+  { id: 13, name: "Хаус", imageUrl: "/genres/house.jpg" },
+  { id: 14, name: "Техно", imageUrl: "/genres/techno.jpg" },
+  { id: 15, name: "Транс", imageUrl: "/genres/trance.jpg" },
+  { id: 16, name: "Драм-н-бейс", imageUrl: "/genres/dnb.jpg" },
+];
+
 // Middleware для проверки JWT токена
 const authenticateToken = (req, res, next) => {
   const authHeader = req.headers["authorization"];
@@ -1368,6 +1387,46 @@ app.get("/album/:id/tracks", authenticateToken, (req, res) => {
   }
 
   res.status(404).json({ message: "Альбом не найден" });
+});
+
+// Получение всех жанров
+app.get("/genres", authenticateToken, (req, res) => {
+  res.json(genres);
+});
+
+// Обновление жанров пользователя
+app.post("/user/genres", authenticateToken, (req, res) => {
+  const { genreIds } = req.body;
+  const user = users.find(u => u.id === req.user.id);
+
+  if (!user) {
+    return res.status(404).json({ message: "Пользователь не найден" });
+  }
+
+  // Получаем названия жанров по их ID
+  const selectedGenres = genres
+    .filter(genre => genreIds.includes(genre.id))
+    .map(genre => genre.name);
+
+  user.genres = selectedGenres;
+  res.json({ message: "Жанры успешно обновлены", genres: user.genres });
+});
+
+// Обновление списка отслеживаемых музыкантов
+app.post("/user/following", authenticateToken, (req, res) => {
+  const { musicianIds } = req.body;
+  const user = users.find(u => u.id === req.user.id);
+
+  if (!user) {
+    return res.status(404).json({ message: "Пользователь не найден" });
+  }
+
+  // В реальном приложении здесь была бы логика сохранения списка отслеживаемых музыкантов
+  // Сейчас просто возвращаем успешный ответ
+  res.json({
+    message: "Список отслеживаемых музыкантов успешно обновлен",
+    following: musicianIds,
+  });
 });
 
 app.listen(PORT, () => {

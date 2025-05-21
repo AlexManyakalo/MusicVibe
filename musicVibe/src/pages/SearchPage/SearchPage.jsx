@@ -4,6 +4,7 @@ import api from "@/api";
 import { Input, Section, Loader } from "@/components/index.js";
 
 function SearchPage() {
+  
   const [newTracks, setNewTracks] = useState([]);
   const [chartTracks, setChartTracks] = useState([]);
   const [searchResults, setSearchResults] = useState([]);

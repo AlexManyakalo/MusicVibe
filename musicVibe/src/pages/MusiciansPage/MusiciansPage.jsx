@@ -1,28 +1,46 @@
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import api from "@/api";
 // Components
-import { SelectionPage } from "@/components/index.js";
+import { SelectionPage, Loader } from "@/components/index.js";
 
 function MusiciansPage() {
   const navigate = useNavigate();
-  const musicians = Array.from({ length: 9 }, (_, i) => ({
-    id: i + 1,
-    name: `Исполнитель ${i + 1}`,
-  }));
+  const [musicians, setMusicians] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-  function handleNext(selectedIds) {
-    const selectedNames = musicians
-      .filter(a => selectedIds.includes(a.id))
-      .map(a => a.name)
-      .join(", ");
-    console.log("Вы выбрали артистов: " + selectedNames);
-    navigate("/home");
+  useEffect(() => {
+    async function fetchMusicians() {
+      try {
+        const res = await api.get("/musicians");
+        setMusicians(res.data);
+      } catch (err) {
+        console.error("Ошибка при получении списка музыкантов:", err);
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    fetchMusicians();
+  }, []);
+
+  async function handleNext(selectedIds) {
+    try {
+      await api.post("/user/following", { musicianIds: selectedIds });
+      navigate("/home"); // или куда нужно перейти после выбора музыкантов
+    } catch (err) {
+      console.error("Ошибка при сохранении выбранных музыкантов:", err);
+    }
   }
+
+  if (loading) return <Loader />;
 
   return (
     <SelectionPage
-      title="Выберите любимых исполнителей"
+      title="Выберите интересных вам музыкантов"
       items={musicians}
       onNextClick={handleNext}
+      type="musician"
     />
   );
 }
