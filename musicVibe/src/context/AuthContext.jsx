@@ -39,7 +39,7 @@ export function AuthProvider({ children }) {
   // Вход
   async function login(credentials) {
     try {
-      const { data } = await api.post("/auth/login", credentials);
+      const { data } = await api.post("/login", credentials);
       localStorage.setItem("jwt_token", data.token);
       setUser(data.user);
       setHasCompletedSetup(data.user.hasCompletedSetup || false);
@@ -53,7 +53,7 @@ export function AuthProvider({ children }) {
   // Регистрация
   async function register(userData) {
     try {
-      const { data } = await api.post("/auth/register", userData);
+      const { data } = await api.post("/register", userData);
       localStorage.setItem("jwt_token", data.token);
       setUser(data.user);
       setHasCompletedSetup(false);
@@ -67,7 +67,7 @@ export function AuthProvider({ children }) {
   // Завершение начальной настройки
   async function completeSetup() {
     try {
-      const { data } = await api.post("/auth/complete-setup");
+      await api.post("/auth/complete-setup");
       setHasCompletedSetup(true);
       setUser(prev => ({ ...prev, hasCompletedSetup: true }));
       navigate("/home");
