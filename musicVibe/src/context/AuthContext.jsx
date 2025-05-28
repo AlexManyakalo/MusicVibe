@@ -1,7 +1,8 @@
 import { createContext, useState, useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import api from "@/api";
-
+// TODO: Добавить проверку на завершение регистрации (пользователь ввел свои данные, выбрал жанры и мызкантов), 
+// если пользователь не завершил регистрацию и пытается залогиниться, то его перекидывает на страницу жанров и музыкантов
 const AuthContext = createContext();
 
 export function AuthProvider({ children }) {
@@ -39,7 +40,7 @@ export function AuthProvider({ children }) {
   // Вход
   async function login(credentials) {
     try {
-      const { data } = await api.post("/auth/login", credentials);
+      const { data } = await api.post("/login", credentials);
       localStorage.setItem("jwt_token", data.token);
       setUser(data.user);
       setHasCompletedSetup(data.user.hasCompletedSetup || false);
@@ -53,7 +54,7 @@ export function AuthProvider({ children }) {
   // Регистрация
   async function register(userData) {
     try {
-      const { data } = await api.post("/auth/register", userData);
+      const { data } = await api.post("/register", userData);
       localStorage.setItem("jwt_token", data.token);
       setUser(data.user);
       setHasCompletedSetup(false);
@@ -67,7 +68,7 @@ export function AuthProvider({ children }) {
   // Завершение начальной настройки
   async function completeSetup() {
     try {
-      const { data } = await api.post("/auth/complete-setup");
+      await api.post("/auth/complete-setup");
       setHasCompletedSetup(true);
       setUser(prev => ({ ...prev, hasCompletedSetup: true }));
       navigate("/home");

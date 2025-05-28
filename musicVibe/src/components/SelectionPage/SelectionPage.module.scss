@@ -90,7 +90,9 @@
     box-shadow: 0 0 8px 6px rgba(102, 252, 241, 0.7);
   }
   &:hover .block__image,
-  &.active .block__image {
+  &:hover .block__gradient,
+  &.active .block__image,
+  &.active .block__gradient {
     transform: scale(1.05);
   }
 }
@@ -114,6 +116,25 @@
   height: 100%;
   object-fit: cover;
   transition-duration: g.$transition-duration;
+}
+
+.block__gradient {
+  width: 100%;
+  height: 100%;
+  animation: gradientAnimation 4s ease infinite;
+  transition-duration: g.$transition-duration;
+}
+
+@keyframes gradientAnimation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
 .item__paragraph {

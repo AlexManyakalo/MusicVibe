@@ -11,7 +11,7 @@ import styles from "./AuthForm.module.scss";
 // Схема валидации для регистрации
 const registerSchema = z
   .object({
-    name: z.string().min(2, "Имя должно содержать минимум 2 символа"),
+    username: z.string().min(2, "Имя должно содержать минимум 2 символа"),
     email: z.string().email("Некорректный email"),
     password: z.string().min(6, "Пароль должен содержать минимум 6 символов"),
     confirmPassword: z.string(),
@@ -35,7 +35,7 @@ function AuthForm({ type }) {
 
   // Состояние полей и ошибок
   const [formData, setFormData] = useState({
-    name: "",
+    username: "",
     email: "",
     password: "",
     confirmPassword: "",
@@ -44,7 +44,7 @@ function AuthForm({ type }) {
 
   // Проверка валидности формы при изменении данных
   useEffect(() => {
-    async function validateForm() {
+    function validateForm() {
       try {
         const schema = isLogin ? loginSchema : registerSchema;
         const dataToValidate = isLogin
@@ -90,13 +90,21 @@ function AuthForm({ type }) {
         ? { email: formData.email, password: formData.password }
         : formData;
 
-      const validatedData = schema.parse(dataToValidate);
+      // const validatedData = schema.parse(dataToValidate);
+      schema.parse(dataToValidate);
 
       // Вызов соответствующего метода из AuthContext
       if (isLogin) {
-        await login(validatedData);
+        await login({
+          email: formData.email,
+          password: formData.password,
+        });
       } else {
-        await register(validatedData);
+        await register({
+          username: formData.username,
+          email: formData.email,
+          password: formData.password,
+        });
       }
     } catch (err) {
       if (err instanceof z.ZodError) {
@@ -161,11 +169,11 @@ function AuthForm({ type }) {
             {!isLogin && (
               <Input
                 type="text"
-                name="name"
+                name="username"
                 placeholder="Имя"
-                value={formData.name}
+                value={formData.username}
                 onChange={handleChange}
-                error={errors.name}
+                error={errors.username}
                 required
               />
             )}

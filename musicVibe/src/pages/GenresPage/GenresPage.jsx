@@ -45,12 +45,3 @@ function GenresPage() {
 }
 
 export default GenresPage;
-
-
-[
-  {
-    "id": 1,
-    "name": "Алексей Ветров",
-    "avatarUrl": "/avatarUser/ava1.png",
-  }
-]

@@ -65,7 +65,7 @@ function MusicianPage() {
               <EditIcon className={styles["bottom__block-edit"]} />
               <img
                 className={styles["bottom__block-image"]}
-                src={musician.avatarUrl}
+                src={musician.avatarUrl || "/avatarUser/defaultAvatar.png"}
                 alt={`Аватарка ${musician.name}`}
               />
             </Link>
