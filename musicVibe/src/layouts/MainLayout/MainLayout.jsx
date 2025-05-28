@@ -131,7 +131,7 @@ function MainLayout() {
             <div className={styles["btn__image-block"]}>
               <img
                 className={styles.btn__image}
-                src={user?.avatarUrl || "/avatarUser/default.jpg"}
+                src={user?.avatarUrl || "/avatarUser/defaultAvatar.png"}
                 alt={`Аватар ${user?.name || "пользователя"}`}
               />
             </div>

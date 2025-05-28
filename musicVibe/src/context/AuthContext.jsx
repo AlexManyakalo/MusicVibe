@@ -1,7 +1,8 @@
 import { createContext, useState, useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import api from "@/api";
-
+// TODO: Добавить проверку на завершение регистрации (пользователь ввел свои данные, выбрал жанры и мызкантов), 
+// если пользователь не завершил регистрацию и пытается залогиниться, то его перекидывает на страницу жанров и музыкантов
 const AuthContext = createContext();
 
 export function AuthProvider({ children }) {
