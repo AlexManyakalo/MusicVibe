@@ -16,17 +16,17 @@ export function PlayerProvider({ children }) {
 
     function handleLoadedMetadata() {
       setDuration(audio.duration);
-    };
+    }
 
     function handleTimeUpdate() {
       setCurrentTime(audio.currentTime);
-    };
+    }
 
     function handleEnded() {
       setIsPlaying(false);
       setCurrentTime(0);
       // Здесь можно вызвать nextTrack() если будет очередь
-    };
+    }
 
     audio.addEventListener("loadedmetadata", handleLoadedMetadata);
     audio.addEventListener("timeupdate", handleTimeUpdate);

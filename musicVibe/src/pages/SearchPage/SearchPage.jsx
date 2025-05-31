@@ -15,8 +15,8 @@ function SearchPage() {
     async function fetchTracks() {
       try {
         const [newRes, chartRes] = await Promise.all([
-          api.get("/tracks/new?limit=8"),
-          api.get("/tracks/chart?limit=8"),
+          api.get("/tracks/new"),
+          api.get("/tracks/chart"),
         ]);
 
         setNewTracks(newRes.data);

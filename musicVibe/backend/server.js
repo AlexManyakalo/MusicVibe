@@ -913,7 +913,7 @@ app.get("/tracks", authenticateToken, (req, res) => {
 });
 
 // Регистрация
-app.post("/auth/register", (req, res) => {
+app.post("/register", (req, res) => {
   const { name, email, password } = req.body;
 
   if (!name || !email || !password)
@@ -962,7 +962,7 @@ app.post("/auth/register", (req, res) => {
 });
 
 // Вход
-app.post("/auth/login", (req, res) => {
+app.post("/login", (req, res) => {
   const { email, password } = req.body;
 
   const user = users.find(u => u.email === email && u.password === password);
