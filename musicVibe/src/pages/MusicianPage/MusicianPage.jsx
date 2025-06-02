@@ -50,11 +50,13 @@ function MusicianPage() {
       <ArrowBtns />
       <header className={styles.header}>
         <div className={styles.header__top}>
-          <img
+          {console.log(musician.backgroundUrl)}
+          {musician.backgroundUrl ? <img
             className={styles["header__top-image"]}
             src={musician.backgroundUrl}
             alt={`Баннер ${musician.name}`}
-          />
+          /> : <div className={styles["header__top-block"]}></div>}
+          
         </div>
         <div className={styles.header__bottom}>
           <div className={styles["header__bottom-left"]}>
