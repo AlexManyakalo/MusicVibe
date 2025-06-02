@@ -75,11 +75,11 @@ function MainLayout() {
                 icon={<NoteIcon />}
                 label="Моя музыка"
               />
-              <LayoutNavBtn
+              {/* <LayoutNavBtn
                 path="/community"
                 icon={<UsersIcon />}
                 label="Сообщество"
-              />
+              /> */}
             </ul>
             <div
               ref={menuRef}
@@ -99,7 +99,7 @@ function MainLayout() {
                     label="Студия"
                     onMenuClick={handleMenuClick}
                   />
-                  <LayoutNavBtn
+                  {/* <LayoutNavBtn
                     path={`/subscribe/${user?.id}`}
                     icon={<CardBankIcon />}
                     label="Подписка"
@@ -111,7 +111,7 @@ function MainLayout() {
                     icon={<CircleHelpIcon />}
                     label="Поддержка"
                     onMenuClick={handleMenuClick}
-                  />
+                  /> */}
                 </div>
                 <LayoutNavBtn
                   path="/"
