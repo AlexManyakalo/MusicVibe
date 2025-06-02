@@ -132,10 +132,10 @@ function MainLayout() {
               <img
                 className={styles.btn__image}
                 src={user?.avatarUrl || "/avatarUser/defaultAvatar.png"}
-                alt={`Аватар ${user?.name || "пользователя"}`}
+                alt={`Аватар ${user?.username || "пользователя"}`}
               />
             </div>
-            <p className={styles.btn__paragraph}>{user?.name || "Гость"}</p>
+            <p className={styles.btn__paragraph}>{user?.username}</p>
           </button>
         </div>
       </aside>
