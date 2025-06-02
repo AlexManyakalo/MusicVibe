@@ -12,7 +12,7 @@ function HomePage() {
   const [recommendedTracks, setRecommendedTracks] = useState([]);
   const [recommendedAlbums, setRecommendedAlbums] = useState([]);
   const [trackedTracks, setTrackedTracks] = useState([]);
-  const [chartTracks, setChartTracks] = useState([]);
+  // const [chartTracks, setChartTracks] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -22,18 +22,18 @@ function HomePage() {
           recommendedTracksRes,
           recommendedAlbumsRes,
           trackedRes,
-          chartRes,
+          // chartRes,
         ] = await Promise.all([
-          api.get("/tracks/recommended?limit=8"),
-          api.get("/albums/recommended?limit=6"),
-          api.get("/tracks/tracked?limit=8"),
-          api.get("/tracks/chart?limit=8"),
+          api.get("/home/tracks/recommended"),
+          api.get("/home/albums/recommended"),
+          api.get("/home/tracks/tracked"),
+          // api.get("/tracks/chart?"),
         ]);
 
         setRecommendedTracks(recommendedTracksRes.data);
         setRecommendedAlbums(recommendedAlbumsRes.data);
         setTrackedTracks(trackedRes.data);
-        setChartTracks(chartRes.data);
+        // setChartTracks(chartRes.data);
       } catch (err) {
         console.error("Ошибка при получении данных:", err);
       } finally {
@@ -59,7 +59,7 @@ function HomePage() {
         albums={recommendedAlbums}
       />
       <Section title="Отслеживаемое" link="/tracked" tracks={trackedTracks} />
-      <Section title="Чарт" link="/chart" tracks={chartTracks} isChart="true" />
+      {/* <Section title="Чарт" link="/chart" tracks={chartTracks} isChart="true" /> */}
     </>
   );
 }
