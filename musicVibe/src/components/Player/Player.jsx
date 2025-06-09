@@ -1,5 +1,6 @@
 import { useContext, useState, useEffect } from "react";
 import { PlayerContext } from "@/context/PlayerContext";
+import { useFavorites } from "@/context/FavoritesContext";
 import { formatTime } from "@/utils/formatTime.js";
 import { Link } from "react-router-dom";
 // Components
@@ -17,6 +18,8 @@ import styles from "./Player.module.scss";
 function Player() {
   const { currentTrack, isPlaying, togglePlayPause, nextTrack, audio } =
     useContext(PlayerContext);
+  const { isFavorite, addToFavorites, removeFromFavorites } = useFavorites();
+  const [isFavoriteLoading, setIsFavoriteLoading] = useState(false);
 
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
@@ -52,6 +55,25 @@ function Player() {
     setCurrentTime(newTime);
   };
 
+  async function handleLike(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    if (isFavoriteLoading || !currentTrack) return;
+
+    try {
+      setIsFavoriteLoading(true);
+      if (isFavorite(currentTrack.id)) {
+        await removeFromFavorites(currentTrack.id);
+      } else {
+        await addToFavorites(currentTrack.id);
+      }
+    } catch (error) {
+      console.error("Ошибка при работе с избранным:", error);
+    } finally {
+      setIsFavoriteLoading(false);
+    }
+  }
+
   if (!currentTrack) return null;
 
   return (
@@ -71,7 +93,11 @@ function Player() {
             {currentTrack.artistName}
           </Link>
         </div>
-        <button className={styles.left__btn}>
+        <button
+          className={`${styles.left__btn} ${isFavorite(currentTrack.id) ? styles.active : ""}`}
+          onClick={handleLike}
+          disabled={isFavoriteLoading}
+        >
           <HeartIcon />
         </button>
       </div>
@@ -100,7 +126,13 @@ function Player() {
             <SoundIcon />
           </button>
         </div>
-
+        <button className={styles["adaptive__btn"]} onClick={togglePlayPause}>
+          {isPlaying ? (
+            <PauseIcon />
+          ) : (
+            <PlayIcon className={styles.play__btn} />
+          )}
+        </button>
         <div className={styles.center__progress}>
           <div className={styles.progress__time}>{formatTime(currentTime)}</div>
           <div className={styles.progress} onClick={handleProgressClick}>

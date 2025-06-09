@@ -1,5 +1,6 @@
 import { useContext, useState, useEffect } from "react";
 import { PlayerContext } from "@/context/PlayerContext";
+import { useFavorites } from "@/context/FavoritesContext";
 import { formatTime } from "@/utils/formatTime.js";
 import { Link } from "react-router-dom";
 // Components
@@ -10,11 +11,13 @@ import styles from "./ChartItem.module.scss";
 function ChartItem({ index, track }) {
   const { playTrack, togglePlayPause, currentTrack, isPlaying, audio } =
     useContext(PlayerContext);
+  const { isFavorite, addToFavorites, removeFromFavorites } = useFavorites();
 
   const [currentTime, setCurrentTime] = useState(0);
+  const [isFavoriteLoading, setIsFavoriteLoading] = useState(false);
   const isCurrent = currentTrack?.id === track.id;
   const duration = track.duration || 0; // используем duration из базы
-  
+
   const displayTime = isCurrent && audio ? currentTime : duration;
 
   useEffect(() => {
@@ -38,8 +41,22 @@ function ChartItem({ index, track }) {
     else playTrack(track);
   }
 
-  function handleLike() {
-    console.log(`Like`);
+  async function handleLike(e) {
+    e.stopPropagation();
+    if (isFavoriteLoading) return;
+
+    try {
+      setIsFavoriteLoading(true);
+      if (isFavorite(track.id)) {
+        removeFromFavorites(track.id);
+      } else {
+        addToFavorites(track.id);
+      }
+    } catch (error) {
+      console.error("Ошибка при работе с избранным:", error);
+    } finally {
+      setIsFavoriteLoading(false);
+    }
   }
 
   return (
@@ -75,11 +92,9 @@ function ChartItem({ index, track }) {
       </div>
       <div className={styles.item__right}>
         <button
-          className={styles["item__right-like"]}
-          onClick={e => {
-            e.stopPropagation();
-            handleLike();
-          }}
+          className={`${styles["item__right-like"]} ${isFavorite(track.id) ? styles.active : ""}`}
+          onClick={handleLike}
+          disabled={isFavoriteLoading}
         >
           <HeartIcon />
         </button>

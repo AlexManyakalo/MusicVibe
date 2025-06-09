@@ -1,5 +1,7 @@
 import { useContext, useState } from "react";
 import { PlayerContext } from "@/context/PlayerContext";
+import { useFavorites } from "@/context/FavoritesContext";
+import { useFavoriteAlbums } from "@/context/FavoriteAlbumsContext";
 import { Link } from "react-router-dom";
 // Components
 import {
@@ -23,17 +25,48 @@ function MediaDetails({
   onCommentSubmit,
 }) {
   const [comment, setComment] = useState("");
+  const [isFavoriteLoading, setIsFavoriteLoading] = useState(false);
   const isAlbumView = Boolean(albumInfo?.id);
 
   // ПЛЕЕР
   const { playTrack, togglePlayPause, currentTrack, isPlaying } =
     useContext(PlayerContext);
+  const { isFavorite, addToFavorites, removeFromFavorites } = useFavorites();
+  const { isFavoriteAlbum, addToFavoriteAlbums, removeFromFavoriteAlbums } =
+    useFavoriteAlbums();
   const isCurrent = currentTrack?.id === track.id;
 
   function handlePlay(e) {
     e.preventDefault();
     if (isCurrent) togglePlayPause();
     else playTrack(track);
+  }
+
+  async function handleLike(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    if (isFavoriteLoading) return;
+
+    try {
+      setIsFavoriteLoading(true);
+      if (isAlbumView) {
+        if (isFavoriteAlbum(albumInfo.id)) {
+          await removeFromFavoriteAlbums(albumInfo.id);
+        } else {
+          await addToFavoriteAlbums(albumInfo.id);
+        }
+      } else {
+        if (isFavorite(track.id)) {
+          await removeFromFavorites(track.id);
+        } else {
+          await addToFavorites(track.id);
+        }
+      }
+    } catch (error) {
+      console.error("Ошибка при работе с избранным:", error);
+    } finally {
+      setIsFavoriteLoading(false);
+    }
   }
 
   // Обработка отправки комментария
@@ -94,10 +127,9 @@ function MediaDetails({
               />
             )}
             <button
-              className={styles["item__right-like"]}
-              onClick={e => {
-                e.stopPropagation();
-              }}
+              className={`${styles["item__right-like"]} ${isAlbumView ? (isFavoriteAlbum(albumInfo.id) ? styles.active : "") : isFavorite(track.id) ? styles.active : ""}`}
+              onClick={handleLike}
+              disabled={isFavoriteLoading}
             >
               <HeartIcon />
             </button>
@@ -111,42 +143,48 @@ function MediaDetails({
       ) : (
         <ChartItem key={track.id} index={0} track={track} />
       )}
-      <div className={styles.track__comment}>
-        <h2 className={styles["track__comment-title"]}>
-          {comments.length} комментариев
-        </h2>
-        <form className={styles.comment__bottom} onSubmit={handleSubmitComment}>
-          <div className={styles["comment__bottom-input"]}>
-            <div className={styles["track__comment-block"]}>
-              <img
-                className={styles["comment__block-image"]}
-                src={LoginImage}
-                alt="Аватарка пользователя"
-              />
-            </div>
-            <Input
-              placeholder="Введите комментарий"
-              isComment="true"
-              value={comment}
-              onChange={handleCommentChange}
-            />
+      {!isAlbumView && (
+        <>
+          <div className={styles.track__comment}>
+            <h2 className={styles["track__comment-title"]}>
+              {comments.length} комментариев
+            </h2>
+            <form
+              className={styles.comment__bottom}
+              onSubmit={handleSubmitComment}
+            >
+              <div className={styles["comment__bottom-input"]}>
+                <div className={styles["track__comment-block"]}>
+                  <img
+                    className={styles["comment__block-image"]}
+                    src={LoginImage}
+                    alt="Аватарка пользователя"
+                  />
+                </div>
+                <Input
+                  placeholder="Введите комментарий"
+                  isComment="true"
+                  value={comment}
+                  onChange={handleCommentChange}
+                />
+              </div>
+              <div className={styles.controls}>
+                <MenuBtn label="Отмена" onClick={() => setComment("")} />
+                <MenuBtn
+                  label="Оставить комментарий"
+                  type="submit"
+                  disabled={!comment.trim()}
+                />
+              </div>
+            </form>
           </div>
-          <div className={styles.controls}>
-            <MenuBtn label="Отмена" onClick={() => setComment("")} />
-            <MenuBtn
-              label="Оставить комментарий"
-              type="submit"
-              disabled={!comment.trim()}
-            />
-          </div>
-        </form>
-      </div>
-
-      <ul className={styles.comments__list}>
-        {comments.map(comment => (
-          <CommentItem key={comment.id} comment={comment} />
-        ))}
-      </ul>
+          <ul className={styles.comments__list}>
+            {comments.map(comment => (
+              <CommentItem key={comment.id} comment={comment} />
+            ))}
+          </ul>
+        </>
+      )}
     </>
   );
 }
