@@ -1,12 +1,34 @@
 import { Link } from "react-router-dom";
 // Components
-import { MusicCard, ChartItem } from "@/components/index.js";
+import { MusicCard, ChartItem, MusicianCard } from "@/components/index.js";
 // Styles
 import styles from "./Section.module.scss";
 
-function Section({ title, link, tracks = [], albums = [], isChart = false }) {
-  const items = albums.length > 0 ? albums : tracks;
+function Section({
+  title,
+  link,
+  tracks = [],
+  albums = [],
+  musicians = [],
+  isChart = false,
+}) {
+  const items =
+    musicians.length > 0 ? musicians : albums.length > 0 ? albums : tracks;
   const isAlbum = albums.length > 0;
+  const isMusician = musicians.length > 0;
+
+  function renderItem(item, index) {
+    if (isChart) {
+      return <ChartItem key={item.id} index={index} track={item} />;
+    }
+    if (isAlbum) {
+      return <MusicCard key={item.id} item={item} isAlbum={true} />;
+    }
+    if (isMusician) {
+      return <MusicianCard key={item.id} musician={item} />;
+    }
+    return <MusicCard key={item.id} item={item} isAlbum={false} />;
+  }
 
   return (
     <section className={styles.section}>
@@ -19,13 +41,7 @@ function Section({ title, link, tracks = [], albums = [], isChart = false }) {
         </Link>
       </div>
       <ul className={isChart ? styles.chart__list : styles.section__list}>
-        {items.map((item, index) =>
-          isChart ? (
-            <ChartItem key={item.id} index={index} track={item} />
-          ) : (
-            <MusicCard key={item.id} item={item} isAlbum={isAlbum} />
-          ),
-        )}
+        {items.map((item, index) => renderItem(item, index))}
       </ul>
     </section>
   );
