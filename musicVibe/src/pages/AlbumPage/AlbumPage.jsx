@@ -10,7 +10,7 @@ function AlbumPage() {
   const { id } = useParams();
   const [album, setAlbum] = useState(null);
   const [albumTracks, setAlbumTracks] = useState([]);
-  const [comments, setComments] = useState([]);
+  // const [comments, setComments] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -18,15 +18,16 @@ function AlbumPage() {
       setLoading(true);
       try {
         // Получаем все необходимые данные параллельно
-        const [albumRes, tracksRes, commentsRes] = await Promise.all([
+        // const [albumRes, tracksRes, commentsRes] = await Promise.all([
+        const [albumRes, tracksRes] = await Promise.all([
           api.get(`/album/${id}`),
           api.get(`/album/${id}/tracks`),
-          api.get(`/comments/album/${id}`),
+          // api.get(`/comments/album/${id}`),
         ]);
 
         setAlbum(albumRes.data);
         setAlbumTracks(tracksRes.data);
-        setComments(commentsRes.data);
+        // setComments(commentsRes.data);
       } catch (err) {
         console.error("Ошибка при загрузке данных:", err);
       } finally {
@@ -38,14 +39,14 @@ function AlbumPage() {
     window.scrollTo({ top: 0, behavior: "auto" });
   }, [id]);
 
-  async function handleCommentSubmit(text) {
-    try {
-      const response = await api.post(`/comments/album/${id}`, { text });
-      setComments(prev => [...prev, response.data]);
-    } catch (err) {
-      console.error("Ошибка при отправке комментария:", err);
-    }
-  }
+  // async function handleCommentSubmit(text) {
+  //   try {
+  //     const response = await api.post(`/comments/album/${id}`, { text });
+  //     setComments(prev => [...prev, response.data]);
+  //   } catch (err) {
+  //     console.error("Ошибка при отправке комментария:", err);
+  //   }
+  // }
 
   // ЛОАДЕР
   if (loading) return <Loader />;
@@ -57,8 +58,6 @@ function AlbumPage() {
     <MediaDetails
       album={albumTracks}
       albumInfo={album}
-      comments={comments}
-      onCommentSubmit={handleCommentSubmit}
     />
   );
 }
