@@ -16,7 +16,7 @@
   @media (max-width: g.$breakpoint-md) {
     left: 0;
     right: 0;
-    bottom: 50px;
+    bottom: 70px;
     width: 100%;
   }
 }
@@ -93,6 +93,18 @@
       color: g.$color-light;
     }
   }
+
+  &.active {
+    svg {
+      color: #ff4d4d;
+      fill: #ff4d4d;
+    }
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
 }
 
 .player__center {
@@ -102,6 +114,10 @@
   justify-content: space-between;
   padding-inline: 20px;
   width: 100%;
+
+  @media (max-width: g.$breakpoint-md) {
+    justify-content: center;
+  }
 }
 
 .center__controls {
@@ -109,6 +125,10 @@
   justify-content: space-between;
   width: 100%;
   max-width: 447px;
+
+  @media (max-width: g.$breakpoint-md) {
+    display: none;
+  }
 }
 
 .controls__player {
@@ -134,6 +154,18 @@
   column-gap: 10px;
   width: 100%;
   max-width: 447px;
+
+  @media (max-width: g.$breakpoint-md) {
+    display: none;
+  }
+}
+
+.adaptive__btn {
+  display: none;
+
+  @media (max-width: g.$breakpoint-md) {
+    display: block;
+  }
 }
 
 .progress__time {

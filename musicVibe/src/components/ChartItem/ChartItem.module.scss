@@ -116,6 +116,10 @@
   justify-content: space-between;
   width: 100%;
   max-width: 97px;
+
+  @media (max-width: g.$breakpoint-sm) {
+    justify-content: flex-end;
+  }
 }
 
 .item__right-like {
@@ -131,6 +135,18 @@
       color: g.$color-light;
     }
   }
+
+  &.active {
+    color: #ff4d4d;
+    svg {
+      fill: #ff4d4d;
+    }
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
 }
 
 .item__right-time {
@@ -138,4 +154,8 @@
   font-size: 0.875rem;
   color: g.$color-gray;
   user-select: none;
+
+  @media (max-width: g.$breakpoint-sm) {
+    display: none;
+  }
 }

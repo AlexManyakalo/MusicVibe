@@ -26,6 +26,15 @@
     transform: translateY(0);
     pointer-events: all;
   }
+  @media (max-width: g.$breakpoint-md) {
+    box-shadow: 0px -100px 20px -30px rgba(11, 12, 16, 0.7) inset;
+
+    .link__controls {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: all;
+    }
+  }
 }
 
 .block__image {
@@ -64,6 +73,20 @@
     &:hover {
       color: g.$color-light;
     }
+  }
+}
+
+.controls__like {
+  &.active {
+    color: #ff4d4d;
+    svg {
+      fill: #ff4d4d;
+    }
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
   }
 }
 

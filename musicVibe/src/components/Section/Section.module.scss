@@ -30,6 +30,9 @@
   &:hover {
     text-decoration: underline;
   }
+  @media (max-width: g.$breakpoint-sm) {
+    display: none;
+  }
 }
 
 .section__list {
@@ -37,6 +40,10 @@
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   gap: 24px;
   width: 100%;
+
+  @media (max-width: g.$breakpoint-sm) {
+    place-items: center;
+  }
 }
 
 .chart__list {
