@@ -66,6 +66,28 @@
 }
 
 .item__right-like {
+  svg {
+    width: 25px;
+    height: 23px;
+    color: g.$color-gray;
+    transition-duration: g.$transition-duration;
+
+    &:hover {
+      color: g.$color-light;
+    }
+  }
+
+  &.active {
+    svg {
+      color: #ff4d4d;
+      fill: #ff4d4d;
+    }
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
 }
 
 .track__comment {
