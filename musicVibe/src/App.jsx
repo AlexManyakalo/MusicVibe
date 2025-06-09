@@ -1,4 +1,3 @@
-import { useState } from "react";
 import AppRoutes from "@/routes/routes.jsx";
 
 import "./App.module.scss";
