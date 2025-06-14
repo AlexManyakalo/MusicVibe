@@ -22,7 +22,9 @@ const SettingsProfilePage = lazy(
 const SettingsCardPage = lazy(
   () => import("@/pages/SettingsCardPage/SettingsCardPage.jsx"),
 );
-const StudioPage = lazy(() => import("@/pages/StudioPage/StudioPage.jsx"));
+const UploadMusicPage = lazy(
+  () => import("@/pages/UploadMusicPage/UploadMusicPage.jsx"),
+);
 const SubscribePage = lazy(
   () => import("@/pages/SubscribePage/SubscribePage.jsx"),
 );
@@ -101,7 +103,7 @@ export const privateRoutes = [
   },
   {
     path: "/studio/:id",
-    element: StudioPage,
+    element: UploadMusicPage,
   },
   {
     path: "/subscribe/:id",
