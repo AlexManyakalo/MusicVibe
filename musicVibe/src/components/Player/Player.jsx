@@ -16,8 +16,15 @@ import {
 import styles from "./Player.module.scss";
 
 function Player() {
-  const { currentTrack, isPlaying, togglePlayPause, nextTrack, audio } =
-    useContext(PlayerContext);
+  const {
+    currentTrack,
+    isPlaying,
+    togglePlayPause,
+    nextTrack,
+    previousTrack,
+    audio,
+    toggleMute,
+  } = useContext(PlayerContext);
   const { isFavorite, addToFavorites, removeFromFavorites } = useFavorites();
   const [isFavoriteLoading, setIsFavoriteLoading] = useState(false);
 
@@ -108,7 +115,7 @@ function Player() {
             <RandomIcon />
           </button>
           <div className={styles.controls__player}>
-            <button onClick={nextTrack}>
+            <button onClick={previousTrack}>
               <NextIcon />
             </button>
             <button onClick={togglePlayPause}>
@@ -122,17 +129,11 @@ function Player() {
               <NextIcon className={styles["controls__player-next"]} />
             </button>
           </div>
-          <button>
+          <button onClick={toggleMute}>
             <SoundIcon />
           </button>
         </div>
-        <button className={styles["adaptive__btn"]} onClick={togglePlayPause}>
-          {isPlaying ? (
-            <PauseIcon />
-          ) : (
-            <PlayIcon className={styles.play__btn} />
-          )}
-        </button>
+
         <div className={styles.center__progress}>
           <div className={styles.progress__time}>{formatTime(currentTime)}</div>
           <div className={styles.progress} onClick={handleProgressClick}>

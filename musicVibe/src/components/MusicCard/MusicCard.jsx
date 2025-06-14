@@ -8,7 +8,7 @@ import { PlayIcon, PauseIcon, HeartIcon } from "@/components/index.js";
 // Styles
 import styles from "./MusicCard.module.scss";
 
-function MusicCard({ item, isAlbum }) {
+function MusicCard({ item, isAlbum, tracks = [] }) {
   const { playTrack, togglePlayPause, currentTrack, isPlaying } =
     useContext(PlayerContext);
   const { isFavorite, addToFavorites, removeFromFavorites } = useFavorites();
@@ -27,7 +27,7 @@ function MusicCard({ item, isAlbum }) {
     }
 
     if (isCurrent) togglePlayPause();
-    else playTrack(item);
+    else playTrack(item, tracks);
   }
 
   async function handleLike(e) {

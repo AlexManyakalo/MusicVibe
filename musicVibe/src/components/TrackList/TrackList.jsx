@@ -13,9 +13,19 @@ function TrackList({ tracks = [], albums = [], isChart = false }) {
       <ul className={isChart ? styles.chart__list : styles.section__list}>
         {items.map((item, index) =>
           isChart ? (
-            <ChartItem key={item.id} index={index} track={item} />
+            <ChartItem
+              key={item.id}
+              index={index}
+              track={item}
+              tracks={tracks}
+            />
           ) : (
-            <MusicCard key={item.id} item={item} isAlbum={isAlbum} />
+            <MusicCard
+              key={item.id}
+              item={item}
+              isAlbum={isAlbum}
+              tracks={tracks}
+            />
           ),
         )}
       </ul>

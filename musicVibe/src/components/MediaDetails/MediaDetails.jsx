@@ -138,53 +138,52 @@ function MediaDetails({
       </div>
       {isAlbumView ? (
         album.map((track, index) => (
-          <ChartItem key={track.id} index={index} track={track} />
+          <ChartItem
+            key={track.id}
+            index={index}
+            track={track}
+            tracks={album}
+          />
         ))
       ) : (
-        <ChartItem key={track.id} index={0} track={track} />
+        <ChartItem key={track.id} index={0} track={track} tracks={[track]} />
       )}
-      {!isAlbumView && (
-        <>
-          <div className={styles.track__comment}>
-            <h2 className={styles["track__comment-title"]}>
-              {comments.length} комментариев
-            </h2>
-            <form
-              className={styles.comment__bottom}
-              onSubmit={handleSubmitComment}
-            >
-              <div className={styles["comment__bottom-input"]}>
-                <div className={styles["track__comment-block"]}>
-                  <img
-                    className={styles["comment__block-image"]}
-                    src={LoginImage}
-                    alt="Аватарка пользователя"
-                  />
-                </div>
-                <Input
-                  placeholder="Введите комментарий"
-                  isComment="true"
-                  value={comment}
-                  onChange={handleCommentChange}
-                />
-              </div>
-              <div className={styles.controls}>
-                <MenuBtn label="Отмена" onClick={() => setComment("")} />
-                <MenuBtn
-                  label="Оставить комментарий"
-                  type="submit"
-                  disabled={!comment.trim()}
-                />
-              </div>
-            </form>
+      <div className={styles.track__comment}>
+        <h2 className={styles["track__comment-title"]}>
+          {comments.length} комментариев
+        </h2>
+        <form className={styles.comment__bottom} onSubmit={handleSubmitComment}>
+          <div className={styles["comment__bottom-input"]}>
+            <div className={styles["track__comment-block"]}>
+              <img
+                className={styles["comment__block-image"]}
+                src={LoginImage}
+                alt="Аватарка пользователя"
+              />
+            </div>
+            <Input
+              placeholder="Введите комментарий"
+              isComment="true"
+              value={comment}
+              onChange={handleCommentChange}
+            />
           </div>
-          <ul className={styles.comments__list}>
-            {comments.map(comment => (
-              <CommentItem key={comment.id} comment={comment} />
-            ))}
-          </ul>
-        </>
-      )}
+          <div className={styles.controls}>
+            <MenuBtn label="Отмена" onClick={() => setComment("")} />
+            <MenuBtn
+              label="Оставить комментарий"
+              type="submit"
+              disabled={!comment.trim()}
+            />
+          </div>
+        </form>
+      </div>
+
+      <ul className={styles.comments__list}>
+        {comments.map(comment => (
+          <CommentItem key={comment.id} comment={comment} />
+        ))}
+      </ul>
     </>
   );
 }

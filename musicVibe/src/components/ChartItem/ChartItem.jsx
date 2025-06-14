@@ -8,7 +8,7 @@ import { PlayIcon, PauseIcon, HeartIcon } from "@/components/index.js";
 // Styles
 import styles from "./ChartItem.module.scss";
 
-function ChartItem({ index, track }) {
+function ChartItem({ index, track, tracks = [] }) {
   const { playTrack, togglePlayPause, currentTrack, isPlaying, audio } =
     useContext(PlayerContext);
   const { isFavorite, addToFavorites, removeFromFavorites } = useFavorites();
@@ -38,7 +38,7 @@ function ChartItem({ index, track }) {
     e.preventDefault();
 
     if (isCurrent) togglePlayPause();
-    else playTrack(track);
+    else playTrack(track, tracks);
   }
 
   async function handleLike(e) {

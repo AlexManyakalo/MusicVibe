@@ -19,15 +19,21 @@ function Section({
 
   function renderItem(item, index) {
     if (isChart) {
-      return <ChartItem key={item.id} index={index} track={item} />;
+      return (
+        <ChartItem key={item.id} index={index} track={item} tracks={tracks} />
+      );
     }
     if (isAlbum) {
-      return <MusicCard key={item.id} item={item} isAlbum={true} />;
+      return (
+        <MusicCard key={item.id} item={item} isAlbum={true} tracks={tracks} />
+      );
     }
     if (isMusician) {
       return <MusicianCard key={item.id} musician={item} />;
     }
-    return <MusicCard key={item.id} item={item} isAlbum={false} />;
+    return (
+      <MusicCard key={item.id} item={item} isAlbum={false} tracks={tracks} />
+    );
   }
 
   return (

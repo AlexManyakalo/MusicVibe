@@ -4,12 +4,12 @@ export const PlayerContext = createContext();
 
 export function PlayerProvider({ children }) {
   const audioRef = useRef(new Audio());
-
   const [currentTrack, setCurrentTrack] = useState(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
-  const [trackList, setTrackList] = useState([]);
+  const [isMuted, setIsMuted] = useState(false);
+  const [queue, setQueue] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(-1);
 
   // Инициализация аудио
@@ -27,7 +27,7 @@ export function PlayerProvider({ children }) {
     function handleEnded() {
       setIsPlaying(false);
       setCurrentTime(0);
-      // Здесь можно вызвать nextTrack() если будет очередь
+      nextTrack();
     }
 
     audio.addEventListener("loadedmetadata", handleLoadedMetadata);
@@ -41,54 +41,27 @@ export function PlayerProvider({ children }) {
     };
   }, []);
 
-  // Воспроизведение нового альбоам
-  const playAlbum = useCallback((tracks, index = 0) => {
-    const track = tracks[index];
-    if (!track) return;
-
-    const audio = audioRef.current;
-    setTrackList(tracks);
-    setCurrentIndex(index);
-    setCurrentTrack(track);
-
-    audio.src = track.audioUrl;
-    audio
-      .play()
-      .then(() => setIsPlaying(true))
-      .catch(console.error);
-  }, []);
-
   // Воспроизведение нового трека
-  const playTrack = useCallback(track => {
-    const audio = audioRef.current;
+  const playTrack = useCallback(
+    (track, tracks = []) => {
+      const audio = audioRef.current;
 
-    setTrackList([track]);
-    setCurrentIndex(0);
-    setCurrentTrack(track);
-    audio.src = track.audioUrl;
-    audio
-      .play()
-      .then(() => setIsPlaying(true))
-      .catch(console.error);
-  }, []);
-  // const playTrack = useCallback(
-  //   track => {
-  //     const audio = audioRef.current;
+      if (currentTrack?.id === track.id) {
+        togglePlayPause();
+        return;
+      }
 
-  //     if (currentTrack?.id === track.id) {
-  //       togglePlayPause();
-  //       return;
-  //     }
-
-  //     setCurrentTrack(track);
-  //     audio.src = track.audioUrl;
-  //     audio
-  //       .play()
-  //       .then(() => setIsPlaying(true))
-  //       .catch(console.error);
-  //   },
-  //   [currentTrack],
-  // );
+      setCurrentTrack(track);
+      setQueue(tracks);
+      setCurrentIndex(tracks.findIndex(t => t.id === track.id));
+      audio.src = track.audioUrl;
+      audio
+        .play()
+        .then(() => setIsPlaying(true))
+        .catch(console.error);
+    },
+    [currentTrack],
+  );
 
   const togglePlayPause = useCallback(() => {
     const audio = audioRef.current;
@@ -112,26 +85,35 @@ export function PlayerProvider({ children }) {
     setCurrentTime(time);
   }, []);
 
+  const toggleMute = useCallback(() => {
+    const audio = audioRef.current;
+    audio.muted = !audio.muted;
+    setIsMuted(audio.muted);
+  }, []);
+
   const nextTrack = useCallback(() => {
-    if (currentIndex + 1 < trackList.length) {
-      playAlbum(trackList, currentIndex + 1);
-    }
-  }, [currentIndex, trackList, playAlbum]);
+    if (queue.length === 0 || currentIndex === -1) return;
 
-  const prevTrack = useCallback(() => {
-    if (currentIndex > 0) {
-      playAlbum(trackList, currentIndex - 1);
-    }
-  }, [currentIndex, trackList, playAlbum]);
+    const nextIndex = (currentIndex + 1) % queue.length;
+    const nextTrack = queue[nextIndex];
 
-  function handleEnded() {
-    if (currentIndex + 1 < trackList.length) {
-      nextTrack();
-    } else {
-      setIsPlaying(false);
-      setCurrentTime(0);
-    }
-  }
+    setCurrentIndex(nextIndex);
+    setCurrentTrack(nextTrack);
+    audioRef.current.src = nextTrack.audioUrl;
+    audioRef.current.play().catch(console.error);
+  }, [queue, currentIndex]);
+
+  const previousTrack = useCallback(() => {
+    if (queue.length === 0 || currentIndex === -1) return;
+
+    const prevIndex = (currentIndex - 1 + queue.length) % queue.length;
+    const prevTrack = queue[prevIndex];
+
+    setCurrentIndex(prevIndex);
+    setCurrentTrack(prevTrack);
+    audioRef.current.src = prevTrack.audioUrl;
+    audioRef.current.play().catch(console.error);
+  }, [queue, currentIndex]);
 
   return (
     <PlayerContext.Provider
@@ -141,12 +123,13 @@ export function PlayerProvider({ children }) {
         isPlaying,
         currentTime,
         duration,
+        isMuted,
         playTrack,
-        playAlbum,
         togglePlayPause,
         seek,
+        toggleMute,
         nextTrack,
-        prevTrack,
+        previousTrack,
       }}
     >
       {children}
