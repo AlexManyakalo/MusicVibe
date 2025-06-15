@@ -8,12 +8,13 @@ import styles from "./UploadMusicPage.module.scss";
 
 function UploadMusicPage() {
   const [formData, setFormData] = useState({
-    title: "",
+    albumTitle: "",
+    albumDescription: "",
     genre: "",
   });
+  const [tracks, setTracks] = useState([{ title: "", audioFile: null }]);
   const [genres, setGenres] = useState([]);
   const [coverFile, setCoverFile] = useState(null);
-  const [audioFile, setAudioFile] = useState(null);
   const [coverPreview, setCoverPreview] = useState(null);
   const [loading, setLoading] = useState(false);
 
@@ -31,11 +32,12 @@ function UploadMusicPage() {
   }, []);
 
   const tooltips = {
-    title: "Введите название вашего трека",
-    genre: "Выберите жанр вашего трека",
+    albumTitle: "Введите название вашего альбома",
+    albumDescription: "Добавьте описание альбома",
+    genre: "Выберите жанр альбома",
     cover:
-      "Загрузите обложку для трека. Рекомендуемый размер: 500x500 пикселей",
-    audio: "Загрузите аудиофайл в формате MP3 или WAV",
+      "Загрузите обложку для альбома. Рекомендуемый размер: 500x500 пикселей",
+    track: "Загрузите аудиофайл в формате MP3 или WAV",
   };
 
   // Обработка изменения полей ввода
@@ -44,17 +46,22 @@ function UploadMusicPage() {
     setFormData(prev => ({ ...prev, [name]: value }));
   }
 
+  // Обработка изменения названия трека
+  function handleTrackTitleChange(index, value) {
+    const newTracks = [...tracks];
+    newTracks[index].title = value;
+    setTracks(newTracks);
+  }
+
   // Обработка загрузки обложки
   function handleCoverUpload(event) {
     const file = event.target.files[0];
     if (file) {
-      // Проверка типа файла
       if (!file.type.startsWith("image/")) {
         alert("Пожалуйста, загрузите изображение");
         return;
       }
 
-      // Проверка размера файла (максимум 5MB)
       if (file.size > 5 * 1024 * 1024) {
         alert("Файл слишком большой. Максимальный размер: 5MB");
         return;
@@ -62,7 +69,6 @@ function UploadMusicPage() {
 
       setCoverFile(file);
 
-      // Создание превью
       const reader = new FileReader();
       reader.onloadend = () => {
         setCoverPreview(reader.result);
@@ -72,23 +78,34 @@ function UploadMusicPage() {
   }
 
   // Обработка загрузки аудио
-  function handleAudioUpload(event) {
+  function handleAudioUpload(event, index) {
     const file = event.target.files[0];
     if (file) {
-      // Проверка типа файла
       if (!file.type.startsWith("audio/")) {
         alert("Пожалуйста, загрузите аудиофайл");
         return;
       }
 
-      // Проверка размера файла (максимум 50MB)
       if (file.size > 50 * 1024 * 1024) {
         alert("Файл слишком большой. Максимальный размер: 50MB");
         return;
       }
 
-      setAudioFile(file);
+      const newTracks = [...tracks];
+      newTracks[index].audioFile = file;
+      setTracks(newTracks);
     }
+  }
+
+  // Добавление нового трека
+  function handleAddTrack() {
+    setTracks([...tracks, { title: "", audioFile: null }]);
+  }
+
+  // Удаление трека
+  function handleRemoveTrack(index) {
+    const newTracks = tracks.filter((_, i) => i !== index);
+    setTracks(newTracks);
   }
 
   // Обработка нажатия кнопки "Загрузить обложку"
@@ -101,40 +118,61 @@ function UploadMusicPage() {
   }
 
   // Обработка нажатия кнопки "Загрузить аудио"
-  function handleChangeAudio() {
+  function handleChangeAudio(index) {
     const input = document.createElement("input");
     input.type = "file";
     input.accept = "audio/*";
-    input.onchange = handleAudioUpload;
+    input.onchange = e => handleAudioUpload(e, index);
     input.click();
   }
 
   // Обработка отправки формы
   async function handleSubmit() {
-    if (!formData.title || !formData.genre || !coverFile || !audioFile) {
-      alert("Пожалуйста, заполните все поля и загрузите файлы");
+    if (
+      !formData.albumTitle ||
+      !formData.genre ||
+      !coverFile ||
+      tracks.length === 0
+    ) {
+      alert("Пожалуйста, заполните все обязательные поля и загрузите файлы");
+      return;
+    }
+
+    // Проверка наличия названий и аудиофайлов для всех треков
+    const hasInvalidTracks = tracks.some(
+      track => !track.title || !track.audioFile,
+    );
+    if (hasInvalidTracks) {
+      alert(
+        "Пожалуйста, заполните названия и загрузите аудиофайлы для всех треков",
+      );
       return;
     }
 
     setLoading(true);
     try {
       const data = new FormData();
-      data.append("title", formData.title);
+      data.append("albumTitle", formData.albumTitle);
+      data.append("albumDescription", formData.albumDescription);
       data.append("genre", formData.genre);
       data.append("cover", coverFile);
-      data.append("audio", audioFile);
 
-      await api.post("/upload/track", data);
-      alert("Трек успешно загружен!");
+      tracks.forEach((track, index) => {
+        data.append(`tracks[${index}][title]`, track.title);
+        data.append(`tracks[${index}][audio]`, track.audioFile);
+      });
+
+      await api.post("/upload/album", data);
+      alert("Альбом успешно загружен!");
 
       // Очистка формы
-      setFormData({ title: "", genre: "" });
+      setFormData({ albumTitle: "", albumDescription: "", genre: "" });
+      setTracks([{ title: "", audioFile: null }]);
       setCoverFile(null);
-      setAudioFile(null);
       setCoverPreview(null);
     } catch (error) {
-      console.error("Ошибка при загрузке трека:", error);
-      alert("Произошла ошибка при загрузке трека");
+      console.error("Ошибка при загрузке альбома:", error);
+      alert("Произошла ошибка при загрузке альбома");
     } finally {
       setLoading(false);
     }
@@ -143,13 +181,13 @@ function UploadMusicPage() {
   return (
     <>
       <div className={styles.top}>
-        <h3 className={styles.title}>Загрузка трека</h3>
+        <h3 className={styles.title}>Загрузка альбома</h3>
       </div>
 
       <div className={styles.block}>
         <div className={styles.header}>
-          <h4 className={styles.subtitle}>Название трека</h4>
-          <Tooltip content={tooltips.title}>
+          <h4 className={styles.subtitle}>Название альбома</h4>
+          <Tooltip content={tooltips.albumTitle}>
             <button className={styles.help}>
               <QuestionIcon />
             </button>
@@ -157,11 +195,29 @@ function UploadMusicPage() {
         </div>
         <Input
           type="text"
-          name="title"
-          placeholder="Название трека"
-          value={formData.title}
+          name="albumTitle"
+          placeholder="Название альбома"
+          value={formData.albumTitle}
           onChange={handleInputChange}
           required
+        />
+      </div>
+
+      <div className={styles.block}>
+        <div className={styles.header}>
+          <h4 className={styles.subtitle}>Описание альбома</h4>
+          <Tooltip content={tooltips.albumDescription}>
+            <button className={styles.help}>
+              <QuestionIcon />
+            </button>
+          </Tooltip>
+        </div>
+        <textarea
+          name="albumDescription"
+          placeholder="Описание альбома"
+          value={formData.albumDescription}
+          onChange={handleInputChange}
+          className={styles.textarea}
         />
       </div>
 
@@ -192,7 +248,7 @@ function UploadMusicPage() {
 
       <div className={styles.block}>
         <div className={styles.header}>
-          <h4 className={styles.subtitle}>Обложка</h4>
+          <h4 className={styles.subtitle}>Обложка альбома</h4>
           <Tooltip content={tooltips.cover}>
             <button className={styles.help}>
               <QuestionIcon />
@@ -216,36 +272,54 @@ function UploadMusicPage() {
 
       <div className={styles.block}>
         <div className={styles.header}>
-          <h4 className={styles.subtitle}>Аудиофайл</h4>
-          <Tooltip content={tooltips.audio}>
-            <button className={styles.help}>
-              <QuestionIcon />
-            </button>
-          </Tooltip>
+          <h4 className={styles.subtitle}>Треки</h4>
         </div>
-        <div className={styles.audio}>
-          {audioFile ? (
-            <p className={styles.filename}>{audioFile.name}</p>
-          ) : (
-            <p className={styles.empty}>Нет аудиофайла</p>
-          )}
-        </div>
+        {tracks.map((track, index) => (
+          <div key={index} className={styles.track}>
+            <Input
+              type="text"
+              placeholder="Название трека"
+              value={track.title}
+              onChange={e => handleTrackTitleChange(index, e.target.value)}
+              required
+            />
+            <div className={styles.audio}>
+              {track.audioFile ? (
+                <p className={styles.filename}>{track.audioFile.name}</p>
+              ) : (
+                <p className={styles.empty}>Нет аудиофайла</p>
+              )}
+            </div>
+            <div className={styles.buttons}>
+              <MenuBtn
+                label="Загрузить аудио"
+                onClick={() => handleChangeAudio(index)}
+              />
+              {track.audioFile && (
+                <MenuBtn
+                  label="Удалить"
+                  danger={true}
+                  onClick={() => handleRemoveTrack(index)}
+                />
+              )}
+            </div>
+          </div>
+        ))}
         <div className={styles.buttons}>
-          <MenuBtn label="Загрузить аудио" onClick={handleChangeAudio} />
-          {audioFile && <MenuBtn label="Удалить" danger={true} />}
+          <MenuBtn label="Добавить трек" onClick={handleAddTrack} />
         </div>
       </div>
 
       <div className={styles.submit}>
         <MenuBtn
-          label="Сохранить"
+          label="Сохранить альбом"
           onClick={handleSubmit}
           disabled={
             loading ||
-            !formData.title ||
+            !formData.albumTitle ||
             !formData.genre ||
             !coverFile ||
-            !audioFile
+            tracks.length === 0
           }
         />
       </div>
