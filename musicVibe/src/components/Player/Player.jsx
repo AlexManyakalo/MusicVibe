@@ -111,11 +111,11 @@ function Player() {
 
       <div className={styles.player__center}>
         <div className={styles.center__controls}>
-          <button>
+          <button className={styles.controls__none}>
             <RandomIcon />
           </button>
           <div className={styles.controls__player}>
-            <button onClick={previousTrack}>
+            <button onClick={previousTrack} className={styles.controls__none}>
               <NextIcon />
             </button>
             <button onClick={togglePlayPause}>
@@ -125,11 +125,11 @@ function Player() {
                 <PlayIcon className={styles.play__btn} />
               )}
             </button>
-            <button onClick={nextTrack}>
+            <button onClick={nextTrack} className={styles.controls__none}>
               <NextIcon className={styles["controls__player-next"]} />
             </button>
           </div>
-          <button onClick={toggleMute}>
+          <button onClick={toggleMute} className={styles.controls__none}>
             <SoundIcon />
           </button>
         </div>

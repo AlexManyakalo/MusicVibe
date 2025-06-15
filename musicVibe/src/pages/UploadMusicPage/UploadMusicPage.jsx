@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import api from "@/api";
 // Components
-import { Input, MenuBtn, Tooltip } from "@/components/index.js";
+import { Input, MenuBtn, Tooltip, Textarea } from "@/components/index.js";
 import { QuestionIcon } from "@/components/index.js";
 // Styles
 import styles from "./UploadMusicPage.module.scss";
@@ -212,12 +212,12 @@ function UploadMusicPage() {
             </button>
           </Tooltip>
         </div>
-        <textarea
+        <Textarea
           name="albumDescription"
           placeholder="Описание альбома"
           value={formData.albumDescription}
           onChange={handleInputChange}
-          className={styles.textarea}
+          maxLength={500}
         />
       </div>
 
