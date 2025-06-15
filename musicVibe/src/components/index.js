@@ -21,3 +21,4 @@ export { default as SelectionPage } from "./SelectionPage/SelectionPage";
 export { default as Tooltip } from "./Tooltip/Tooltip";
 export { default as SettingsProfile } from "./SettingsProfile/SettingsProfile";
 export { default as MusicianCard } from "./MusicianCard/MusicianCard";
+export { default as Textarea } from "./Textarea/Textarea";
