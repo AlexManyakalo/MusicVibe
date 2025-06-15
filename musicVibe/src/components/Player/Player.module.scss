@@ -125,7 +125,9 @@
   justify-content: space-between;
   width: 100%;
   max-width: 447px;
+}
 
+.controls__none {
   @media (max-width: g.$breakpoint-md) {
     display: none;
   }

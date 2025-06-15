@@ -5,6 +5,10 @@
   align-items: center;
   justify-content: flex-start;
   column-gap: 40px;
+
+  @media (max-width: g.$breakpoint-sm) {
+    flex-direction: column;
+  }
 }
 
 .track__song-block {
@@ -28,6 +32,7 @@
   flex-direction: column;
   align-items: flex-start;
   justify-content: space-between;
+  row-gap: 10px;
   padding-block: 20px;
   height: 100%;
 }
@@ -37,10 +42,18 @@
   flex-direction: column;
   row-gap: 10px;
 
+  @media (max-width: g.$breakpoint-sm) {
+    align-items: center;
+  }
+
   &-title {
     display: inline-block;
     font-size: 2rem;
     color: g.$color-light;
+
+    @media (max-width: g.$breakpoint-sm) {
+      font-size: 1.5rem;
+    }
   }
   &-link {
     display: inline-block;
@@ -49,10 +62,18 @@
     &:hover {
       text-decoration: underline;
     }
+    @media (max-width: g.$breakpoint-sm) {
+      font-size: 1.25rem;
+    }
   }
   &-description {
     font-size: 1.25rem;
     color: g.$color-gray;
+
+    @media (max-width: g.$breakpoint-sm) {
+      text-align: center;
+      font-size: 1rem;
+    }
   }
   &-plays {
     font-size: 1rem;
@@ -63,6 +84,11 @@
 .info__bottom {
   display: flex;
   column-gap: 20px;
+
+  @media (max-width: g.$breakpoint-sm) {
+    justify-content: center;
+    width: 100%;
+  }
 }
 
 .item__right-like {

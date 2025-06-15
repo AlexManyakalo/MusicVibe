@@ -21,6 +21,10 @@
       color: g.$color-light;
     }
   }
+
+  @media (max-width: g.$breakpoint-sm) {
+    padding-inline: 0;
+  }
 }
 
 .item__left {

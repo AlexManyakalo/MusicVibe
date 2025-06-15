@@ -84,6 +84,11 @@
     height: 100%;
     padding: 0 16px;
   }
+  p {
+    @media (max-width: g.$breakpoint-md) {
+      display: none;
+    }
+  }
 }
 
 .aside__btn {
@@ -150,6 +155,7 @@
   }
 
   @media (max-width: g.$breakpoint-md) {
+    height: 300px;
     bottom: 60px;
     left: auto;
     right: 16px;
@@ -187,10 +193,17 @@
   justify-content: flex-start;
   row-gap: 35px;
   flex-grow: 1;
-  padding: 24px 36px 128px 24px;
+  padding: 24px 24px calc(240px + env(safe-area-inset-bottom)) 24px;
   overflow-y: auto;
 
   @media (max-width: g.$breakpoint-md) {
     order: 1;
+  }
+}
+
+// Для устройств без safe-area-inset-bottom
+@supports not (padding-bottom: env(safe-area-inset-bottom)) {
+  .content {
+    padding-bottom: 240px;
   }
 }

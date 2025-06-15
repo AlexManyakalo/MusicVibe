@@ -5,6 +5,10 @@
   flex-wrap: wrap;
   gap: 30px 20px;
   width: 100%;
+
+  @media (max-width: g.$breakpoint-sm) {
+    justify-content: center;
+  }
 }
 
 .chart__list {

@@ -41,6 +41,8 @@
 
   @media (max-width: g.$breakpoint-sm) {
     row-gap: 30px;
+    padding-top: 0;
+    justify-content: center;
   }
 }
 

@@ -29,12 +29,6 @@
       height: 40px;
     }
   }
-
-  p {
-    @media (max-width: g.$breakpoint-md) {
-      display: none;
-    }
-  }
 }
 
 .nav__link--active {
