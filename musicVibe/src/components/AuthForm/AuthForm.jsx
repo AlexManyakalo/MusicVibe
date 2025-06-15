@@ -11,9 +11,9 @@ import styles from "./AuthForm.module.scss";
 // Схема валидации для регистрации
 const registerSchema = z
   .object({
-    username: z.string().min(2, "Имя должно содержать минимум 2 символа"),
+    username: z.string().min(2, "Минимум 2 символа"),
     email: z.string().email("Некорректный email"),
-    password: z.string().min(6, "Пароль должен содержать минимум 6 символов"),
+    password: z.string().min(6, "Минимум 6 символов"),
     confirmPassword: z.string(),
   })
   .refine(data => data.password === data.confirmPassword, {
@@ -24,7 +24,7 @@ const registerSchema = z
 // Схема валидации для входа
 const loginSchema = z.object({
   email: z.string().email("Некорректный email"),
-  password: z.string().min(6, "Пароль должен содержать минимум 6 символов"),
+  password: z.string().min(6, "Минимум 6 символов"),
 });
 
 function AuthForm({ type }) {

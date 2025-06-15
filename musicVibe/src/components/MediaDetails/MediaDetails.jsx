@@ -171,7 +171,7 @@ function MediaDetails({
           <div className={styles.controls}>
             <MenuBtn label="Отмена" onClick={() => setComment("")} />
             <MenuBtn
-              label="Оставить комментарий"
+              label="Отправить"
               type="submit"
               disabled={!comment.trim()}
             />
